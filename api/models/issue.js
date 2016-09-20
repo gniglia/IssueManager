@@ -14,7 +14,14 @@ const IssueSchema = new Schema({
     },
     issueId: {
         type: Schema.Types.ObjectId
-    }
+    },
+    comments: [{
+      text: String,
+      createdAt: {
+        type: Date,
+        default: Date.now
+      }
+    }]
 });
 
 export default mongoose.model('Issue', IssueSchema);

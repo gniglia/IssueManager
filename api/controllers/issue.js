@@ -3,13 +3,12 @@ import Issue from '../models/issue';
 const list = (req, res) => {
   Issue.find((err, issues) => {
     if (err) {
-      res.status(500);
-      res.send('Internal Server Error');
+      return res.status(500).json({
+        message: 'Internal server error'
+      });
     }
-    else {
-      res.status(200);
-      res.send(issues);
-    }
+
+    return res.status(200).json(issues);
   });
 };
 
@@ -18,24 +17,46 @@ const create = (req, res) => {
 
   issue.save(err => {
     if (err) {
-      res.status(500);
-      res.send('Failed adding an Issue');
+      return res.status(500).json({
+        message: 'Failed adding an Issue'
+      });
     }
-    else {
-      res.status(201);
-      res.send(issue);
-    }
+
+    return res.status(201).json(issue);
   });
 };
 
-export default { list, create };
-// list: function(req, res) {
-//         carModel.find(function(err, cars){
-//             if(err) {
-//                 return res.status(500).json({
-//                     message: 'Error getting car.'
-//                 });
-//             }
-//             return res.json(cars);
-//         });
-//     },
+const getById = (req, res) => {
+  const id = req.params.id;
+
+  Issue.findOne({ _id: id }, (err, issue) => {
+    if (err) {
+      return res.status(500).json({
+        message: 'Failed getting an Issue'
+      });
+    }
+    if (!issue) {
+      return res.status(404).json({
+        message: 'No such Issue'
+      });
+    }
+
+    return res.json(issue);
+  });
+};
+
+const remove = (req, res) => {
+  const id = req.params.id;
+
+  Issue.findByIdAndRemove(id, (err, issue) => {
+    if (err) {
+      return res.status(500).json({
+        message: 'Failed to removing an Issue'
+      });
+    }
+
+    return res.json(issue);
+  });
+};
+
+export default { list, create, getById, remove };

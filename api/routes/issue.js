@@ -7,8 +7,8 @@ router.route('/')
   .get(issueCtrl.list)
   .post(issueCtrl.create);
 
-router.get('/:id', (req, res) => {
-  res.send('This is the path to Issue: '+ req.params.id);
-});
+router.route('/:id')
+  .get(issueCtrl.getById)
+  .delete(issueCtrl.remove);
 
 export default router;
