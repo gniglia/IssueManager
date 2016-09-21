@@ -1,6 +1,10 @@
 import app from './config/express';
 import config from './config/env';
+
 import mongoose from 'mongoose';
+import Promise from 'bluebird';
+
+Promise.promisifyAll(mongoose);
 
 
 mongoose.connect(config.default.db);
