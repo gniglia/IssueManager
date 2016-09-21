@@ -1,34 +1,29 @@
 import httpStatus from 'http-status';
 import Issue from '../models/issue';
 
+
 const list = (req, res) => {
-
   Issue.findAsync()
-
-  // Issue.find((err, issues) => {
-  //   if (err) {
-  //     return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
-  //       message: 'Internal server error'
-  //     });
-  //   }
-  //
-  //   return res.status(httpStatus.OK).json(issues);
-  // });
+    .then(issues => res.status(httpStatus.OK).json(issues))
+    .catch(err => {
+      res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+        message: 'Internal server error'
+      });
+    });
 };
 
 const create = (req, res) => {
   const issue = new Issue(req.body);
 
-  issue.save(err => {
-    if (err) {
-      return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+  issue.saveAsync()
+    .then(savedIssue => res.status(httpStatus.CREATED).json(savedIssue))
+    .catch(err => {
+      res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
         message: 'Failed adding an Issue'
       });
-    }
-
-    return res.status(httpStatus.CREATED).json(issue);
-  });
+    });
 };
+
 
 const getById = (req, res) => {
   const id = req.params.id;
@@ -49,18 +44,27 @@ const getById = (req, res) => {
     });
 };
 
+/**
+ * Delete issue.
+ * @returns {Issue}
+ */
 const remove = (req, res) => {
   const id = req.params.id;
 
-  Issue.findByIdAndRemove(id, (err, issue) => {
-    if (err) {
-      return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+  Issue.findByIdAndRemoveAsync(id)
+    .then(removedIssue => {
+      if (!removedIssue) {
+        return res.status(httpStatus.NOT_FOUND).json({
+          message: 'No such Issue'
+        });
+      }
+      res.json(removedIssue);
+    })
+    .catch(err => {
+      res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
         message: 'Failed removing an Issue'
       });
-    }
-
-    return res.json(issue);
-  });
+    });
 };
 
 export default { list, create, getById, remove };

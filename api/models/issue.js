@@ -7,13 +7,10 @@ const IssueSchema = new Schema({
       type: String,
       required: true
     },
-    description: Number,
+    description: String,
     state: {
       type: String,
       required: true
-    },
-    issueId: {
-        type: Schema.Types.ObjectId
     },
     comments: [{
       text: String,
