@@ -19,6 +19,12 @@ const IssueSchema = new Schema({
         default: Date.now
       }
     }]
+}, {
+  toJSON: {
+    transform: (doc, ret) => {
+      delete ret.__v;
+    }
+  }
 });
 
 export default mongoose.model('Issue', IssueSchema);
