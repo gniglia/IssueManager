@@ -4,4 +4,8 @@ const loadIssues = () => {
   return axios.get('http://localhost:3500/api/issues');
 };
 
-export default { loadIssues };
+const deleteIssue = (id) => {
+  return axios.delete('http://localhost:3500/api/issues/'+ id);
+};
+
+export default { loadIssues, deleteIssue };

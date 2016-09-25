@@ -9,15 +9,34 @@ const issues = (state = initialState.issues, action) => {
     case types.FETCH_ISSUES_FULFILLED: {
       return {
         ...state,
+        issues: action.payload.data,
         fetching: false,
-        fetched: true,
-        users: action.payload
+        fetched: true
       }
     }
     case types.FETCH_ISSUES_REJECTED: {
       return {
         ...state,
         fetching: false,
+        error: action.payload
+      }
+    }
+
+    case types.DELETE_ISSUE_PENDING: {
+      return {...state, deleting: true}
+    }
+    case types.DELETE_ISSUE_FULFILLED: {
+      return {
+        ...state,
+        deleting: false,
+        deleted: true,
+        issues: state.issues.filter(issue => issue._id !== action.payload.data._id)
+      }
+    }
+    case types.DELETE_ISSUE_REJECTED: {
+      return {
+        ...state,
+        deleting: false,
         error: action.payload
       }
     }

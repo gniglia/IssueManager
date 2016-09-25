@@ -1,12 +1,13 @@
 import React from "react";
-import issueApi from '../api/issueApi';
+import Header from './common/Header';
 
-const Layout = () => {
+const Layout = (props) => {
   return (
     <div>
-      {'Im the Layout component!'}
+      <Header />
+      {props.children}
     </div>
-  )
-}
+  );
+};
 
 export default Layout;
