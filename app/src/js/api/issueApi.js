@@ -8,4 +8,12 @@ const deleteIssue = (id) => {
   return axios.delete('http://localhost:3500/api/issues/'+ id);
 };
 
-export default { loadIssues, deleteIssue };
+const createIssue = (issue) => {
+  return axios.post('http://localhost:3500/api/issues/', {
+    title: issue.title,
+    description: issue.description,
+    state: 'open'
+  });
+};
+
+export default { loadIssues, deleteIssue, createIssue };

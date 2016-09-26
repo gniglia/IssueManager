@@ -40,6 +40,26 @@ const issues = (state = initialState.issues, action) => {
         error: action.payload
       }
     }
+
+    case types.CREATE_ISSUE_PENDING: {
+      return {...state, saving: true}
+    }
+    case types.CREATE_ISSUE_FULFILLED: {
+      return {
+        ...state,
+        saving: false,
+        saved: true,
+        issues: [...state.issues, action.payload.data]
+      }
+    }
+    case types.CREATE_ISSUE_REJECTED: {
+      return {
+        ...state,
+        saving: false,
+        error: action.payload
+      }
+    }
+
   }
   return state;
 };

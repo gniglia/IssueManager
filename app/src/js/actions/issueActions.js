@@ -14,3 +14,10 @@ export const deleteIssue = (id) => {
     payload: issueApi.deleteIssue(id)
   }
 };
+
+export const createIssue = (issue) => {
+  return {
+    type: types.CREATE_ISSUE,
+    payload: issueApi.createIssue(issue)
+  };
+};

@@ -15,13 +15,17 @@ const list = (req, res) => {
 const create = (req, res) => {
   const issue = new Issue(req.body);
 
-  issue.saveAsync()
-    .then(savedIssue => res.status(httpStatus.CREATED).json(savedIssue))
-    .catch(err => {
-      res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
-        message: 'Failed adding an Issue'
+  setTimeout(() => {
+
+    issue.saveAsync()
+      .then(savedIssue => res.status(httpStatus.CREATED).json(savedIssue))
+      .catch(err => {
+        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+          message: 'Failed adding an Issue'
+        });
       });
-    });
+
+  }, 1000);
 };
 
 
