@@ -1,9 +1,10 @@
-import issueApi from '../api/issueApi';
+import commentApi from '../api/commentApi';
 import * as types from './actionTypes';
 
 export const deleteComment = (issueId, commentId) => {
   return {
     type: types.DELETE_COMMENT,
-    payload: issueApi.deleteComment(isueId, commentId)
+    issueId: issueId,
+    payload: commentApi.deleteComment(issueId, commentId)
   }
 };

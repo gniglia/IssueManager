@@ -1,7 +1,6 @@
 import httpStatus from 'http-status';
 import Issue from '../models/issue';
 
-
 const create = (req, res) => {
   const id = req.params.id;
   const comment = { text: req.body.text };
@@ -28,11 +27,13 @@ const remove = (req, res) => {
   const id = req.params.id;
   const commentId = req.params.commentId;
 
-  Issue.findByIdAndUpdateAsync(id, { $pull: { comments: { _id: commentId }}})
+  Issue.findOneAndUpdateAsync({ comments: { $elemMatch: { _id: commentId }}}, { $pull: { comments: { _id: commentId }}})
     .then(updatedIssue => {
+      console.log(updatedIssue);
+
       if (!updatedIssue) {
         return res.status(httpStatus.NOT_FOUND).json({
-          message: 'No such Issue'
+          message: 'No such Issue/Comment'
         });
       }
       res.status(httpStatus.OK).json({

@@ -5,7 +5,7 @@ const loadIssues = () => {
 };
 
 const deleteIssue = (id) => {
-  return axios.delete('http://localhost:3500/api/issues/'+ id);
+  return axios.delete(`http://localhost:3500/api/issues/${id}`);
 };
 
 const createIssue = (issue) => {

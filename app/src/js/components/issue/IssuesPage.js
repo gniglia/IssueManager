@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as issueActions from '../../actions/issueActions';
-import * as commentActions from '../../actions/commentActions';
 import IssueList from './IssueList';
 import IssueEdit from './IssueEdit';
 
@@ -13,7 +12,6 @@ const IssuesPage = (props) => {
       <IssueList
         issues={props.issues}
         onDeleteIssue={props.issueActions.deleteIssue}
-        onDeleteComment={props.commentActions.deleteComment}
       />
       <hr />
       <IssueEdit
@@ -34,7 +32,6 @@ const mapStateToProps = (state) => {
 const mapdispatchToProps = (dispatch) => {
   return {
     issueActions: bindActionCreators(issueActions, dispatch),
-    commentActions: bindActionCreators(commentActions, dispatch)
   };
 };
 

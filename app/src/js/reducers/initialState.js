@@ -1,4 +1,3 @@
 export default {
-  issues: [],
-  fetching: false
+  issues: []
 };

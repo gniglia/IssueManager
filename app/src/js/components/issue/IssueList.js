@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import Button from '../common/Button';
 import CommentList from '../comment/CommentList';
 
-const IssueList = ({issues, onDeleteIssue, onDeleteComment}) => {
+const IssueList = ({issues, onDeleteIssue}) => {
   return (
     <div>
       <ul style={ulStyle}>
@@ -12,7 +12,7 @@ const IssueList = ({issues, onDeleteIssue, onDeleteComment}) => {
             <li key={issue._id}>
               <hr />
               <h4>
-                <Link to={'/issues/'+ issue._id}>{issue.title}</Link>
+                <Link to={`/issues/${issue._id}`}>{issue.title}</Link>
               </h4>
               <h6>{issue.description}</h6>
 
@@ -26,11 +26,6 @@ const IssueList = ({issues, onDeleteIssue, onDeleteComment}) => {
                 text='edit'
                 //onClickHandler={() => onEdit(issue._id)}
                 className='btn btn-success btn-sm'
-              />
-
-              <CommentList
-                issue={issue}
-                onDeleteComment={onDeleteComment}
               />
             </li>
           );

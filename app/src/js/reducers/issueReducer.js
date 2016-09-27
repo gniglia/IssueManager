@@ -60,6 +60,35 @@ const issues = (state = initialState.issues, action) => {
       }
     }
 
+    case types.DELETE_COMMENT_PENDING: {
+      return {...state, deleting: true}
+    }
+    case types.DELETE_COMMENT_FULFILLED: {
+
+      const currentIssues = [...state.issues];
+      let issueToUpdate = currentIssues.findIndex(issue => issue.id === issueId);
+      const updatedIssue = issueToUpdate.comments.splice(start, deleteCount);
+      currentTweets[issueToUpdate] = action.payload;
+
+      return {
+          ...state,
+          issues: currentTweets
+      }
+
+      return {
+        ...state,
+        deleting: false,
+        deleted: true,
+        issues: state.issues.filter(issue => issue._id !== action.payload.data._id)
+      }
+    }
+    case types.DELETE_COMMENT_REJECTED: {
+      return {
+        ...state,
+        deleting: false,
+        error: action.payload
+      }
+    }
   }
   return state;
 };
