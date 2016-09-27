@@ -4,7 +4,13 @@ import * as types from './actionTypes';
 export const deleteComment = (issueId, commentId) => {
   return {
     type: types.DELETE_COMMENT,
-    issueId: issueId,
     payload: commentApi.deleteComment(issueId, commentId)
   }
+};
+
+export const createComment = (comment) => {
+  return {
+    type: types.CREATE_COMMENT,
+    payload: commentApi.createComment(comment)
+  };
 };

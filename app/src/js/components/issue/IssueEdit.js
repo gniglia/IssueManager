@@ -25,10 +25,7 @@ const IssueEdit = ({saving, onCreateIssue}) => {
               title: title.value,
               description: description.value
             }).then(() => {
-              console.log('esto es una promise');
-              // debugger;
-              // title.value = '';
-              // description.value = '';
+              document.forms[0].reset();
             });
           }}
           className='btn btn-primary btn-sm'

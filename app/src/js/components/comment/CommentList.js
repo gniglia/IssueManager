@@ -1,11 +1,11 @@
 import React from 'react';
 import Button from '../common/Button';
 
-const CommentList = ({selectedIssue, onCommentDelete}) => {
+const CommentList = ({issue, onDeleteComment}) => {
   return (
     <div>
       <ul style={ulStyle}>
-        {selectedIssue.comments.map(comment => {
+        {issue.comments.map(comment => {
           return (
             <li key={comment._id}>
               <hr />
@@ -14,7 +14,7 @@ const CommentList = ({selectedIssue, onCommentDelete}) => {
 
               <Button
                 text='remove'
-                onClickHandler={() => onCommentDelete(selectedIssue._id, comment._id)}
+                onClickHandler={() => onDeleteComment(issue._id, comment._id)}
                 className='btn btn-danger btn-xs'
               />
             </li>
