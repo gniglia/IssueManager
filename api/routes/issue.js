@@ -10,6 +10,7 @@ router.route('/')
 
 router.route('/:id')
   .get(issueCtrl.getById)
+  .patch(issueCtrl.update)
   .delete(issueCtrl.remove);
 
 router.route('/:id/comments')

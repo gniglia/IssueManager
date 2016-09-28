@@ -15,13 +15,17 @@ const list = (req, res) => {
 const create = (req, res) => {
   const issue = new Issue(req.body);
 
-  issue.saveAsync()
-    .then(savedIssue => res.status(httpStatus.CREATED).json(savedIssue))
-    .catch(err => {
-      res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
-        message: 'Failed adding an Issue'
+  setTimeout(() => {
+
+    issue.saveAsync()
+      .then(savedIssue => res.status(httpStatus.CREATED).json(savedIssue))
+      .catch(err => {
+        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+          message: 'Failed adding an Issue'
+        });
       });
-    });
+
+  }, 1000);
 };
 
 
@@ -67,4 +71,24 @@ const remove = (req, res) => {
     });
 };
 
-export default { list, create, getById, remove };
+const update = (req, res) => {
+  const id = req.params.id;
+  const issue = new Issue(req.body);
+
+  Issue.findByIdAndUpdateAsync(id, { $set: { title: issue.title, description: issue.description }}, { new: true})
+    .then(updatedIssue => {
+      if (!updatedIssue) {
+        return res.status(httpStatus.NOT_FOUND).json({
+          message: 'No such Issue'
+        });
+      }
+      res.status(httpStatus.OK).json(updatedIssue);
+    })
+    .catch(err => {
+      res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+        message: 'Failed adding an Issue'
+      });
+    });
+};
+
+export default { list, create, getById, remove, update };
