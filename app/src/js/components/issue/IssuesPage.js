@@ -5,6 +5,7 @@ import * as issueActions from '../../actions/issueActions';
 import IssueList from './IssueList';
 import { Link } from 'react-router';
 import Button from '../common/Button';
+
 const IssuesPage = (props) => {
   return (
     <div>
@@ -19,7 +20,7 @@ const IssuesPage = (props) => {
       <hr />
       <IssueList
         issues={props.issues}
-        onDeleteIssue={props.issueActions.deleteIssue}
+        deleteIssueAction={props.issueActions.deleteIssue}
       />
     </div>
   );

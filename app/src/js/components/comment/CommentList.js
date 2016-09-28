@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../common/Button';
-import CommentEdit from '../comment/CommentEdit';
+import CommentEditForm from '../comment/CommentEditForm';
+import CommentItem from '../comment/CommentItem';
 import toastr from 'toastr';
 
 const CommentList = ({issue, commentActions, saving}) => {
@@ -9,25 +10,17 @@ const CommentList = ({issue, commentActions, saving}) => {
       <ul style={ulStyle}>
         {issue.comments.map(comment => {
           return (
-            <li key={comment._id}>
-              <hr />
-              <h6>createdAt: <small>{new Date(comment.createdAt).toLocaleString('en-NZ')}</small></h6>
-              <h5><small>{comment.text}</small></h5>
-
-              <Button
-                text='remove'
-                onClickHandler={() => {
-                  commentActions.deleteComment(issue._id, comment._id)
-                    .then(() => toastr.success('Comment removed successfully'))
-                }}
-                className='btn btn-danger btn-xs'
-              />
-            </li>
-          );
+            <CommentItem
+              key={comment._id}
+              issue={issue}
+              comment={comment}
+              deleteCommentAction={commentActions.deleteComment}
+            />
+          )
         })}
         <li>
           <hr />
-          <CommentEdit
+          <CommentEditForm
             issue={issue}
             saving={saving}
             createCommentAction={commentActions.createComment}

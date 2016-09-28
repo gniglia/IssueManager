@@ -7,7 +7,7 @@ import GoBackButton from '../common/GoBackButton';
 import { browserHistory } from 'react-router';
 import toastr from 'toastr';
 
-class IssueEdit extends React.Component {
+class IssueEditForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -123,4 +123,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(IssueEdit);
+export default connect(mapStateToProps, mapDispatchToProps)(IssueEditForm);

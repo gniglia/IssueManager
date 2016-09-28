@@ -3,7 +3,7 @@ import Button from '../common/Button';
 import GoBackButton from '../common/GoBackButton';
 import toastr from 'toastr';
 
-class CommentEdit extends React.Component {
+class CommentEditForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -80,4 +80,4 @@ class CommentEdit extends React.Component {
   }
 }
 
-export default CommentEdit;
+export default CommentEditForm;
