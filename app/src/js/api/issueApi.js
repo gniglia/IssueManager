@@ -16,4 +16,11 @@ const createIssue = (issue) => {
   });
 };
 
-export default { loadIssues, deleteIssue, createIssue };
+const updateIssue = (issue) => {
+  return axios.patch(`http://localhost:3500/api/issues/${issue.id}`, {
+    title: issue.title,
+    description: issue.description
+  });
+};
+
+export default { loadIssues, deleteIssue, createIssue, updateIssue };

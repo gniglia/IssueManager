@@ -1,38 +1,104 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Button from '../common/Button';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as issueActions from '../../actions/issueActions';
 
-const IssueEdit = ({saving, onCreateIssue}) => {
-  let title, description;
+class IssueEdit extends React.Component {
+  constructor(props, context) {
+    super(props, context);
 
-  return (
-    <div>
-      <form>
-        <div className='form-group'>
-          <label>Title</label>
-          <input ref={node => {title = node;}} className='form-control' placeholder='Issue title' />
-        </div>
-        <div className='form-group'>
-          <label>Description</label>
-          <input ref={node => {description = node;}} className='form-control' placeholder='Issue description' />
-        </div>
+    this.state = {
+      title: '',
+      description: ''
+    };
+  }
 
-        <Button
-          text={saving ? 'Saving...' : 'Save'}
-          disabled={saving}
-          onClickHandler={(e) => {
-            e.preventDefault();
-            onCreateIssue({
-              title: title.value,
-              description: description.value
-            }).then(() => {
-              document.forms[0].reset();
-            });
-          }}
-          className='btn btn-primary btn-sm'
-         />
-      </form>
-    </div>
-  );
+  componentWillMount() {
+    const {issue} = this.props;
+    if (issue) {
+      this.setState({
+        title: issue.title,
+        description: issue.description
+      });
+    }
+  }
+
+  redirect() {
+    this.context.router.push('/issues');
+  }
+
+  handleTitleChange(e) {
+    this.setState({title: e.target.value});
+  }
+  handleDescriptionChange(e) {
+    this.setState({description: e.target.value});
+  }
+
+  render () {
+    const {issue, saving, issueActions} = this.props;
+    let headerTitle = issue ? `Editing '${issue.title}'` : 'Adding a new issue';
+
+    return (
+      <div>
+        <h1>{headerTitle}</h1>
+
+        <form>
+          <div className='form-group'>
+            <label>Title</label>
+            <input value={this.state.title} onChange={this.handleTitleChange.bind(this)} className='form-control' placeholder='Issue title' />
+          </div>
+          <div className='form-group'>
+            <label>Description</label>
+            <input value={this.state.description} onChange={this.handleDescriptionChange.bind(this)} className='form-control' placeholder='Issue description' />
+          </div>
+
+          <Button
+            text={saving ? 'Saving...' : 'Save'}
+            disabled={saving}
+            onClickHandler={(e) => {
+              e.preventDefault();
+
+              if (issue) {
+                issueActions.updateIssue({
+                  id: issue._id,
+                  title: this.state.title,
+                  description: this.state.description
+                }).then(() => this.redirect());
+              }
+              else {
+                issueActions.createIssue({
+                  title: this.state.title,
+                  description: this.state.description
+                }).then(() => this.redirect());
+              }
+            }}
+            className='btn btn-primary btn-sm'
+           />
+        </form>
+      </div>
+    )
+  }
+}
+
+IssueEdit.contextTypes = {
+  router: PropTypes.object
 };
 
-export default IssueEdit;
+const mapStateToProps = (state, ownProps) => {
+  const issueId = ownProps.params.id;
+  const issue = issueId && state.issues.issues.find(issue => issue._id === issueId);
+
+  return {
+    saving: state.issues.saving,
+    issue
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    issueActions: bindActionCreators(issueActions, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(IssueEdit);

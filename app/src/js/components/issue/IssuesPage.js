@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as issueActions from '../../actions/issueActions';
 import IssueList from './IssueList';
-import IssueEdit from './IssueEdit';
 
 const IssuesPage = (props) => {
   return (
@@ -12,11 +11,6 @@ const IssuesPage = (props) => {
       <IssueList
         issues={props.issues}
         onDeleteIssue={props.issueActions.deleteIssue}
-      />
-      <hr />
-      <IssueEdit
-        saving={props.saving}
-        onCreateIssue={props.issueActions.createIssue}
       />
     </div>
   );

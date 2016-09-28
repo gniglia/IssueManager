@@ -24,7 +24,7 @@ const CommentEdit = ({issue, saving, onCreateComment}) => {
               document.forms[0].reset();
             });
           }}
-          className='btn btn-primary btn-xs'
+          className='btn btn-primary btn-sm'
          />
       </form>
     </div>

@@ -21,3 +21,10 @@ export const createIssue = (issue) => {
     payload: issueApi.createIssue(issue)
   };
 };
+
+export const updateIssue = (issue) => {
+  return {
+    type: types.UPDATE_ISSUE,
+    payload: issueApi.updateIssue(issue)
+  };
+};

@@ -1,7 +1,8 @@
 import React from 'react';
 import Button from '../common/Button';
+import CommentEdit from '../comment/CommentEdit';
 
-const CommentList = ({issue, onDeleteComment}) => {
+const CommentList = ({issue, onDeleteComment, saving, createCommentAction}) => {
   return (
     <div>
       <ul style={ulStyle}>
@@ -9,7 +10,7 @@ const CommentList = ({issue, onDeleteComment}) => {
           return (
             <li key={comment._id}>
               <hr />
-              <h6>createdAt: <small>{comment.createdAt}</small></h6>
+              <h6>createdAt: <small>{new Date(comment.createdAt).toLocaleString('en-NZ')}</small></h6>
               <h5><small>{comment.text}</small></h5>
 
               <Button
@@ -20,6 +21,14 @@ const CommentList = ({issue, onDeleteComment}) => {
             </li>
           );
         })}
+        <li>
+          <hr />
+          <CommentEdit
+            issue={issue}
+            saving={saving}
+            onCreateComment={createCommentAction}
+          />
+        </li>
       </ul>
     </div>
   );

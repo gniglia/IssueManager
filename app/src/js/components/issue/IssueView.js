@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import CommentList from '../comment/CommentList';
 import { bindActionCreators } from 'redux';
 import * as commentActions from '../../actions/commentActions';
-import CommentEdit from '../comment/CommentEdit';
 
 const IssueView = ({issue, saving, commentActions}) => {
   return (
@@ -12,12 +11,8 @@ const IssueView = ({issue, saving, commentActions}) => {
       <CommentList
         issue={issue}
         onDeleteComment={commentActions.deleteComment}
-      />
-      <hr />
-      <CommentEdit
-        issue={issue}
         saving={saving}
-        onCreateComment={commentActions.createComment}
+        createCommentAction={commentActions.createComment}
       />
     </div>
   );

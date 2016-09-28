@@ -7,6 +7,12 @@ const IssueList = ({issues, onDeleteIssue}) => {
   return (
     <div>
       <ul style={ulStyle}>
+        <Link to={'/issues-edit'}>
+          <Button
+            text='add issue'
+            className='btn btn-primary btn-sm'
+          />
+        </Link>
         {issues.map(issue => {
           return (
             <li key={issue._id}>
@@ -19,14 +25,15 @@ const IssueList = ({issues, onDeleteIssue}) => {
               <Button
                 text='remove'
                 onClickHandler={() => onDeleteIssue(issue._id)}
-                className='btn btn-danger btn-sm'
+                className='btn btn-danger btn-xs'
               />
               {' '}
-              <Button
-                text='edit'
-                //onClickHandler={() => onEdit(issue._id)}
-                className='btn btn-success btn-sm'
-              />
+              <Link to={`/issues-edit/${issue._id}`}>
+                <Button
+                  text='edit'
+                  className='btn btn-success btn-xs'
+                />
+              </Link>
             </li>
           );
         })}

@@ -13,7 +13,10 @@ const IssueSchema = new Schema({
       required: true
     },
     comments: [{
-      text: String,
+      text: {
+        type: String,
+        required: true
+      },
       createdAt: {
         type: Date,
         default: Date.now
