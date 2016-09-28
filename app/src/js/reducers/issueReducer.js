@@ -76,18 +76,7 @@ const issues = (state = initialState.issues, action) => {
       return {...state, saving: true}
     }
     case types.UPDATE_ISSUE_FULFILLED: {
-      const index = state.issues.findIndex(issue => issue._id === action.payload.data._id);
-
-      return {
-        ...state,
-        saving: false,
-        saved: true,
-        issues: [
-          ...state.issues.slice(0, index),
-          action.payload.data,
-          ...state.issues.slice(index + 1)
-        ]
-      }
+      return getStateAfterUpdate(state, action);
     }
     case types.UPDATE_ISSUE_REJECTED: {
       return {
@@ -104,13 +93,7 @@ const issues = (state = initialState.issues, action) => {
       return {...state, deleting: true}
     }
     case types.DELETE_COMMENT_FULFILLED: {
-      return {
-        ...state,
-        issues: [
-          ...state.issues.filter(issue => issue._id !== action.payload.data._id),
-          action.payload.data
-        ]
-      }
+      return getStateAfterUpdate(state, action);
     }
     case types.DELETE_COMMENT_REJECTED: {
       return {
@@ -127,15 +110,7 @@ const issues = (state = initialState.issues, action) => {
       return {...state, saving: true}
     }
     case types.CREATE_COMMENT_FULFILLED: {
-      return {
-        ...state,
-        saving: false,
-        saved: true,
-        issues: [
-          ...state.issues.filter(issue => issue._id !== action.payload.data._id),
-          action.payload.data
-        ]
-      }
+      return getStateAfterUpdate(state, action);
     }
     case types.CREATE_COMMENT_REJECTED: {
       return {
@@ -146,6 +121,21 @@ const issues = (state = initialState.issues, action) => {
     }
   }
   return state;
+};
+
+const getStateAfterUpdate = (state, action) => {
+  const index = state.issues.findIndex(issue => issue._id === action.payload.data._id);
+
+  return {
+    ...state,
+    saving: false,
+    saved: true,
+    issues: [
+      ...state.issues.slice(0, index),
+      action.payload.data,
+      ...state.issues.slice(index + 1)
+    ]
+  }
 };
 
 export default issues;

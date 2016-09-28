@@ -3,11 +3,14 @@ import { Link, IndexLink } from 'react-router';
 
 const Header = () => {
   return (
-    <nav>
-      <IndexLink to='/' activeClassName='active'>Home</IndexLink>
-      {' | '}
-      <Link to='/issues' activeClassName='active'>Issues</Link>
-    </nav>
+    <div class="page-header">
+      <h1>This is the header of Issue Manager</h1>
+      <nav>
+        <IndexLink to='/'>Home</IndexLink>
+        {' | '}
+        <Link to='/issues'>Issues</Link>
+      </nav>
+    </div>
   );
 };
 

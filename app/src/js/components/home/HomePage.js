@@ -2,8 +2,11 @@ import React from 'react';
 
 const HomePage = () => {
   return (
-    <div>
-      <h1>This is the Home Page!</h1>
+    <div class='jumbotron'>
+      <div class='container'>
+        <h1>Issue Manager!</h1>
+        <p>The intend of this app id to manage issues...</p>
+      </div>
     </div>
   );
 };

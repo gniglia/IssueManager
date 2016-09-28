@@ -3,11 +3,20 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as issueActions from '../../actions/issueActions';
 import IssueList from './IssueList';
-
+import { Link } from 'react-router';
+import Button from '../common/Button';
 const IssuesPage = (props) => {
   return (
     <div>
-      <h1>This is the Issues Page!</h1>
+      <h3>Managing Issues</h3>
+
+      <Link to={'/issues-edit'}>
+        <Button
+          text='Add issue'
+          className='btn btn-primary btn-sm'
+        />
+      </Link>
+      <hr />
       <IssueList
         issues={props.issues}
         onDeleteIssue={props.issueActions.deleteIssue}

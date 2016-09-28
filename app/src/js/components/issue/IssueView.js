@@ -7,12 +7,11 @@ import * as commentActions from '../../actions/commentActions';
 const IssueView = ({issue, saving, commentActions}) => {
   return (
     <div>
-      <h1>{issue.title}</h1>
+      <h3>Comments of issue '{issue.title}'</h3>
       <CommentList
         issue={issue}
-        onDeleteComment={commentActions.deleteComment}
+        commentActions={commentActions}
         saving={saving}
-        createCommentAction={commentActions.createComment}
       />
     </div>
   );

@@ -1,12 +1,15 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import Button from '../common/Button';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as issueActions from '../../actions/issueActions';
+import GoBackButton from '../common/GoBackButton';
+import { browserHistory } from 'react-router';
+import toastr from 'toastr';
 
 class IssueEdit extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     this.state = {
       title: '',
@@ -25,7 +28,8 @@ class IssueEdit extends React.Component {
   }
 
   redirect() {
-    this.context.router.push('/issues');
+    toastr.success('Issue saved successfully');
+    browserHistory.push('/issues');
   }
 
   handleTitleChange(e) {
@@ -35,22 +39,37 @@ class IssueEdit extends React.Component {
     this.setState({description: e.target.value});
   }
 
+  isValidForm() {
+    return this.state.title.length > 0 && this.state.description.length > 0;
+  }
+
   render () {
     const {issue, saving, issueActions} = this.props;
     let headerTitle = issue ? `Editing '${issue.title}'` : 'Adding a new issue';
 
     return (
       <div>
-        <h1>{headerTitle}</h1>
+        <h3>{headerTitle}</h3>
 
         <form>
           <div className='form-group'>
             <label>Title</label>
-            <input value={this.state.title} onChange={this.handleTitleChange.bind(this)} className='form-control' placeholder='Issue title' />
+            <input
+              value={this.state.title}
+              onChange={this.handleTitleChange.bind(this)}
+              className='form-control'
+              placeholder='Issue title'
+            />
           </div>
           <div className='form-group'>
             <label>Description</label>
-            <input value={this.state.description} onChange={this.handleDescriptionChange.bind(this)} className='form-control' placeholder='Issue description' />
+            <textarea
+              value={this.state.description}
+              onChange={this.handleDescriptionChange.bind(this)}
+              className='form-control'
+              rows='3'
+              placeholder='Issue description'
+            />
           </div>
 
           <Button
@@ -58,6 +77,11 @@ class IssueEdit extends React.Component {
             disabled={saving}
             onClickHandler={(e) => {
               e.preventDefault();
+
+              if (!this.isValidForm()) {
+                toastr.warning('Title and Description are required');
+                return;
+              }
 
               if (issue) {
                 issueActions.updateIssue({
@@ -75,15 +99,13 @@ class IssueEdit extends React.Component {
             }}
             className='btn btn-primary btn-sm'
            />
+           {' '}
+           <GoBackButton text='Cancel' className='btn btn-primary btn-sm' />
         </form>
       </div>
     )
   }
 }
-
-IssueEdit.contextTypes = {
-  router: PropTypes.object
-};
 
 const mapStateToProps = (state, ownProps) => {
   const issueId = ownProps.params.id;

@@ -2,12 +2,7 @@
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #4d4d4d;
   min-width: 400px;
-  max-width: 600px;
-  margin-top: 20px;
+  /*max-width: 800px;*/
   margin-left: 20px;
   margin-bottom: 20px;
-}
-
-a.active {
-  color: orange;
 }

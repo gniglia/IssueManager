@@ -1,8 +1,9 @@
 import React from 'react';
 import Button from '../common/Button';
 import CommentEdit from '../comment/CommentEdit';
+import toastr from 'toastr';
 
-const CommentList = ({issue, onDeleteComment, saving, createCommentAction}) => {
+const CommentList = ({issue, commentActions, saving}) => {
   return (
     <div>
       <ul style={ulStyle}>
@@ -15,7 +16,10 @@ const CommentList = ({issue, onDeleteComment, saving, createCommentAction}) => {
 
               <Button
                 text='remove'
-                onClickHandler={() => onDeleteComment(issue._id, comment._id)}
+                onClickHandler={() => {
+                  commentActions.deleteComment(issue._id, comment._id)
+                    .then(() => toastr.success('Comment removed successfully'))
+                }}
                 className='btn btn-danger btn-xs'
               />
             </li>
@@ -26,7 +30,7 @@ const CommentList = ({issue, onDeleteComment, saving, createCommentAction}) => {
           <CommentEdit
             issue={issue}
             saving={saving}
-            onCreateComment={createCommentAction}
+            createCommentAction={commentActions.createComment}
           />
         </li>
       </ul>
