@@ -10,6 +10,7 @@ import immutableState from 'redux-immutable-state-invariant';
 import routes from './routes';
 import reducers from "./reducers";
 import Layout from "./components/Layout";
+import '../styles/styles.css';
 
 const middleware = applyMiddleware(immutableState(), promise(), thunk, logger());
 

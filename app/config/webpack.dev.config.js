@@ -15,9 +15,7 @@ module.exports = require('./webpack.base.config')({
 	},
 	cssLoaders: [
 		'style-loader',
-		'css-loader',
-		'postcss-loader',
-		'sass-loader?includePaths[]=' + path.join(basePath, 'bower_components')
+		'css-loader'
 	],
 	plugins: [
 		new webpack.HotModuleReplacementPlugin()

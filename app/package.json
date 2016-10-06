@@ -40,6 +40,7 @@
     "mocha": "^3.0.2",
     "react-addons-test-utils": "^15.3.2",
     "redux-immutable-state-invariant": "^1.2.3",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.3",
     "webpack-hot-middleware": "^2.12.2"

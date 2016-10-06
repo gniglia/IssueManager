@@ -5,9 +5,9 @@ import toastr from 'toastr';
 
 const IssueItem = ({issue, deleteIssueAction}) => {
   return (
-    <div key={issue._id} class="col-sm-6 col-md-3">
-      <div class="thumbnail">
-        <div class="caption">
+    <div key={issue._id} className="col-sm-6 col-md-3">
+      <div className="thumbnail">
+        <div className="caption">
           <h3><Link to={`/issues/${issue._id}`}>{issue.title}</Link></h3>
           <p>{issue.description} ({issue.comments.length})</p>
           <p>

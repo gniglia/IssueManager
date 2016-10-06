@@ -3,7 +3,7 @@ import IssueItem from './IssueItem';
 
 const IssueList = ({issues, deleteIssueAction}) => {
   return (
-    <div class="row-fluid">
+    <div className="row-fluid">
       {
         issues.map(issue => {
           return (

@@ -31,6 +31,10 @@ module.exports = (options) => ({
 				test: /\.scss$/,
 				loaders: options.cssLoaders
 			},
+			{
+				test: /\.css$/,
+				loaders: options.cssLoaders
+			},
 			{ test: /\.svg$/, loader: 'raw-loader' },
 			{ test: /\.(?:png|jpg|jpeg|gif)$/, loader: 'file-loader' }
 		]
