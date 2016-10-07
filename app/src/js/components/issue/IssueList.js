@@ -2,7 +2,13 @@ import React from 'react';
 import IssueItem from './IssueItem';
 import SearchBox from '../common/SearchBox';
 
-const IssueList = ({issues, deleteIssueAction, updateFilterAction}) => {
+const IssueList = ({isFetching, issues, deleteIssueAction, updateFilterAction}) => {
+  if (isFetching) {
+    return (
+      <div>Loading</div>
+    );
+  }
+
   return (
     <div>
       <SearchBox updateFilterAction={updateFilterAction} />

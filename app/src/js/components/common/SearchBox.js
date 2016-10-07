@@ -11,6 +11,11 @@ class SearchBox extends React.Component {
   handleFilter(e) {
     e.preventDefault();
     this.setState({ filter: e.target.value });
+
+    if (this.props.onFilterUpdate) {
+      this.props.onFilterUpdate(filter);
+    }
+
     this.props.updateFilterAction(e.target.value);
   }
 
