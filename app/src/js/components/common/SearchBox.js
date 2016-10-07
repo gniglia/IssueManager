@@ -1,5 +1,4 @@
 import React from 'react';
-import * as filteredList from '../../customStore';
 
 class SearchBox extends React.Component {
   constructor(props) {
@@ -11,13 +10,8 @@ class SearchBox extends React.Component {
 
   handleFilter(e) {
     e.preventDefault();
-
     this.setState({ filter: e.target.value });
-
-    if (e.target.value.length > 2) {
-      console.log(e.target.value);
-      filteredList.filter(issue => issue.title.toLowerCase() === e.target.value.toLowerCase());
-    }
+    this.props.updateFilterAction(e.target.value);
   }
 
   render() {
