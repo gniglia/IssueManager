@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../common/Button';
 import toastr from 'toastr';
 
-const CommentItem = ({issue, comment, deleteCommentAction}) => {
+const CommentItem = ({issue, comment, deleteComment}) => {
     return (
       <li>
         <hr />
@@ -12,7 +12,7 @@ const CommentItem = ({issue, comment, deleteCommentAction}) => {
         <Button
           text='remove'
           onClickHandler={() => {
-            deleteCommentAction(issue._id, comment._id)
+            deleteComment(issue._id, comment._id)
               .then(() => toastr.success('Comment removed successfully'))
           }}
           className='btn btn-danger btn-xs'

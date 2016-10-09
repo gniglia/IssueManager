@@ -21,10 +21,10 @@ const IssuesPage = (props) => {
       </Link>
       <hr />
       <IssueList
-        isFetching={props.isFetching}
+        fetching={props.fetching}
         issues={props.issues}
-        deleteIssueAction={props.issueActions.deleteIssue}
-        updateFilterAction={props.filterActions.updateFilter}
+        deleteIssue={props.issueActions.deleteIssue}
+        updateFilter={props.filterActions.updateFilter}
       />
     </div>
   );
@@ -34,7 +34,7 @@ const mapStateToProps = (state) => {
   return {
     saving: state.issues.saving,
     issues: getFilteredIssues(state),
-    isFetching: state.issues.fetching
+    fetching: state.issues.fetching
   };
 };
 

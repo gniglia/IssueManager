@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import Button from '../common/Button';
 import toastr from 'toastr';
 
-const IssueItem = ({issue, deleteIssueAction}) => {
+const IssueItem = ({issue, deleteIssue}) => {
   return (
     <div key={issue._id} className="col-sm-6 col-md-3">
       <div className="thumbnail">
@@ -14,7 +14,7 @@ const IssueItem = ({issue, deleteIssueAction}) => {
             <Button
               text='remove'
               onClickHandler={() => {
-                deleteIssueAction(issue._id)
+                deleteIssue(issue._id)
                   .then(() => toastr.success('Issue removed successfully'))
               }}
               className='btn btn-danger btn-xs'

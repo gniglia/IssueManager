@@ -2,8 +2,8 @@ import React from 'react';
 import IssueItem from './IssueItem';
 import SearchBox from '../common/SearchBox';
 
-const IssueList = ({isFetching, issues, deleteIssueAction, updateFilterAction}) => {
-  if (isFetching) {
+const IssueList = ({issues, fetching, deleteIssue, updateFilter}) => {
+  if (fetching) {
     return (
       <div>Loading</div>
     );
@@ -11,7 +11,10 @@ const IssueList = ({isFetching, issues, deleteIssueAction, updateFilterAction}) 
 
   return (
     <div>
-      <SearchBox updateFilterAction={updateFilterAction} />
+      <SearchBox
+        onFilterUpdate={updateFilter}
+        placeholder='Search your stuff'
+        className='form-control' />
       <hr />
       <div className="row-fluid">
         {
@@ -20,7 +23,7 @@ const IssueList = ({isFetching, issues, deleteIssueAction, updateFilterAction}) 
               <IssueItem
                 key={issue._id}
                 issue={issue}
-                deleteIssueAction={deleteIssueAction}
+                deleteIssue={deleteIssue}
               />
             )
         })}

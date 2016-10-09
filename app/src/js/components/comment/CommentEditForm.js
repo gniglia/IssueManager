@@ -63,7 +63,7 @@ class CommentEditForm extends React.Component {
                 return;
               }
 
-              createCommentAction({
+              createComment({
                 issueId: issue._id,
                 text: this.state.text
               }).then(() => {

@@ -13,8 +13,7 @@ const issues = (state = initialState.issues, action) => {
       return {
         ...state,
         issues: action.payload.data,
-        fetching: false,
-        fetched: true
+        fetching: false
       }
     }
     case types.FETCH_ISSUES_REJECTED: {
@@ -29,20 +28,17 @@ const issues = (state = initialState.issues, action) => {
      * Deleting an Issue
      */
     case types.DELETE_ISSUE_PENDING: {
-      return {...state, deleting: true}
+      return {...state}
     }
     case types.DELETE_ISSUE_FULFILLED: {
       return {
         ...state,
-        deleting: false,
-        deleted: true,
         issues: state.issues.filter(issue => issue._id !== action.payload.data._id)
       }
     }
     case types.DELETE_ISSUE_REJECTED: {
       return {
         ...state,
-        deleting: false,
         error: action.payload
       }
     }
@@ -57,7 +53,6 @@ const issues = (state = initialState.issues, action) => {
       return {
         ...state,
         saving: false,
-        saved: true,
         issues: [...state.issues, action.payload.data]
       }
     }
@@ -90,7 +85,7 @@ const issues = (state = initialState.issues, action) => {
      * Deleting a Comment
      */
     case types.DELETE_COMMENT_PENDING: {
-      return {...state, deleting: true}
+      return {...state}
     }
     case types.DELETE_COMMENT_FULFILLED: {
       return getStateAfterUpdate(state, action);
@@ -98,7 +93,6 @@ const issues = (state = initialState.issues, action) => {
     case types.DELETE_COMMENT_REJECTED: {
       return {
         ...state,
-        deleting: false,
         error: action.payload
       }
     }
@@ -131,7 +125,6 @@ const getStateAfterUpdate = (state, action) => {
   return {
     ...state,
     saving: false,
-    saved: true,
     issues: [
       ...state.issues.slice(0, index),
       action.payload.data,

@@ -14,7 +14,7 @@ const CommentList = ({issue, commentActions, saving}) => {
               key={comment._id}
               issue={issue}
               comment={comment}
-              deleteCommentAction={commentActions.deleteComment}
+              deleteComment={commentActions.deleteComment}
             />
           )
         })}
@@ -23,7 +23,7 @@ const CommentList = ({issue, commentActions, saving}) => {
           <CommentEditForm
             issue={issue}
             saving={saving}
-            createCommentAction={commentActions.createComment}
+            createComment={commentActions.createComment}
           />
         </li>
       </ul>
