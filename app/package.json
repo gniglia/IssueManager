@@ -5,6 +5,7 @@
   "main": "index.html",
   "scripts": {
     "dev": "babel-node devServer.js",
+    "start": "npm test & npm run dev",
     "test": "mocha --reporter progress config/test.js \"src/**/*.test.js\"",
     "test:watch": "npm run test -- --watch"
   },

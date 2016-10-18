@@ -29,7 +29,7 @@ class SearchBox extends React.Component {
 
   applyFilter(filter) {
     this.setState({ filter });
-    const minLength = this.props.minLength || 3;
+    const {minLength} = this.props;
 
     const listFilter  = filter.length < minLength ? '' : filter;
 
