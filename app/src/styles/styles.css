@@ -6,3 +6,9 @@
   margin-left: 20px;
   margin-bottom: 20px;
 }
+
+.searchBox {
+  display: flex;
+  justifyContent: flex-start;
+  width: 400;
+}

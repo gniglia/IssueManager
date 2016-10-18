@@ -12,9 +12,13 @@ const IssueList = ({issues, fetching, deleteIssue, updateFilter}) => {
   return (
     <div>
       <SearchBox
-        onFilterUpdate={updateFilter}
-        placeholder='Search your stuff'
-        className='form-control' />
+        minLength={3}
+        containerClassName='searchBox'
+        buttonClassName='btn btn-default'
+        buttonText='Search'
+        inputClassName='form-control'
+        inputPlaceholder='Search your stuff'
+        onFilterUpdate={updateFilter} />
       <hr />
       {getIssues(issues, deleteIssue)}
     </div>
