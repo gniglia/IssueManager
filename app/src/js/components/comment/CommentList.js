@@ -4,7 +4,13 @@ import CommentEditForm from '../comment/CommentEditForm';
 import CommentItem from '../comment/CommentItem';
 import toastr from 'toastr';
 
-const CommentList = ({issue, commentActions, saving}) => {
+const CommentList = ({issue, commentActions, saving, fetching}) => {
+  if (fetching) {
+    return (
+      <div>Loading</div>
+    );
+  }
+
   return (
     <div>
       <ul style={ulStyle}>
