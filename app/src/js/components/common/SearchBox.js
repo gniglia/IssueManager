@@ -39,7 +39,7 @@ class SearchBox extends React.Component {
   }
 
   render() {
-    const { containerClassName, buttonClassName, buttonText, inputClassName, inputPlaceholder} = this.props;
+    const {containerClassName, buttonClassName, buttonText, inputClassName, inputPlaceholder} = this.props;
 
     return (
       <div className={containerClassName}>

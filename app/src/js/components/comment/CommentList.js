@@ -14,16 +14,7 @@ const CommentList = ({issue, commentActions, saving, fetching}) => {
   return (
     <div>
       <ul style={ulStyle}>
-        {issue.comments.map(comment => {
-          return (
-            <CommentItem
-              key={comment._id}
-              issue={issue}
-              comment={comment}
-              deleteComment={commentActions.deleteComment}
-            />
-          )
-        })}
+        {getComments(issue, commentActions.deleteComment)}
         <li>
           <hr />
           <CommentEditForm
@@ -37,8 +28,32 @@ const CommentList = ({issue, commentActions, saving, fetching}) => {
   );
 };
 
+export default CommentList;
+
 const ulStyle = {
   listStyleType: 'none'
 };
 
-export default CommentList;
+const getComments = (issue, deleteComment) => {
+  if (issue.comments.length === 0) {
+    return (
+      <div>
+        <hr />
+        <div>No comments to show</div>
+      </div>
+    );
+  }
+
+  return (
+    issue.comments.map(comment => {
+      return (
+        <CommentItem
+          key={comment._id}
+          issue={issue}
+          comment={comment}
+          deleteComment={deleteComment}
+        />
+      )
+    })
+  );
+};

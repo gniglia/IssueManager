@@ -52,6 +52,27 @@ class IssueEditForm extends React.Component {
     return this.state.title.length > 0 && this.state.description.length > 0;
   }
 
+  saveForm(issue, issueActions) {
+    if (!this.isValidForm()) {
+      toastr.warning('Title and Description are required');
+      return;
+    }
+
+    if (issue) {
+      issueActions.updateIssue({
+        id: issue._id,
+        title: this.state.title,
+        description: this.state.description
+      }).then(() => this.redirect());
+    }
+    else {
+      issueActions.createIssue({
+        title: this.state.title,
+        description: this.state.description
+      }).then(() => this.redirect());
+    }
+  }
+
   render () {
     const {issue, saving, issueActions} = this.props;
     let headerTitle = issue ? `Editing '${issue.title}'` : 'Adding a new issue';
@@ -86,25 +107,7 @@ class IssueEditForm extends React.Component {
             disabled={saving}
             onClickHandler={(e) => {
               e.preventDefault();
-
-              if (!this.isValidForm()) {
-                toastr.warning('Title and Description are required');
-                return;
-              }
-
-              if (issue) {
-                issueActions.updateIssue({
-                  id: issue._id,
-                  title: this.state.title,
-                  description: this.state.description
-                }).then(() => this.redirect());
-              }
-              else {
-                issueActions.createIssue({
-                  title: this.state.title,
-                  description: this.state.description
-                }).then(() => this.redirect());
-              }
+              this.saveForm(issue, issueActions);
             }}
             className='btn btn-primary btn-sm'
            />
