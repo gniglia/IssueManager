@@ -16,20 +16,32 @@ const IssueList = ({issues, fetching, deleteIssue, updateFilter}) => {
         placeholder='Search your stuff'
         className='form-control' />
       <hr />
-      <div className="row-fluid">
-        {
-          issues.map(issue => {
-            return (
-              <IssueItem
-                key={issue._id}
-                issue={issue}
-                deleteIssue={deleteIssue}
-              />
-            )
-        })}
-      </div>
+      {getIssues(issues, deleteIssue)}
     </div>
   );
 };
 
 export default IssueList;
+
+const getIssues = (issues, deleteIssue) => {
+  if (issues.length === 0) {
+    return (
+      <div>No data to show</div>
+    );
+  }
+
+  return (
+    <div className="row-fluid">
+      {
+        issues.map(issue => {
+          return (
+            <IssueItem
+              key={issue._id}
+              issue={issue}
+              deleteIssue={deleteIssue}
+            />
+          )
+      })}
+    </div>
+  );
+};
