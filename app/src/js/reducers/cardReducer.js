@@ -1,22 +1,22 @@
 import * as types from '../actions/actionTypes';
 import initialState from './initialState';
 
-const issues = (state = initialState.issues, action) => {
+const cards = (state = initialState.cards, action) => {
   switch (action.type) {
     /*
-     * Fetching Issues
+     * Fetching Cards
      */
-    case types.FETCH_ISSUES_PENDING: {
+    case types.FETCH_CARDS_PENDING: {
       return {...state, fetching: true}
     }
-    case types.FETCH_ISSUES_FULFILLED: {
+    case types.FETCH_CARDS_FULFILLED: {
       return {
         ...state,
-        issues: action.payload.data,
+        cards: action.payload.data,
         fetching: false
       }
     }
-    case types.FETCH_ISSUES_REJECTED: {
+    case types.FETCH_CARDS_REJECTED: {
       return {
         ...state,
         fetching: false,
@@ -25,18 +25,18 @@ const issues = (state = initialState.issues, action) => {
     }
 
     /*
-     * Deleting an Issue
+     * Deleting an Card
      */
-    case types.DELETE_ISSUE_PENDING: {
+    case types.DELETE_CARD_PENDING: {
       return {...state}
     }
-    case types.DELETE_ISSUE_FULFILLED: {
+    case types.DELETE_CARD_FULFILLED: {
       return {
         ...state,
-        issues: state.issues.filter(issue => issue._id !== action.payload.data._id)
+        cards: state.cards.filter(card => card._id !== action.payload.data._id)
       }
     }
-    case types.DELETE_ISSUE_REJECTED: {
+    case types.DELETE_CARD_REJECTED: {
       return {
         ...state,
         error: action.payload
@@ -44,19 +44,19 @@ const issues = (state = initialState.issues, action) => {
     }
 
     /*
-     * Creating an Issue
+     * Creating an Card
      */
-    case types.CREATE_ISSUE_PENDING: {
+    case types.CREATE_CARD_PENDING: {
       return {...state, saving: true}
     }
-    case types.CREATE_ISSUE_FULFILLED: {
+    case types.CREATE_CARD_FULFILLED: {
       return {
         ...state,
         saving: false,
-        issues: [...state.issues, action.payload.data]
+        cards: [...state.cards, action.payload.data]
       }
     }
-    case types.CREATE_ISSUE_REJECTED: {
+    case types.CREATE_CARD_REJECTED: {
       return {
         ...state,
         saving: false,
@@ -65,15 +65,15 @@ const issues = (state = initialState.issues, action) => {
     }
 
     /*
-     * Updating an Issue
+     * Updating an Card
      */
-    case types.UPDATE_ISSUE_PENDING: {
+    case types.UPDATE_CARD_PENDING: {
       return {...state, saving: true}
     }
-    case types.UPDATE_ISSUE_FULFILLED: {
+    case types.UPDATE_CARD_FULFILLED: {
       return getStateAfterUpdate(state, action);
     }
-    case types.UPDATE_ISSUE_REJECTED: {
+    case types.UPDATE_CARD_REJECTED: {
       return {
         ...state,
         saving: false,
@@ -120,17 +120,17 @@ const issues = (state = initialState.issues, action) => {
 };
 
 const getStateAfterUpdate = (state, action) => {
-  const index = state.issues.findIndex(issue => issue._id === action.payload.data._id);
+  const index = state.cards.findIndex(card => card._id === action.payload.data._id);
 
   return {
     ...state,
     saving: false,
-    issues: [
-      ...state.issues.slice(0, index),
+    cards: [
+      ...state.cards.slice(0, index),
       action.payload.data,
-      ...state.issues.slice(index + 1)
+      ...state.cards.slice(index + 1)
     ]
   }
 };
 
-export default issues;
+export default cards;

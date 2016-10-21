@@ -21,8 +21,8 @@ const enhancers = compose(
 
 const store = createStore(reducers, enhancers);
 
-import * as issueActions from './actions/issueActions';
-store.dispatch(issueActions.loadIssues());
+import * as cardActions from './actions/cardActions';
+store.dispatch(cardActions.loadCards());
 
 const app = document.getElementById('app');
 

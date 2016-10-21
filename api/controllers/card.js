@@ -1,10 +1,10 @@
 import httpStatus from 'http-status';
-import Issue from '../models/issue';
+import Card from '../models/card';
 
 
 const list = (req, res) => {
-  Issue.findAsync()
-    .then(issues => res.status(httpStatus.OK).json(issues))
+  Card.findAsync()
+    .then(cards => res.status(httpStatus.OK).json(cards))
     .catch(err => {
       res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
         message: 'Internal server error'
@@ -13,15 +13,15 @@ const list = (req, res) => {
 };
 
 const create = (req, res) => {
-  const issue = new Issue(req.body);
+  const card = new Card(req.body);
 
   setTimeout(() => {
 
-    issue.saveAsync()
-      .then(savedIssue => res.status(httpStatus.CREATED).json(savedIssue))
+    card.saveAsync()
+      .then(savedCard => res.status(httpStatus.CREATED).json(savedCard))
       .catch(err => {
         res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
-          message: 'Failed adding an Issue'
+          message: 'Failed adding an Card'
         });
       });
 
@@ -32,61 +32,61 @@ const create = (req, res) => {
 const getById = (req, res) => {
   const id = req.params.id;
 
-  Issue.findByIdAsync(id)
-    .then(issue => {
-      if (!issue) {
+  Card.findByIdAsync(id)
+    .then(card => {
+      if (!card) {
         return res.status(httpStatus.NOT_FOUND).json({
-          message: 'No such Issue'
+          message: 'No such Card'
         });
       }
-      res.json(issue);
+      res.json(card);
     })
     .catch(err => {
       res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
-        message: 'Failed getting an Issue'
+        message: 'Failed getting an Card'
       });
     });
 };
 
 /**
- * Delete issue.
- * @returns {Issue}
+ * Delete card.
+ * @returns {Card}
  */
 const remove = (req, res) => {
   const id = req.params.id;
 
-  Issue.findByIdAndRemoveAsync(id)
-    .then(removedIssue => {
-      if (!removedIssue) {
+  Card.findByIdAndRemoveAsync(id)
+    .then(removedCard => {
+      if (!removedCard) {
         return res.status(httpStatus.NOT_FOUND).json({
-          message: 'No such Issue'
+          message: 'No such Card'
         });
       }
-      res.json(removedIssue);
+      res.json(removedCard);
     })
     .catch(err => {
       res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
-        message: 'Failed removing an Issue'
+        message: 'Failed removing an Card'
       });
     });
 };
 
 const update = (req, res) => {
   const id = req.params.id;
-  const issue = new Issue(req.body);
+  const card = new Card(req.body);
 
-  Issue.findByIdAndUpdateAsync(id, { $set: { title: issue.title, description: issue.description }}, { new: true})
-    .then(updatedIssue => {
-      if (!updatedIssue) {
+  Card.findByIdAndUpdateAsync(id, { $set: { title: card.title, description: card.description }}, { new: true})
+    .then(updatedCard => {
+      if (!updatedCard) {
         return res.status(httpStatus.NOT_FOUND).json({
-          message: 'No such Issue'
+          message: 'No such Card'
         });
       }
-      res.status(httpStatus.OK).json(updatedIssue);
+      res.status(httpStatus.OK).json(updatedCard);
     })
     .catch(err => {
       res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
-        message: 'Failed adding an Issue'
+        message: 'Failed adding an Card'
       });
     });
 };

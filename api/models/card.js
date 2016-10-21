@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-const IssueSchema = new Schema({
+const CardSchema = new Schema({
     title: {
       type: String,
       required: true
@@ -30,4 +30,4 @@ const IssueSchema = new Schema({
   }
 });
 
-export default mongoose.model('Issue', IssueSchema);
+export default mongoose.model('Card', CardSchema);

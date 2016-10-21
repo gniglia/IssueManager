@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const deleteComment = (issueId, commentId) => {
-  return axios.delete(`http://localhost:3500/api/issues/${issueId}/comments/${commentId}`);
+const deleteComment = (cardId, commentId) => {
+  return axios.delete(`http://localhost:3500/api/cards/${cardId}/comments/${commentId}`);
 };
 
 const createComment = (comment) => {
-  return axios.post(`http://localhost:3500/api/issues/${comment.issueId}/comments/`, {
+  return axios.post(`http://localhost:3500/api/cards/${comment.cardId}/comments/`, {
     text: comment.text
   });
 };

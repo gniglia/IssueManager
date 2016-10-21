@@ -4,13 +4,13 @@ import CommentList from '../comment/CommentList';
 import { bindActionCreators } from 'redux';
 import * as commentActions from '../../actions/commentActions';
 
-const IssueView = ({issue, saving, fetching, commentActions}) => {
-  const title = issue === null ? 'Loading' : issue.title;
+const CardView = ({card, saving, fetching, commentActions}) => {
+  const title = card === null ? 'Loading' : card.title;
   return (
     <div>
-      <h3>Comments of issue '{title}'</h3>
+      <h3>Comments of card '{title}'</h3>
       <CommentList
-        issue={issue}
+        card={card}
         commentActions={commentActions}
         saving={saving}
         fetching={fetching}
@@ -20,12 +20,12 @@ const IssueView = ({issue, saving, fetching, commentActions}) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const issueId = ownProps.params.id;
+  const cardId = ownProps.params.id;
 
   return {
-    saving: state.issues.saving,
-    issue: state.issues.issues ? state.issues.issues.find(issue => issue._id === issueId) : null,
-    fetching: state.issues.fetching
+    saving: state.cards.saving,
+    card: state.cards.cards ? state.cards.cards.find(card => card._id === cardId) : null,
+    fetching: state.cards.fetching
   };
 };
 
@@ -35,4 +35,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(IssueView);
+export default connect(mapStateToProps, mapDispatchToProps)(CardView);

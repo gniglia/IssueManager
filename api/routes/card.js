@@ -1,17 +1,17 @@
 import express from 'express';
-import issueCtrl from '../controllers/issue';
+import cardCtrl from '../controllers/card';
 import commentCtrl from '../controllers/comment';
 
 const router = express.Router();
 
 router.route('/')
-  .get(issueCtrl.list)
-  .post(issueCtrl.create);
+  .get(cardCtrl.list)
+  .post(cardCtrl.create);
 
 router.route('/:id')
-  .get(issueCtrl.getById)
-  .patch(issueCtrl.update)
-  .delete(issueCtrl.remove);
+  .get(cardCtrl.getById)
+  .patch(cardCtrl.update)
+  .delete(cardCtrl.remove);
 
 router.route('/:id/comments')
   .post(commentCtrl.create);

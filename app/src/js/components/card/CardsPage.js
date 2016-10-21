@@ -1,29 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as issueActions from '../../actions/issueActions';
+import * as cardActions from '../../actions/cardActions';
 import * as filterActions from '../../actions/filterActions';
-import IssueList from './IssueList';
+import CardList from './CardList';
 import { Link } from 'react-router';
 import Button from '../common/Button';
-import { getFilteredIssues } from '../../selectors/issueSelector';
+import { getFilteredCards } from '../../selectors/cardSelector';
 
-const IssuesPage = (props) => {
+const CardsPage = (props) => {
   return (
     <div>
-      <h3>Managing Issues</h3>
+      <h3>Managing Cards</h3>
 
-      <Link to={'/issues-edit'}>
+      <Link to={'/cards-edit'}>
         <Button
-          text='Add issue'
+          text='Add card'
           className='btn btn-primary btn-sm'
         />
       </Link>
       <hr />
-      <IssueList
+      <CardList
         fetching={props.fetching}
-        issues={props.issues}
-        deleteIssue={props.issueActions.deleteIssue}
+        cards={props.cards}
+        deleteCard={props.cardActions.deleteCard}
         updateFilter={props.filterActions.updateFilter}
       />
     </div>
@@ -32,17 +32,17 @@ const IssuesPage = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    saving: state.issues.saving,
-    issues: getFilteredIssues(state),
-    fetching: state.issues.fetching
+    saving: state.cards.saving,
+    cards: getFilteredCards(state),
+    fetching: state.cards.fetching
   };
 };
 
 const mapdispatchToProps = (dispatch) => {
   return {
-    issueActions: bindActionCreators(issueActions, dispatch),
+    cardActions: bindActionCreators(cardActions, dispatch),
     filterActions: bindActionCreators(filterActions, dispatch)
   };
 };
 
-export default connect(mapStateToProps, mapdispatchToProps)(IssuesPage);
+export default connect(mapStateToProps, mapdispatchToProps)(CardsPage);
