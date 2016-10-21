@@ -3,7 +3,7 @@ import { Link, IndexLink } from 'react-router';
 
 const Header = () => {
   return (
-    <div class="page-header">
+    <div className="page-header">
       <h1>This is the header of Issue Manager</h1>
       <nav>
         <IndexLink to='/'>Home</IndexLink>

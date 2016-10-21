@@ -4,26 +4,23 @@ import CommentEditForm from '../comment/CommentEditForm';
 import CommentItem from '../comment/CommentItem';
 import toastr from 'toastr';
 
-const CommentList = ({issue, commentActions, saving}) => {
+const CommentList = ({issue, commentActions, saving, fetching}) => {
+  if (fetching) {
+    return (
+      <div>Loading</div>
+    );
+  }
+
   return (
     <div>
       <ul style={ulStyle}>
-        {issue.comments.map(comment => {
-          return (
-            <CommentItem
-              key={comment._id}
-              issue={issue}
-              comment={comment}
-              deleteCommentAction={commentActions.deleteComment}
-            />
-          )
-        })}
+        {getComments(issue, commentActions.deleteComment)}
         <li>
           <hr />
           <CommentEditForm
             issue={issue}
             saving={saving}
-            createCommentAction={commentActions.createComment}
+            createComment={commentActions.createComment}
           />
         </li>
       </ul>
@@ -31,8 +28,32 @@ const CommentList = ({issue, commentActions, saving}) => {
   );
 };
 
+export default CommentList;
+
 const ulStyle = {
   listStyleType: 'none'
 };
 
-export default CommentList;
+const getComments = (issue, deleteComment) => {
+  if (issue.comments.length === 0) {
+    return (
+      <div>
+        <hr />
+        <div>No comments to show</div>
+      </div>
+    );
+  }
+
+  return (
+    issue.comments.map(comment => {
+      return (
+        <CommentItem
+          key={comment._id}
+          issue={issue}
+          comment={comment}
+          deleteComment={deleteComment}
+        />
+      )
+    })
+  );
+};

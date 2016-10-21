@@ -17,14 +17,23 @@ class IssueEditForm extends React.Component {
     };
   }
 
-  componentWillMount() {
-    const {issue} = this.props;
+  setIssueState(issue) {
     if (issue) {
       this.setState({
         title: issue.title,
         description: issue.description
       });
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {issue} = nextProps;
+    this.setIssueState(issue);
+  }
+
+  componentWillMount() {
+    const {issue} = this.props;
+    this.setIssueState(issue);
   }
 
   redirect() {
@@ -41,6 +50,27 @@ class IssueEditForm extends React.Component {
 
   isValidForm() {
     return this.state.title.length > 0 && this.state.description.length > 0;
+  }
+
+  saveForm(issue, issueActions) {
+    if (!this.isValidForm()) {
+      toastr.warning('Title and Description are required');
+      return;
+    }
+
+    if (issue) {
+      issueActions.updateIssue({
+        id: issue._id,
+        title: this.state.title,
+        description: this.state.description
+      }).then(() => this.redirect());
+    }
+    else {
+      issueActions.createIssue({
+        title: this.state.title,
+        description: this.state.description
+      }).then(() => this.redirect());
+    }
   }
 
   render () {
@@ -77,25 +107,7 @@ class IssueEditForm extends React.Component {
             disabled={saving}
             onClickHandler={(e) => {
               e.preventDefault();
-
-              if (!this.isValidForm()) {
-                toastr.warning('Title and Description are required');
-                return;
-              }
-
-              if (issue) {
-                issueActions.updateIssue({
-                  id: issue._id,
-                  title: this.state.title,
-                  description: this.state.description
-                }).then(() => this.redirect());
-              }
-              else {
-                issueActions.createIssue({
-                  title: this.state.title,
-                  description: this.state.description
-                }).then(() => this.redirect());
-              }
+              this.saveForm(issue, issueActions);
             }}
             className='btn btn-primary btn-sm'
            />
@@ -109,7 +121,7 @@ class IssueEditForm extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const issueId = ownProps.params.id;
-  const issue = issueId && state.issues.issues.find(issue => issue._id === issueId);
+  const issue = issueId && (state.issues.issues ? state.issues.issues.find(issue => issue._id === issueId) : null);
 
   return {
     saving: state.issues.saving,
