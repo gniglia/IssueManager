@@ -15,7 +15,8 @@ module.exports = require('./webpack.base.config')({
 	},
 	cssLoaders: [
 		'style-loader',
-		'css-loader'
+		'css-loader',
+		'sass-loader'
 	],
 	plugins: [
 		new webpack.HotModuleReplacementPlugin()
