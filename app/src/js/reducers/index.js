@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import issues from "./issueReducer";
+import cards from "./cardReducer";
 import filter from "./filterReducer";
 
 export default combineReducers({
-  issues,
+  cards,
   filter
 });

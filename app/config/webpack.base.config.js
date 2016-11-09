@@ -29,10 +29,7 @@ module.exports = (options) => ({
 			},
 			{
 				test: /\.scss$/,
-				loaders: options.cssLoaders
-			},
-			{
-				test: /\.css$/,
+				include: path.join(basePath, 'src'),
 				loaders: options.cssLoaders
 			},
 			{ test: /\.svg$/, loader: 'raw-loader' },

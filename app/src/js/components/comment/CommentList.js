@@ -4,7 +4,7 @@ import CommentEditForm from '../comment/CommentEditForm';
 import CommentItem from '../comment/CommentItem';
 import toastr from 'toastr';
 
-const CommentList = ({issue, commentActions, saving, fetching}) => {
+const CommentList = ({card, commentActions, saving, fetching}) => {
   if (fetching) {
     return (
       <div>Loading</div>
@@ -14,11 +14,11 @@ const CommentList = ({issue, commentActions, saving, fetching}) => {
   return (
     <div>
       <ul style={ulStyle}>
-        {getComments(issue, commentActions.deleteComment)}
+        {getComments(card, commentActions.deleteComment)}
         <li>
           <hr />
           <CommentEditForm
-            issue={issue}
+            card={card}
             saving={saving}
             createComment={commentActions.createComment}
           />
@@ -34,8 +34,8 @@ const ulStyle = {
   listStyleType: 'none'
 };
 
-const getComments = (issue, deleteComment) => {
-  if (issue.comments.length === 0) {
+const getComments = (card, deleteComment) => {
+  if (card.comments.length === 0) {
     return (
       <div>
         <hr />
@@ -45,11 +45,11 @@ const getComments = (issue, deleteComment) => {
   }
 
   return (
-    issue.comments.map(comment => {
+    card.comments.map(comment => {
       return (
         <CommentItem
           key={comment._id}
-          issue={issue}
+          card={card}
           comment={comment}
           deleteComment={deleteComment}
         />

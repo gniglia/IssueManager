@@ -1,8 +1,8 @@
 import React from 'react';
-import IssueItem from './IssueItem';
+import Card from './Card';
 import SearchBox from '../common/SearchBox';
 
-const IssueList = ({issues, fetching, deleteIssue, updateFilter}) => {
+const CardList = ({cards, fetching, deleteCard, updateFilter}) => {
   if (fetching) {
     return (
       <div>Loading</div>
@@ -20,15 +20,15 @@ const IssueList = ({issues, fetching, deleteIssue, updateFilter}) => {
         inputPlaceholder='Search your stuff'
         onFilterUpdate={updateFilter} />
       <hr />
-      {getIssues(issues, deleteIssue)}
+      {getCards(cards, deleteCard)}
     </div>
   );
 };
 
-export default IssueList;
+export default CardList;
 
-const getIssues = (issues, deleteIssue) => {
-  if (issues.length === 0) {
+const getCards = (cards, deleteCard) => {
+  if (cards.length === 0) {
     return (
       <div>No data to show</div>
     );
@@ -37,12 +37,12 @@ const getIssues = (issues, deleteIssue) => {
   return (
     <div className="row-fluid">
       {
-        issues.map(issue => {
+        cards.map(card => {
           return (
-            <IssueItem
-              key={issue._id}
-              issue={issue}
-              deleteIssue={deleteIssue}
+            <Card
+              key={card._id}
+              card={card}
+              deleteCard={deleteCard}
             />
           )
       })}

@@ -13,11 +13,11 @@ class CommentEditForm extends React.Component {
   }
 
   componentWillMount() {
-    const {issue} = this.props;
-    if (issue) {
+    const {card} = this.props;
+    if (card) {
       this.setState({
-        title: issue.title,
-        description: issue.description
+        title: card.title,
+        description: card.description
       });
     }
   }
@@ -30,14 +30,14 @@ class CommentEditForm extends React.Component {
     return this.state.text.length > 0;
   }
 
-  saveForm(issue, createComment) {
+  saveForm(card, createComment) {
     if (!this.isValidForm()) {
       toastr.warning('Text is required');
       return;
     }
 
     createComment({
-      issueId: issue._id,
+      cardId: card._id,
       text: this.state.text
     }).then(() => {
       this.setState({text: ''});
@@ -46,7 +46,7 @@ class CommentEditForm extends React.Component {
   }
 
   render() {
-    const {issue, saving, createComment} = this.props;
+    const {card, saving, createComment} = this.props;
 
     return (
       <div>
@@ -67,7 +67,7 @@ class CommentEditForm extends React.Component {
             disabled={saving}
             onClickHandler={(e) => {
               e.preventDefault();
-              this.saveForm(issue, createComment);
+              this.saveForm(card, createComment);
             }}
             className='btn btn-primary btn-sm'
            />

@@ -2,12 +2,12 @@ import React from 'react';
 import Button from '../common/Button';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as issueActions from '../../actions/issueActions';
+import * as cardActions from '../../actions/cardActions';
 import GoBackButton from '../common/GoBackButton';
 import { browserHistory } from 'react-router';
 import toastr from 'toastr';
 
-class IssueEditForm extends React.Component {
+class CardEditForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -17,28 +17,28 @@ class IssueEditForm extends React.Component {
     };
   }
 
-  setIssueState(issue) {
-    if (issue) {
+  setCardState(card) {
+    if (card) {
       this.setState({
-        title: issue.title,
-        description: issue.description
+        title: card.title,
+        description: card.description
       });
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const {issue} = nextProps;
-    this.setIssueState(issue);
+    const {card} = nextProps;
+    this.setCardState(card);
   }
 
   componentWillMount() {
-    const {issue} = this.props;
-    this.setIssueState(issue);
+    const {card} = this.props;
+    this.setCardState(card);
   }
 
   redirect() {
-    toastr.success('Issue saved successfully');
-    browserHistory.push('/issues');
+    toastr.success('Card saved successfully');
+    browserHistory.push('/cards');
   }
 
   handleTitleChange(e) {
@@ -52,21 +52,21 @@ class IssueEditForm extends React.Component {
     return this.state.title.length > 0 && this.state.description.length > 0;
   }
 
-  saveForm(issue, issueActions) {
+  saveForm(card, cardActions) {
     if (!this.isValidForm()) {
       toastr.warning('Title and Description are required');
       return;
     }
 
-    if (issue) {
-      issueActions.updateIssue({
-        id: issue._id,
+    if (card) {
+      cardActions.updateCard({
+        id: card._id,
         title: this.state.title,
         description: this.state.description
       }).then(() => this.redirect());
     }
     else {
-      issueActions.createIssue({
+      cardActions.createCard({
         title: this.state.title,
         description: this.state.description
       }).then(() => this.redirect());
@@ -74,8 +74,8 @@ class IssueEditForm extends React.Component {
   }
 
   render () {
-    const {issue, saving, issueActions} = this.props;
-    let headerTitle = issue ? `Editing '${issue.title}'` : 'Adding a new issue';
+    const {card, saving, cardActions} = this.props;
+    let headerTitle = card ? `Editing '${card.title}'` : 'Adding a new card';
 
     return (
       <div>
@@ -88,7 +88,7 @@ class IssueEditForm extends React.Component {
               value={this.state.title}
               onChange={this.handleTitleChange.bind(this)}
               className='form-control'
-              placeholder='Issue title'
+              placeholder='Card title'
             />
           </div>
           <div className='form-group'>
@@ -98,7 +98,7 @@ class IssueEditForm extends React.Component {
               onChange={this.handleDescriptionChange.bind(this)}
               className='form-control'
               rows='3'
-              placeholder='Issue description'
+              placeholder='Card description'
             />
           </div>
 
@@ -107,7 +107,7 @@ class IssueEditForm extends React.Component {
             disabled={saving}
             onClickHandler={(e) => {
               e.preventDefault();
-              this.saveForm(issue, issueActions);
+              this.saveForm(card, cardActions);
             }}
             className='btn btn-primary btn-sm'
            />
@@ -120,19 +120,19 @@ class IssueEditForm extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const issueId = ownProps.params.id;
-  const issue = issueId && (state.issues.issues ? state.issues.issues.find(issue => issue._id === issueId) : null);
+  const cardId = ownProps.params.id;
+  const card = cardId && (state.cards.cards ? state.cards.cards.find(card => card._id === cardId) : null);
 
   return {
-    saving: state.issues.saving,
-    issue
+    saving: state.cards.saving,
+    card
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    issueActions: bindActionCreators(issueActions, dispatch)
+    cardActions: bindActionCreators(cardActions, dispatch)
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(IssueEditForm);
+export default connect(mapStateToProps, mapDispatchToProps)(CardEditForm);

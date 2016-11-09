@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
-import SearchBox from './SearchBox';
+import SearchBox from '../SearchBox';
 
 describe('Component <SearchBox />', () => {
     it ('contains a <button> and not contain <input> control', () => {
