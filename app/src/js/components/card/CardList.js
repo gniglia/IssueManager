@@ -1,8 +1,7 @@
 import React from 'react';
 import Card from './Card';
-import SearchBox from '../common/SearchBox';
 
-const CardList = ({cards, fetching, deleteCard, updateFilter}) => {
+const CardList = ({cards, fetching, deleteCard}) => {
   if (fetching) {
     return (
       <div>Loading</div>
@@ -11,15 +10,6 @@ const CardList = ({cards, fetching, deleteCard, updateFilter}) => {
 
   return (
     <div>
-      <SearchBox
-        minLength={3}
-        containerClassName='searchBox'
-        buttonClassName='btn btn-default'
-        buttonText='Search'
-        inputClassName='form-control'
-        inputPlaceholder='Search your stuff'
-        onFilterUpdate={updateFilter} />
-      <hr />
       {getCards(cards, deleteCard)}
     </div>
   );

@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '../common/Button';
 import GoBackButton from '../common/GoBackButton';
-import toastr from 'toastr';
 
 class CommentEditForm extends React.Component {
   constructor(props) {
@@ -32,7 +31,6 @@ class CommentEditForm extends React.Component {
 
   saveForm(card, createComment) {
     if (!this.isValidForm()) {
-      toastr.warning('Text is required');
       return;
     }
 
@@ -41,7 +39,6 @@ class CommentEditForm extends React.Component {
       text: this.state.text
     }).then(() => {
       this.setState({text: ''});
-      toastr.success('Comment saved successfully');
     });
   }
 

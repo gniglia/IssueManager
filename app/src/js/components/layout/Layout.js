@@ -1,11 +1,13 @@
 import React from "react";
-import Header from './common/Header';
+import Header from './Header';
 
 const Layout = (props) => {
   return (
     <div>
       <Header />
-      {props.children}
+      <section>
+        {props.children}
+      </section>
     </div>
   );
 };

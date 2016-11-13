@@ -1,0 +1,54 @@
+.page-header {
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+
+  header {
+    background-color: #2E3D54;
+    border-radius: 10px 10px 0px 0px;
+    color: #FFF;
+    flex: 5;
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+      border-radius: 10px 0 0 0;
+      padding-top: 25px;
+      text-align: center;
+      background-color: #17A2E7;
+      flex: 1.5;
+
+      a, a:active, a:hover, a:visited {
+        text-decoration: none;
+        color: #FFF;
+      }
+      a:active, a:hover {
+        color: #DDD;
+      }
+    }
+    .center {
+      font: 25px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+      padding: 20px 0 0 420px;
+      // border: 2px solid white;
+      flex: 8;
+    }
+    .right {
+      padding-right: 20px;
+      // border: 2px solid green;
+      flex: 6;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+
+  nav {
+    background-color: #FAFAFA;
+    flex: 4;
+    display: flex;
+
+    input {
+      flex: 1;
+    }
+  }
+}

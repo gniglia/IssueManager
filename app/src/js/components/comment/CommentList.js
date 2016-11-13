@@ -2,7 +2,6 @@ import React from 'react';
 import Button from '../common/Button';
 import CommentEditForm from '../comment/CommentEditForm';
 import CommentItem from '../comment/CommentItem';
-import toastr from 'toastr';
 
 const CommentList = ({card, commentActions, saving, fetching}) => {
   if (fetching) {

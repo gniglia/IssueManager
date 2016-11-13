@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from '../common/Button';
-import toastr from 'toastr';
 
 const CommentItem = ({card, comment, deleteComment}) => {
     return (
@@ -13,7 +12,6 @@ const CommentItem = ({card, comment, deleteComment}) => {
           text='remove'
           onClickHandler={() => {
             deleteComment(card._id, comment._id)
-              .then(() => toastr.success('Comment removed successfully'))
           }}
           className='btn btn-danger btn-xs'
         />
