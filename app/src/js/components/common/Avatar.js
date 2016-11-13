@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import './avatar.scss';
 
 const Avatar = (props) => {
   return (
