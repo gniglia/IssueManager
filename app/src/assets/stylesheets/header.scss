@@ -4,18 +4,16 @@
   flex-direction: column;
 
   header {
-    background-color: #2E3D54;
-    border-radius: 10px 10px 0px 0px;
     color: #FFF;
     flex: 5;
     display: flex;
     justify-content: space-between;
 
     .left {
+      background-color: #17A2E7;
       border-radius: 10px 0 0 0;
       padding-top: 25px;
       text-align: center;
-      background-color: #17A2E7;
       flex: 1.5;
 
       a, a:active, a:hover, a:visited {
@@ -27,14 +25,16 @@
       }
     }
     .center {
+      background-color: #2E3D54;
       font: 25px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
       padding: 20px 0 0 420px;
       // border: 2px solid white;
       flex: 8;
     }
     .right {
+      border-radius: 0 10px 0 0;
+      background-color: #2E3D54;
       padding-right: 20px;
-      // border: 2px solid green;
       flex: 6;
       display: flex;
       justify-content: flex-end;

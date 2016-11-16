@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Button from '../common/Button';
+import Avatar from '../common/avatar/Avatar';
 
 const CardItem = ({card, deleteCard}) => {
   return (
     <div key={card._id} className="col-sm-6 col-md-3">
+      <Avatar mode='2' />
       <div className="thumbnail">
         <div className="caption">
           <Link to={`/cards/${card._id}`}>{card.title}</Link>

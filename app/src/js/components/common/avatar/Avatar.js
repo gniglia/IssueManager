@@ -1,9 +1,11 @@
-import React, { PropTypes } from 'react'
-import './avatar.scss';
+import React, { PropTypes } from 'react';
+import classNames from 'classnames';
+import './Avatar.scss';
 
 const Avatar = (props) => {
+  const className = props.mode == 1 ? 'avatarContainer' : 'avatarContainer2';
   return (
-    <div className='avatarContainer'>
+    <div className={className}>
       <div className='info'>
         <div className='name'>Frank Arnold</div>
         <div className='email'>hello@frankarnold.com</div>

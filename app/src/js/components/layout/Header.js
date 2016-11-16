@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import SearchBox from '../common/SearchBox';
 import * as filterActions from '../../actions/filterActions';
-import Avatar from '../common/Avatar';
+import Avatar from '../common/avatar/Avatar';
 
 const Header = ({updateFilter}) => {
   return (
@@ -17,7 +17,7 @@ const Header = ({updateFilter}) => {
         </div>
         <div className='center'>Card Manager</div>
         <div className='right'>
-          <Avatar />
+          <Avatar mode='1' />
         </div>
       </header>
       <nav>
