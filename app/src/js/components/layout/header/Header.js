@@ -11,20 +11,20 @@ const Header = ({updateFilter}) => {
   return (
     <div className='header-container'>
       <header className='header-main'>
-        <div className='header-main-leftPanel'>
+        <div className='header-main--leftPanel'>
           <Link to={'/cards-edit'}>
-            New
+            <span className='icon-new-card'></span>
           </Link>
         </div>
-        <div className='header-main-centralPanel'>Card Manager</div>
-        <div className='header-main-rightPanel'>
+        <div className='header-main--centralPanel'>Card Manager</div>
+        <div className='header-main--rightPanel'>
           <Avatar mode='1' />
         </div>
       </header>
       <nav className='header-nav'>
         <SearchBox
           minLength={3}
-          inputClassName=''
+          inputClassName='header-nav--search'
           inputPlaceholder='Search'
           onFilterUpdate={updateFilter} />
       </nav>

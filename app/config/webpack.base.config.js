@@ -37,8 +37,10 @@ module.exports = (options) => ({
 				test: /\.css$/,
 				loaders: options.cssLoaders
 			},
-			{ test: /\.svg$/, loader: 'raw-loader' },
-			{ test: /\.(?:png|jpg|jpeg|gif)$/, loader: 'file-loader' }
+			{
+				test: /\.(jpe|jpg|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
+				loader: 'file-loader'
+			}
 		]
 	},
 	resolve: {

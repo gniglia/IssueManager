@@ -13,31 +13,31 @@ $header-main-background: #2E3D54;
   justify-content: space-between;
 }
 
-.header-main-leftPanel {
+.header-main--leftPanel {
   background-color: #17A2E7;
   border-radius: 10px 0 0 0;
-  padding-top: 25px;
+  padding-top: 15px;
   text-align: center;
   flex: 1.5;
+  font-size: 35px;
 
   a, a:active, a:hover, a:visited {
     text-decoration: none;
     color: #FFF;
   }
   a:active, a:hover {
-    color: #DDD;
+    color: #E0E0E0;
   }
 }
 
-.header-main-centralPanel {
+.header-main--centralPanel {
   background-color: $header-main-background;
   font: 25px "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
   padding: 20px 0 0 420px;
-  // border: 2px solid white;
   flex: 8;
 }
 
-.header-main-rightPanel {
+.header-main--rightPanel {
   border-radius: 0 10px 0 0;
   background-color: $header-main-background;
   padding-right: 20px;
@@ -47,8 +47,19 @@ $header-main-background: #2E3D54;
   align-items: center;
 }
 
+
 .header-nav {
   background-color: #FAFAFA;
   flex: 4;
   display: flex;
+  justify-content: flex-end;
+}
+
+.header-nav--search {
+  border: 1px solid #DADADA;
+  border-radius: 5px;
+  margin: 12px 20px 12px 0px;
+  width: 200px;
+  font: 14px ‘Trebuchet MS’, Helvetica, sans-serif;
+  padding: 0 10px 0 10px;
 }
