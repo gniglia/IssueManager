@@ -2,25 +2,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
-import SearchBox from '../common/SearchBox';
-import * as filterActions from '../../actions/filterActions';
-import Avatar from '../common/avatar/Avatar';
+import SearchBox from '../../common/SearchBox';
+import * as filterActions from '../../../actions/filterActions';
+import Avatar from '../../common/avatar/Avatar';
+import './Header.scss';
 
 const Header = ({updateFilter}) => {
   return (
-    <div className="page-header">
-      <header>
-        <div className='left'>
+    <div className='header-container'>
+      <header className='header-main'>
+        <div className='header-main-leftPanel'>
           <Link to={'/cards-edit'}>
             New
           </Link>
         </div>
-        <div className='center'>Card Manager</div>
-        <div className='right'>
+        <div className='header-main-centralPanel'>Card Manager</div>
+        <div className='header-main-rightPanel'>
           <Avatar mode='1' />
         </div>
       </header>
-      <nav>
+      <nav className='header-nav'>
         <SearchBox
           minLength={3}
           inputClassName=''
