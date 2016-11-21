@@ -9,24 +9,26 @@ import './Header.scss';
 
 const Header = ({updateFilter}) => {
   return (
-    <div className='header-container'>
-      <header className='header-main'>
-        <div className='header-main--leftPanel'>
+    <div className='header-container container-fluid'>
+      <header className='header-main row'>
+        <div className='header-main--left col-md-1'>
           <Link to={'/cards-edit'}>
             <span className='icon-new-card'></span>
           </Link>
         </div>
-        <div className='header-main--centralPanel'>Card Manager</div>
-        <div className='header-main--rightPanel'>
+        <div className='header-main--central col-md-7 col-md-offset-1'>Inbox</div>
+        <div className='header-main--right col-md-3'>
           <Avatar mode='1' />
         </div>
       </header>
-      <nav className='header-nav'>
-        <SearchBox
-          minLength={3}
-          inputClassName='header-nav--search'
-          inputPlaceholder='Search'
-          onFilterUpdate={updateFilter} />
+      <nav className='header-nav row'>
+        <div className='col-md-2 col-md-offset-10 header-nav--right align-right'>
+          <SearchBox
+            minLength={3}
+            inputClassName='header-nav--search'
+            inputPlaceholder='Search'
+            onFilterUpdate={updateFilter} />
+        </div>
       </nav>
     </div>
   );
