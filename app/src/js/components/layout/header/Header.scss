@@ -1,6 +1,8 @@
 .header-container {
   width: 100%;
   position: fixed;
+  border-bottom: 1px solid #C8C8C8;
+  z-index: 5;
 }
 
 .header-main {
@@ -15,6 +17,7 @@
   padding-top: 12px;
   text-align: center;
   font-size: 30px;
+  //width: 65px;
 
   a, a:active, a:hover, a:visited {
     text-decoration: none;
@@ -56,7 +59,7 @@
 
 .header-nav--search {
   border: 1px solid #DADADA;
-  border-radius: 5px;
+  border-radius: 3px;
   width: 100%;
   height: 26px;
   font: 14px ‘Trebuchet MS’, Helvetica, sans-serif;

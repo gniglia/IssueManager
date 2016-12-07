@@ -25,7 +25,7 @@ const getCards = (cards, deleteCard) => {
   }
 
   return (
-    <div className="row-fluid">
+    <div className="row-fluid" style={{marginRight: 20}}>
       {
         cards.map(card => {
           return (
