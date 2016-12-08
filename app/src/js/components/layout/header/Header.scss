@@ -1,4 +1,6 @@
 .header-container {
+  padding: 0;
+  margin: 0;
   width: 100%;
   position: fixed;
   border-bottom: 1px solid #C8C8C8;
@@ -37,6 +39,8 @@
 
 .header-main--right {
   height: 100%;
+}
+.header-main-right-avatar {
   padding: 7px 20px 0 0;
 }
 
@@ -48,20 +52,22 @@
   display: flex;
 }
 
-.flex-align-right {
-  justify-content: flex-end;
-}
-
 .header-nav--right
 {
+  flex: auto;
+  display: flex;
   padding-right: 20px;
+}
+
+.flex-align-right {
+  justify-content: flex-end;
 }
 
 .header-nav--search {
   border: 1px solid #DADADA;
   border-radius: 3px;
-  width: 100%;
+  width: 200px;
   height: 26px;
-  font: 14px ‘Trebuchet MS’, Helvetica, sans-serif;
+  font: 14px 'Trebuchet MS', Helvetica, sans-serif;
   padding: 0 10px 0 10px;
 }

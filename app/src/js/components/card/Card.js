@@ -2,17 +2,19 @@ import React from 'react';
 import { Link } from 'react-router';
 import Button from '../common/Button';
 import Avatar from '../common/avatar/Avatar';
+import TimeAgo from 'react-timeago'
+import './Card.scss';
 
 const CardItem = ({card, deleteCard}) => {
   return (
-    <div key={card._id} className='col-sm-6 col-md-3 card-wrapper'>
+    <div key={card._id} className='col-sm-6 col-md-3 card-container'>
       <div className='thumbnail card'>
         <div className='card-body'>
           <Avatar mode='2' />
           <div className='card-title'>
             <Link to={`/cards/${card._id}`}>{card.title}</Link>
           </div>
-          <div className='fade-text'>
+          <div className='card-text'>
             <p>{card.description}</p>
           </div>
 {/*
@@ -34,8 +36,8 @@ const CardItem = ({card, deleteCard}) => {
           </div>
 */}
         </div>
-        <div className='card-footer'>
-          {'15m ago'}
+        <div className='card-footer flex-align-center-all'>
+          <TimeAgo date={card.createdAt} live='false' />
         </div>
       </div>
     </div>
