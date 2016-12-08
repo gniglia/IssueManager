@@ -9,7 +9,7 @@ const CardList = ({cards, fetching, deleteCard}) => {
   }
 
   return (
-    <div style={{margin: '0px 20px 0px 0px'}}>
+    <div style={{margin: '0px 20px 20px 0px', overflow: 'hidden'}}>
       {getCards(cards, deleteCard)}
     </div>
   );

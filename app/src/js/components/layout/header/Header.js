@@ -11,13 +11,13 @@ const Header = ({updateFilter}) => {
   return (
     <div className='header-container container-fluid'>
       <header className='header-main row'>
-        <div className='header-main--left col-xs-2 col-sm-1 col-md-1'>
+        <div className='header-main--left flex-align-center'>
           <Link to={'/cards-edit'}>
             <span className='icon-new-card'></span>
           </Link>
         </div>
-        <div className='header-main--central hidden-xs col-sm-6 col-sm-offset-1 col-md-7 col-md-offset-1'>Inbox</div>
-        <div className='header-main--right col-xs-10 col-sm-4 col-md-3'>
+        <div className='header-main--central hidden-xs col-sm-6 col-sm-offset-2 col-md-7 col-md-offset-2'>Inbox</div>
+        <div className='header-main--right col-xs-12 col-sm-4 col-md-3'>
           <div className='header-main-right-avatar'>
             <Avatar mode='1' />
           </div>

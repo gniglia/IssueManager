@@ -36,8 +36,8 @@ const CardItem = ({card, deleteCard}) => {
           </div>
 */}
         </div>
-        <div className='card-footer flex-align-center-all'>
-          <TimeAgo date={card.createdAt} live='false' />
+        <div className='card-footer flex-align-center'>
+          <TimeAgo date={card.createdAt} live={false} />
         </div>
       </div>
     </div>
