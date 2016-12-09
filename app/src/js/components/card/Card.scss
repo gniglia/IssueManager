@@ -1,5 +1,5 @@
-$font-card-title: "Comic Sans MS", cursive, sans-serif;
-$font-card-text: $font-card-title;
+$font-card-title: 'Comfortaa', cursive;
+$font-card-text: 'Pontano Sans', sans-serif;
 
 .card-container {
   padding: 0;
@@ -21,7 +21,7 @@ $font-card-text: $font-card-title;
 }
 .card-title {
   padding-top: 10px;
-  font: 20px $font-card-title;
+  font: 22px $font-card-title;
 
   a, a:active, a:hover, a:visited {
     text-decoration: none;
