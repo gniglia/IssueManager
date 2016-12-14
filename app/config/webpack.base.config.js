@@ -1,11 +1,13 @@
 var path = require('path')
 var webpack = require('webpack')
 var basePath = path.join(__dirname, '..');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = (options) => ({
 	entry: options.entry,
 	output: options.output,
 	plugins: options.plugins.concat([
+		new ExtractTextPlugin('style.css', { allChunks: true }),
 		new webpack.ResolverPlugin(
 			new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('.bower.json', ['main'])
 		),
@@ -29,11 +31,16 @@ module.exports = (options) => ({
 			},
 			{
 				test: /\.scss$/,
-				include: path.join(basePath, 'src'),
+				loader: ExtractTextPlugin.extract('style', 'css!sass')
+			},
+			{
+				test: /\.css$/,
 				loaders: options.cssLoaders
 			},
-			{ test: /\.svg$/, loader: 'raw-loader' },
-			{ test: /\.(?:png|jpg|jpeg|gif)$/, loader: 'file-loader' }
+			{
+				test: /\.(jpe|jpg|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
+				loader: 'file-loader'
+			}
 		]
 	},
 	resolve: {

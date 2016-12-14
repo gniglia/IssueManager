@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import * as cardActions from '../../actions/cardActions';
 import GoBackButton from '../common/GoBackButton';
 import { browserHistory } from 'react-router';
-import toastr from 'toastr';
 
 class CardEditForm extends React.Component {
   constructor(props) {
@@ -37,7 +36,6 @@ class CardEditForm extends React.Component {
   }
 
   redirect() {
-    toastr.success('Card saved successfully');
     browserHistory.push('/cards');
   }
 
@@ -54,7 +52,6 @@ class CardEditForm extends React.Component {
 
   saveForm(card, cardActions) {
     if (!this.isValidForm()) {
-      toastr.warning('Title and Description are required');
       return;
     }
 

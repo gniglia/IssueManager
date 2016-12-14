@@ -1,0 +1,74 @@
+$font-avatar-name: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+$font-avatar-email: $font-avatar-name;
+
+.avatar-container {
+  display: flex;
+
+  &.avatar-image-left {
+    .avatar-text {
+      order: 2;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .avatar-image {
+      order: 1;
+      display: flex;
+      justify-content: center;
+      padding-right: 10px;
+    }
+
+    .avatar-text--name {
+      font: 16px $font-avatar-name;
+      color: #000;
+      font-weight: bold;
+    }
+    .avatar-text--email {
+      font: 12px $font-avatar-email;
+      color: #798998;
+    }
+
+    .avatar-image--content {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  &.avatar-image-right {
+    .avatar-text {
+      order: 1;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      padding-right: 10px;
+    }
+
+    .avatar-image {
+      order: 2;
+      display: flex;
+      justify-content: center;
+    }
+
+    .avatar-text--name {
+      font: 16px $font-avatar-name;
+      color: #fff;
+      font-weight: bold;
+    }
+    .avatar-text--email {
+      font: 12px $font-avatar-email;
+      color: #798998;
+    }
+
+    .avatar-image--content {
+      border: 1px solid #5D5D5F;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+    }
+  }
+}

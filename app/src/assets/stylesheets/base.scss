@@ -1,0 +1,20 @@
+body {
+  width: 100%;
+  background-color: #D9DBDA;
+  margin: 0;
+}
+
+.layout-main-section {
+  padding-top: 115px;
+}
+
+.no-gutter > [class*='col-'] {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.flex-align-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

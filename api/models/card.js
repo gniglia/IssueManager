@@ -12,6 +12,10 @@ const CardSchema = new Schema({
       type: String,
       required: true
     },
+    createdAt: {
+      type: Date,
+      default: Date.now
+    },
     comments: [{
       text: {
         type: String,
