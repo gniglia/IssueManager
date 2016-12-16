@@ -22,3 +22,7 @@ body {
 .no-scroll-y {
   overflow-y: hidden;
 }
+
+.blurry {
+  filter: blur(2px);
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './Card';
 
-const CardList = ({cards, fetching, deleteCard}) => {
+const CardList = ({cards, fetching, deleteCard, showModal}) => {
   if (fetching) {
     return (
       <div>Loading</div>
@@ -9,15 +9,15 @@ const CardList = ({cards, fetching, deleteCard}) => {
   }
 
   return (
-    <div style={{margin: '0px 20px 20px 0px', overflow: 'hidden'}}>
-      {getCards(cards, deleteCard)}
+    <div className='blurry' style={{padding: '0 20px 20px 0', overflow: 'hidden'}}>
+      {getCards(cards, deleteCard, showModal)}
     </div>
   );
 };
 
 export default CardList;
 
-const getCards = (cards, deleteCard) => {
+const getCards = (cards, deleteCard, showModal) => {
   if (cards.length === 0) {
     return (
       <div>No data to show</div>
@@ -33,6 +33,7 @@ const getCards = (cards, deleteCard) => {
               key={card._id}
               card={card}
               deleteCard={deleteCard}
+              showModal={showModal}
             />
           )
       })}

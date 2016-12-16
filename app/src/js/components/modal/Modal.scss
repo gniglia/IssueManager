@@ -4,19 +4,18 @@
   height: 100%;
   margin: 65px auto 0 auto;
 
-  background-color: rgba(234,234,234,0.9);
+  background-color: rgba(234,234,234,0.6);
 }
 
 .modal-close {
     position: absolute;
-    color: #A1A2A4;
+    color: #52565e;
     font-size: 50px;
     top: 30px;
     right: 50px;
 
     &:hover, &:focus {
-      color: #404347;
-      //text-decoration: none;
+      color: #1a1e1e;
       cursor: pointer;
     }
 }

@@ -1,4 +1,8 @@
 export default {
   cards: [],
-  filter: ''
+  filter: '',
+  modal: {
+    modalType: null,
+    modalProps: {}
+  }
 };
