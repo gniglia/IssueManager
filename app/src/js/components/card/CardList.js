@@ -9,7 +9,7 @@ const CardList = ({cards, fetching, deleteCard, showModal}) => {
   }
 
   return (
-    <div className='blurry' style={{padding: '0 20px 20px 0', overflow: 'hidden'}}>
+    <div style={{padding: '0 20px 20px 0', overflow: 'hidden'}}>
       {getCards(cards, deleteCard, showModal)}
     </div>
   );

@@ -2,11 +2,13 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { hideModal } from '../../actions/modalActions';
-import CardModal from './CardModal';
+import ViewCardModal from './card/ViewCardModal';
+import EditCardModal from './card/EditCardModal';
 import './Modal.scss';
 
 const MODAL_COMPONENTS = {
-  'MODAL_TYPE_EDIT_CARD': CardModal
+  'MODAL_TYPE_VIEW_CARD': ViewCardModal,
+  'MODAL_TYPE_EDIT_CARD': EditCardModal
 }
 
 class Modal extends React.Component {
@@ -34,7 +36,7 @@ class Modal extends React.Component {
     document.body.classList.add('no-scroll-y');
 
     const SpecificModal = MODAL_COMPONENTS[modalType];
-    return <SpecificModal hideModal={this.props.hideModal} {...modalProps} />;
+    return <SpecificModal hideModal={this.props.hideModal} modalProps={modalProps} />;
   }
 }
 

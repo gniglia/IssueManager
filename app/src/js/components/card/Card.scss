@@ -24,6 +24,7 @@ $font-card-text: 'Pontano Sans', sans-serif;
   font: 22px $font-card-title;
 
   a, a:active, a:hover, a:visited {
+    cursor: pointer;
     text-decoration: none;
     color: #000;
   }

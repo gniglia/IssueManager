@@ -23,7 +23,8 @@
 .modal-container {
   width: 70%;
   min-width: 600px;
-  height: 600px;
+  // height: 600px;
+  height: 430px;
   margin: 40px auto;
   border: 1px solid #C8C8C8;
   border-radius: 3px;
@@ -31,6 +32,9 @@
 
   animation-name: zoom;
   animation-duration: 0.4s;
+
+  display: flex;
+  flex-direction: column;
 }
 @keyframes zoom {
     from {transform:scale(0)}
@@ -44,7 +48,7 @@
 }
 
 .modal-section {
+  flex: 1;
   padding: 20px;
   background-color: #FFF;
-  height: 478px;
 }

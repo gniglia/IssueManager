@@ -12,8 +12,8 @@ const CardItem = ({card, deleteCard, showModal}) => {
         <div className='card-body'>
           <Avatar mode='2' />
           <div className='card-title'>
-            <a href='#' onClick={() => {
-              showModal({ modalType: 'MODAL_TYPE_EDIT_CARD'})
+            <a onClick={() => {
+              showModal({ modalType: 'MODAL_TYPE_VIEW_CARD', modalProps: { mode: 'edit', card }})
             }}>
               {card.title}
             </a>
