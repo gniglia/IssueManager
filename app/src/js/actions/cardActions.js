@@ -20,3 +20,9 @@ export const updateCard = (card) => ({
   type: types.UPDATE_CARD,
   payload: cardApi.updateCard(card)
 });
+
+
+export const updateCardTitle = (card) => ({
+  type: types.UPDATE_CARD,
+  payload: cardApi.updateCardTitle(card)
+});

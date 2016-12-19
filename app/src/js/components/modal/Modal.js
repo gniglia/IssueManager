@@ -2,13 +2,11 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { hideModal } from '../../actions/modalActions';
-import ViewCardModal from './card/ViewCardModal';
-import EditCardModal from './card/EditCardModal';
+import CardModal from './card/CardModal';
 import './Modal.scss';
 
 const MODAL_COMPONENTS = {
-  'MODAL_TYPE_VIEW_CARD': ViewCardModal,
-  'MODAL_TYPE_EDIT_CARD': EditCardModal
+  'MODAL_TYPE_CARD': CardModal
 }
 
 class Modal extends React.Component {

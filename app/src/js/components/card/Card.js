@@ -13,7 +13,7 @@ const CardItem = ({card, deleteCard, showModal}) => {
           <Avatar mode='2' />
           <div className='card-title'>
             <a onClick={() => {
-              showModal({ modalType: 'MODAL_TYPE_VIEW_CARD', modalProps: { mode: 'edit', card }})
+              showModal({ modalType: 'MODAL_TYPE_CARD', modalProps: { card }})
             }}>
               {card.title}
             </a>

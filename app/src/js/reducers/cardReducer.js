@@ -25,7 +25,7 @@ const cards = (state = initialState.cards, action) => {
     }
 
     /*
-     * Deleting an Card
+     * Deleting a Card
      */
     case types.DELETE_CARD_PENDING: {
       return {...state}
@@ -44,7 +44,7 @@ const cards = (state = initialState.cards, action) => {
     }
 
     /*
-     * Creating an Card
+     * Creating a Card
      */
     case types.CREATE_CARD_PENDING: {
       return {...state, saving: true}
@@ -65,7 +65,7 @@ const cards = (state = initialState.cards, action) => {
     }
 
     /*
-     * Updating an Card
+     * Updating a Card
      */
     case types.UPDATE_CARD_PENDING: {
       return {...state, saving: true}
