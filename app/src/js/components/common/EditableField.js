@@ -20,10 +20,10 @@ class EditableField extends React.Component {
     this.setState({editable: false});
 
     if (this.props.onFieldChange) {
-      // this.props.onFieldChange({
-      //   id: this.props.id,
-      //   title: this.state.fieldValue
-      // });
+      this.props.onFieldChange({
+        id: this.props.id,
+        title: this.state.fieldValue
+      });
     }
   }
 

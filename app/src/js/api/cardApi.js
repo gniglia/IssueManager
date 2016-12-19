@@ -25,8 +25,7 @@ const updateCard = (card) => {
 
 const updateCardTitle = (card) => {
   return axios.patch(`http://localhost:3500/api/cards/${card.id}`, {
-    title: card.title,
-    description: card.description
+    title: card.title
   });
 };
 
