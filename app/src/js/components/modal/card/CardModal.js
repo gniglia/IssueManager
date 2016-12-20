@@ -6,7 +6,7 @@ import Avatar from '../../common/avatar/Avatar';
 import EditableField from '../../common/EditableField';
 import './CardModal.scss';
 
-const CardModal = ({hideModal, updateCardTitle, modalProps}) => {
+const CardModal = ({hideModal, updateCardTitle, updateCardDescription, modalProps}) => {
   const {card} = modalProps;
 
   return (
@@ -31,7 +31,7 @@ const CardModal = ({hideModal, updateCardTitle, modalProps}) => {
               fieldName='description'
               fieldType='area'
               fieldValue={card.description}
-              onFieldChange={updateCardTitle} />
+              onFieldChange={updateCardDescription} />
           </div>
         </section>
       </div>
@@ -41,7 +41,8 @@ const CardModal = ({hideModal, updateCardTitle, modalProps}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateCardTitle: bindActionCreators(cardActions.updateCardTitle, dispatch)
+    updateCardTitle: bindActionCreators(cardActions.updateCardTitle, dispatch),
+    updateCardDescription: bindActionCreators(cardActions.updateCardDescription, dispatch)
   };
 };
 

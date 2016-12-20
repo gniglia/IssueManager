@@ -73,9 +73,8 @@ const remove = (req, res) => {
 
 const update = (req, res) => {
   const id = req.params.id;
-  const card = new Card(req.body);
 
-  Card.findByIdAndUpdateAsync(id, { $set: {card}}, { new: true})
+  Card.findByIdAndUpdateAsync(id, { $set: req.body }, { new: true})
     .then(updatedCard => {
       if (!updatedCard) {
         return res.status(httpStatus.NOT_FOUND).json({
@@ -86,7 +85,7 @@ const update = (req, res) => {
     })
     .catch(err => {
       res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
-        message: 'Failed updating an Card'
+        message: err
       });
     });
 };

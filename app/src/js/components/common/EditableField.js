@@ -22,7 +22,7 @@ class EditableField extends React.Component {
     if (this.props.onFieldChange) {
       this.props.onFieldChange({
         id: this.props.id,
-        title: this.state.fieldValue
+        [this.props.fieldName]: this.state.fieldValue
       });
     }
   }

@@ -28,6 +28,9 @@ $font-card-text: 'Pontano Sans', sans-serif;
     text-decoration: none;
     color: #000;
   }
+  a:active, a:hover {
+    text-decoration: underline;
+  }
 }
 
 .card-text {
