@@ -10,13 +10,13 @@ const MODAL_COMPONENTS = {
 }
 
 class Modal extends React.Component {
-  componentDidMount() {
-  	document.addEventListener('keyup', (evt) => {
-  		if (evt.keyCode === 27) {
-        this.props.hideModal();
-  		}
-  	});
-  }
+  // componentDidMount() {
+  // 	document.addEventListener('keyup', (evt) => {
+  // 		if (evt.keyCode === 27) {
+  //       this.props.hideModal();
+  // 		}
+  // 	});
+  // }
 
   render() {
     document.body.classList.remove('no-scroll-y');

@@ -9,30 +9,3 @@ $font-card-text: 'Pontano Sans', sans-serif;
   font: 14px $font-card-text;
   padding-top: 15px;
 }
-
-.editable-field {
-  display: inline-block;
-
-  border: 1px solid #FFF;
-  border-radius: 3px;
-  padding: 2px 5px;
-
-  &:hover, &:focus {
-    border: 1px solid #C8C8C8;
-    border-radius: 3px;
-    padding: 2px 5px;
-  }
-}
-
-.editable-field-text {
-  width: 100%;
-}
-
-.editable-field-area {
-  width: 100%;
-  height: 150px;
-}
-
-.text-italic {
-  font-style: italic;
-}

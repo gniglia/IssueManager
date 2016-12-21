@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as cardActions from '../../../actions/cardActions';
 import Avatar from '../../common/avatar/Avatar';
-import EditableField from '../../common/EditableField';
+import EditableField from '../../common/editableField/EditableField';
 import './CardModal.scss';
 
 const CardModal = ({hideModal, updateCardTitle, updateCardDescription, modalProps}) => {
@@ -23,6 +23,7 @@ const CardModal = ({hideModal, updateCardTitle, updateCardDescription, modalProp
               fieldName='title'
               fieldType='text'
               fieldValue={card.title}
+              required={true}
               onFieldChange={updateCardTitle} />
           </div>
           <div className='card-modal--description'>
