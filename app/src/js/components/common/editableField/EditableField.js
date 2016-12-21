@@ -14,6 +14,10 @@ class EditableField extends React.Component {
   }
 
   handleFieldChange(e) {
+    this.setState({fieldValue: e.target.value});
+
+    if (!this.props.required) return;
+
     let el = e.target;
     if (el.value.length === 0) {
       el.classList.add('alerta');
@@ -23,7 +27,6 @@ class EditableField extends React.Component {
         el.classList.remove('alerta');
       }
     }
-    this.setState({fieldValue: e.target.value});
   }
 
   handleFieldLeave() {
@@ -129,6 +132,9 @@ class EditableField extends React.Component {
         className={labelClasses}
         onClick={this.editField.bind(this)}>
         {this.getDefaultValue()}
+        <span className="hover">
+          ED
+        </span>
       </div>
     );
   }

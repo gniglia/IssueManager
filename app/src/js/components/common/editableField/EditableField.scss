@@ -1,14 +1,33 @@
 .editable-field {
   display: inline-block;
-
   border: 1px solid #FFF;
   border-radius: 3px;
-  padding: 2px 5px;
+  padding: 2px 40px 2px 5px;
+
+  position: relative;
 
   &:hover, &:focus {
     border: 1px solid #C8C8C8;
     border-radius: 3px;
-    padding: 2px 5px;
+    padding-right: 10px;
+
+    .hover {
+      position: absolute;
+      right: -40px;
+      top: 0px;
+      height: 100%;
+      width: 30px;
+
+      border-left: 1px solid #C8C8C8;
+      font-size: 15px;
+      visibility: visible;
+      background-color: #F0F0F0;
+      margin-left: 20px;
+      padding: 0px 5px;
+    }
+  }
+  .hover {
+    visibility: hidden;
   }
 }
 
