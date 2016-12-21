@@ -1,34 +1,58 @@
-.editable-field {
+.editable-field-container {
   display: inline-block;
   border: 1px solid #FFF;
-  border-radius: 3px;
-  padding: 2px 40px 2px 5px;
-
+  cursor: text;
   position: relative;
 
   &:hover, &:focus {
     border: 1px solid #C8C8C8;
     border-radius: 3px;
-    padding-right: 10px;
 
-    .hover {
+    .right-panel {
+      font-size: 14px;
+      display: inline-block;
+      visibility: visible;
+      cursor: pointer;
+
       position: absolute;
-      right: -40px;
+      right: 0px;
       top: 0px;
       height: 100%;
-      width: 30px;
+      padding-top: 2px;
 
-      border-left: 1px solid #C8C8C8;
-      font-size: 15px;
-      visibility: visible;
       background-color: #F0F0F0;
-      margin-left: 20px;
-      padding: 0px 5px;
+      border-left: 1px solid #C8C8C8;
+      text-align: center;
+      width: 30px;
     }
   }
-  .hover {
-    visibility: hidden;
-  }
+}
+
+.right-panel {
+  display: inline-block;
+  visibility: hidden;
+}
+
+.bottom-panel {
+  font-size: 14px;
+  position: absolute;
+  right: 0px;
+  bottom: -25px;
+  height: 25px;
+  border: 1px solid #C8C8C8;
+  border-radius: 0 0 3px 3px;
+  width: 40px;
+  background-color: #F0F0F0;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.editable-field {
+  display: inline-block;
+  padding: 2px 5px;
+  margin-right: 30px;
 }
 
 .editable-field-text {

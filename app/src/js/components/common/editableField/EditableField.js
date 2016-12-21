@@ -85,11 +85,15 @@ class EditableField extends React.Component {
 
     // Escape pressed
     if (keyCode == 27) {
-      this.setState({
-        fieldValue: this.props.fieldValue,
-        editable: false
-      });
+      this.cancelEdit();
     }
+  }
+
+  cancelEdit() {
+    this.setState({
+      fieldValue: this.props.fieldValue,
+      editable: false
+    });
   }
 
   componentDidUpdate() {
@@ -100,24 +104,35 @@ class EditableField extends React.Component {
     if (this.state.editable) {
       if (this.props.fieldType === 'text') {
         return (
-          <input
-            className='editable-field-text'
-            ref='field'
-            value={this.state.fieldValue}
-            onKeyPress={this.handleKeyPress.bind(this)}
-            onKeyUp={this.handleKeyUp.bind(this)}
-            onChange={this.handleFieldChange.bind(this)}
-            onBlur={this.handleFieldLeave.bind(this)} />
+          <div className='wrapper'>
+            <input
+              className='editable-field-text'
+              ref='field'
+              value={this.state.fieldValue}
+              onKeyPress={this.handleKeyPress.bind(this)}
+              onKeyUp={this.handleKeyUp.bind(this)}
+              onChange={this.handleFieldChange.bind(this)}
+              onBlur={this.handleFieldLeave.bind(this)} />
+            <div className="bottom-panel">
+              <span onMouseDown={this.handleFieldLeave.bind(this)}>Y</span>
+              <span onMouseDown={this.cancelEdit.bind(this)}>N</span>
+            </div>
+          </div>
         );
       }
       return (
-        <textarea
-          className='editable-field-area'
-          ref='field'
-          value={this.state.fieldValue}
-          onKeyUp={this.handleKeyUp.bind(this)}
-          onChange={this.handleFieldChange.bind(this)}
-          onBlur={this.handleFieldLeave.bind(this)} />
+        <div className='wrapper'>
+          <textarea
+            className='editable-field-area'
+            ref='field'
+            value={this.state.fieldValue}
+            onKeyUp={this.handleKeyUp.bind(this)}
+            onChange={this.handleFieldChange.bind(this)}
+            onBlur={this.handleFieldLeave.bind(this)} />
+          <div className="bottom-panel">
+            Y N
+          </div>
+        </div>
       );
     }
 
@@ -127,14 +142,14 @@ class EditableField extends React.Component {
     });
 
     return (
-      <div
-        title='Click to edit'
-        className={labelClasses}
-        onClick={this.editField.bind(this)}>
-        {this.getDefaultValue()}
-        <span className="hover">
-          ED
-        </span>
+      <div className='editable-field-container' title='Click to edit' onClick={this.editField.bind(this)}>
+        <div
+          className={labelClasses}>
+          {this.getDefaultValue()}
+        </div>
+        <div className="right-panel">
+          e
+        </div>
       </div>
     );
   }
