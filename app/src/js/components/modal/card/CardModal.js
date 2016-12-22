@@ -2,11 +2,13 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as cardActions from '../../../actions/cardActions';
+import * as commentActions from '../../../actions/commentActions';
 import Avatar from '../../common/avatar/Avatar';
 import EditableField from '../../common/editableField/EditableField';
+import CommentList from '../../comment/CommentList';
 import './CardModal.scss';
 
-const CardModal = ({hideModal, updateCardTitle, updateCardDescription, modalProps}) => {
+const CardModal = ({hideModal, saving, fetching, updateCardTitle, updateCardDescription, commentActions, modalProps}) => {
   const {card} = modalProps;
 
   return (
@@ -34,17 +36,33 @@ const CardModal = ({hideModal, updateCardTitle, updateCardDescription, modalProp
               fieldValue={card.description}
               onFieldChange={updateCardDescription} />
           </div>
+          <div>
+            <CommentList
+              card={card}
+              commentActions={commentActions}
+              saving={saving}
+              fetching={fetching}
+            />
+          </div>
         </section>
       </div>
     </div>
   )
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
   return {
-    updateCardTitle: bindActionCreators(cardActions.updateCardTitle, dispatch),
-    updateCardDescription: bindActionCreators(cardActions.updateCardDescription, dispatch)
+    saving: state.cards.saving,
+    fetching: state.cards.fetching
   };
 };
 
-export default connect(null, mapDispatchToProps)(CardModal);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateCardTitle: bindActionCreators(cardActions.updateCardTitle, dispatch),
+    updateCardDescription: bindActionCreators(cardActions.updateCardDescription, dispatch),
+    commentActions: bindActionCreators(commentActions, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardModal);
