@@ -23,7 +23,6 @@
 .modal-container {
   width: 60%;
   min-width: 600px;
-  // height: 600px;
   height: 430px;
   margin: 40px auto;
   border: 1px solid #C8C8C8;
@@ -42,7 +41,8 @@
 }
 
 .modal-header {
-  height: 120px;
+  height: 100px;
+  flex-shrink: 0;
   border-radius: 3px 3px 0 0;
   background-color: #F7F7F7;
 }

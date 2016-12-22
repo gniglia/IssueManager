@@ -8,6 +8,7 @@ class EditableField extends React.Component {
     super(props);
 
     this.state = {
+      fieldOriginalValue: props.fieldValue,
       fieldValue: props.fieldValue,
       editable: false
     };
@@ -29,13 +30,16 @@ class EditableField extends React.Component {
     }
   }
 
-  handleFieldLeave() {
+  submitField(e) {
+    let activeElement = document.activeElement;
+    if (e && e.target === activeElement) {
+      return;
+    }
+
     if (this.props.required && this.state.fieldValue.length === 0) {
       ReactDOM.findDOMNode(this.refs.field).focus();
       return;
     }
-
-    this.setState({editable: false});
 
     if (this.props.onFieldChange) {
       this.props.onFieldChange({
@@ -43,6 +47,11 @@ class EditableField extends React.Component {
         [this.props.fieldName]: this.state.fieldValue
       });
     }
+
+    this.setState({
+      editable: false,
+      fieldOriginalValue: this.state.fieldValue
+    });
   }
 
   editField() {
@@ -75,7 +84,7 @@ class EditableField extends React.Component {
 
     // Enter pressed
     if (keyCode == 13) {
-      this.handleFieldLeave();
+      this.submitField();
     }
   }
 
@@ -91,7 +100,7 @@ class EditableField extends React.Component {
 
   cancelEdit() {
     this.setState({
-      fieldValue: this.props.fieldValue,
+      fieldValue: this.state.fieldOriginalValue,
       editable: false
     });
   }
@@ -112,10 +121,10 @@ class EditableField extends React.Component {
               onKeyPress={this.handleKeyPress.bind(this)}
               onKeyUp={this.handleKeyUp.bind(this)}
               onChange={this.handleFieldChange.bind(this)}
-              onBlur={this.handleFieldLeave.bind(this)} />
+              onBlur={this.submitField.bind(this)} />
             <div className="bottom-panel">
-              <span onMouseDown={this.handleFieldLeave.bind(this)}>Y</span>
-              <span onMouseDown={this.cancelEdit.bind(this)}>N</span>
+              <span title='Submit' className='bottom-panel-submit' onMouseDown={this.submitField.bind(this)}>Y</span>
+              <span title='Cancel' className='bottom-panel-cancel' onMouseDown={this.cancelEdit.bind(this)}>N</span>
             </div>
           </div>
         );
@@ -128,9 +137,10 @@ class EditableField extends React.Component {
             value={this.state.fieldValue}
             onKeyUp={this.handleKeyUp.bind(this)}
             onChange={this.handleFieldChange.bind(this)}
-            onBlur={this.handleFieldLeave.bind(this)} />
+            onBlur={this.submitField.bind(this)} />
           <div className="bottom-panel">
-            Y N
+            <span title='Submit' className='bottom-panel-submit' onMouseDown={this.submitField.bind(this)}>Y</span>
+            <span title='Cancel' className='bottom-panel-cancel' onMouseDown={this.cancelEdit.bind(this)}>N</span>
           </div>
         </div>
       );
