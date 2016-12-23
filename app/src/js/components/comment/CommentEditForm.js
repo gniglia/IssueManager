@@ -35,17 +35,14 @@ class CommentEditForm extends React.Component {
     const {card, saving, createComment} = this.props;
 
     return (
-      <div>
-        <div className='form-group'>
-          <label>Text</label>
-          <textarea
-            value={this.state.text}
-            onChange={this.handleTextChange.bind(this)}
-            className='form-control'
-            rows='3'
-            placeholder='Comment text'
-          />
-        </div>
+      <div className='comment-form'>
+        <textarea
+          value={this.state.text}
+          onChange={this.handleTextChange.bind(this)}
+          className='form-control comment-form-area'
+          rows='3'
+          placeholder='Add a comment...'
+        />
 
         <Button
           text={saving ? 'Saving...' : 'Save'}
