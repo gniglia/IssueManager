@@ -52,6 +52,7 @@ class CommentEditForm extends React.Component {
             this.saveForm(card, createComment);
           }}
           className='btn btn-primary btn-sm'
+          disabled={!this.isValidForm()}
          />
       </div>
     )

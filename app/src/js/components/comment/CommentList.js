@@ -41,7 +41,7 @@ const getComments = (card, deleteComment) => {
     return (
       <div>
         <hr />
-        <div>No comments to show</div>
+        <div>No comments yet.</div>
       </div>
     );
   }
