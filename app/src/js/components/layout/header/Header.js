@@ -13,7 +13,7 @@ const Header = ({updateFilter, showModal}) => {
       <header className='header-main row'>
         <div className='header-main--left flex-align-center'>
           <a onClick={() => {
-            showModal({ modalType: 'MODAL_TYPE_CARD'})
+            showModal({ modalType: 'MODAL_TYPE_NEW_CARD'})
           }}>
             <span className='icon-new-card'></span>
           </a>

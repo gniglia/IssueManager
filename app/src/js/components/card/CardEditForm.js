@@ -3,8 +3,6 @@ import Button from '../common/Button';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as cardActions from '../../actions/cardActions';
-import GoBackButton from '../common/GoBackButton';
-import { browserHistory } from 'react-router';
 
 class CardEditForm extends React.Component {
   constructor(props) {
@@ -14,29 +12,6 @@ class CardEditForm extends React.Component {
       title: '',
       description: ''
     };
-  }
-
-  setCardState(card) {
-    if (card) {
-      this.setState({
-        title: card.title,
-        description: card.description
-      });
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const {card} = nextProps;
-    this.setCardState(card);
-  }
-
-  componentWillMount() {
-    const {card} = this.props;
-    this.setCardState(card);
-  }
-
-  redirect() {
-    browserHistory.push('/cards');
   }
 
   handleTitleChange(e) {
@@ -50,34 +25,18 @@ class CardEditForm extends React.Component {
     return this.state.title.length > 0 && this.state.description.length > 0;
   }
 
-  saveForm(card, cardActions) {
-    if (!this.isValidForm()) {
-      return;
-    }
-
-    if (card) {
-      cardActions.updateCard({
-        id: card._id,
-        title: this.state.title,
-        description: this.state.description
-      }).then(() => this.redirect());
-    }
-    else {
-      cardActions.createCard({
-        title: this.state.title,
-        description: this.state.description
-      }).then(() => this.redirect());
-    }
+  saveForm() {
+    this.props.createCard({
+      title: this.state.title,
+      description: this.state.description
+    }).then(() => this.props.hideModal());
   }
 
   render () {
-    const {card, saving, cardActions} = this.props;
-    let headerTitle = card ? `Editing '${card.title}'` : 'Adding a new card';
+    const {saving} = this.props;
 
     return (
       <div>
-        <h3>{headerTitle}</h3>
-
         <form>
           <div className='form-group'>
             <label>Title</label>
@@ -101,34 +60,36 @@ class CardEditForm extends React.Component {
 
           <Button
             text={saving ? 'Saving...' : 'Save'}
-            disabled={saving}
+            disabled={saving || !this.isValidForm()}
             onClickHandler={(e) => {
               e.preventDefault();
-              this.saveForm(card, cardActions);
+              this.saveForm();
             }}
             className='btn btn-primary btn-sm'
            />
            {' '}
-           <GoBackButton text='Cancel' className='btn btn-primary btn-sm' />
+           <Button
+             text='Cancel'
+             onClickHandler={(e) => {
+               e.preventDefault();
+               this.props.hideModal();
+             }}
+             className='btn btn-primary btn-sm' />
         </form>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const cardId = ownProps.params.id;
-  const card = cardId && (state.cards.cards ? state.cards.cards.find(card => card._id === cardId) : null);
-
+const mapStateToProps = (state) => {
   return {
-    saving: state.cards.saving,
-    card
+    saving: state.cards.saving
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    cardActions: bindActionCreators(cardActions, dispatch)
+    createCard: bindActionCreators(cardActions.createCard, dispatch)
   };
 };
 

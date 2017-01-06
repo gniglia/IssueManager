@@ -1,6 +1,52 @@
 $font-card-title: 'Comfortaa', cursive;
 $font-card-text: 'Pontano Sans', sans-serif;
 
+.modal-close {
+    position: absolute;
+    color: #52565e;
+    font-size: 50px;
+    top: 30px;
+    right: 50px;
+
+    &:hover, &:focus {
+      color: #1a1e1e;
+      cursor: pointer;
+    }
+}
+
+.modal-container {
+  min-width: 600px;
+  width: 60%;
+  height: 75%;
+  margin: 40px auto;
+  border: 1px solid #C8C8C8;
+  border-radius: 3px;
+  overflow-y: auto;
+
+  animation-name: zoom;
+  animation-duration: 0.4s;
+
+  display: flex;
+  flex-direction: column;
+}
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+.modal-header {
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 3px 3px 0 0;
+  background-color: #F7F7F7;
+}
+
+.modal-section {
+  flex: 1;
+  padding: 20px 15px;
+  background-color: #FFF;
+}
+
 .card-modal--title {
   font: 22px $font-card-title;
 }

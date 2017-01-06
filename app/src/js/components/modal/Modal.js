@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { hideModal } from '../../actions/modalActions';
 import CardModal from './card/CardModal';
+import NewCardModal from './card/NewCardModal';
 import './Modal.scss';
 
 const MODAL_COMPONENTS = {
-  'MODAL_TYPE_CARD': CardModal
+  'MODAL_TYPE_CARD': CardModal,
+  'MODAL_TYPE_NEW_CARD': NewCardModal
 }
 
 class Modal extends React.Component {

@@ -8,8 +8,6 @@ import CardEditForm from './components/card/CardEditForm';
 export default (
   <Route path='/' component={Layout}>
     <IndexRoute component={CardsPage} />
-    <Route path='cards-edit' component={CardEditForm} />
-    <Route path='cards-edit/:id' component={CardEditForm} />
   </Route>
 );
 
