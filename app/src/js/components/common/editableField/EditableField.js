@@ -123,8 +123,8 @@ class EditableField extends React.Component {
               onChange={this.handleFieldChange.bind(this)}
               onBlur={this.submitField.bind(this)} />
             <div className="bottom-panel">
-              <span title='Submit' className='bottom-panel-submit' onMouseDown={this.submitField.bind(this)}>Y</span>
-              <span title='Cancel' className='bottom-panel-cancel' onMouseDown={this.cancelEdit.bind(this)}>N</span>
+              <span title='Submit' className='bottom-panel-submit icon-checkmark' onMouseDown={this.submitField.bind(this)} />
+              <span title='Cancel' className='bottom-panel-cancel icon-cross' onMouseDown={this.cancelEdit.bind(this)} />
             </div>
           </div>
         );
@@ -139,8 +139,8 @@ class EditableField extends React.Component {
             onChange={this.handleFieldChange.bind(this)}
             onBlur={this.submitField.bind(this)} />
           <div className="bottom-panel">
-            <span title='Submit' className='bottom-panel-submit' onMouseDown={this.submitField.bind(this)}>Y</span>
-            <span title='Cancel' className='bottom-panel-cancel' onMouseDown={this.cancelEdit.bind(this)}>N</span>
+            <span title='Submit' className='bottom-panel-submit icon-checkmark' onMouseDown={this.submitField.bind(this)} />
+            <span title='Cancel' className='bottom-panel-cancel icon-cross' onMouseDown={this.cancelEdit.bind(this)} />
           </div>
         </div>
       );
@@ -157,8 +157,7 @@ class EditableField extends React.Component {
           className={labelClasses}>
           {this.getDefaultValue()}
         </div>
-        <div className="right-panel">
-          e
+        <div className="right-panel icon-pencil">
         </div>
       </div>
     );

@@ -55,4 +55,26 @@ $font-card-text: 'Pontano Sans', sans-serif;
   border-radius: 0 0 5px 5px;
   height: 30px;
   color: #AAAFB3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-footer--bin {
+  margin-left: 10px;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover, &:focus {
+    color: #65474D;
+  }
+}
+
+.card-footer--date {
+  text-align: center;
+}
+
+.card-footer--right {
+  margin-right: 10px;
+  color: #F7F7F7;
 }

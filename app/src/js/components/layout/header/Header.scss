@@ -23,13 +23,13 @@
   font-size: 30px;
   z-index: 2;
 
-  a, a:active, a:hover, a:visited {
-    cursor: pointer;
-    text-decoration: none;
+  a, a:visited {
     color: #FFF;
   }
   a:active, a:hover {
-    color: #E0E0E0;
+    text-decoration: none;
+    cursor: pointer;
+    color: #D9DBDA;
   }
 }
 

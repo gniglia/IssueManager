@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
-import Button from '../common/Button';
 import Avatar from '../common/avatar/Avatar';
 import TimeAgo from 'react-timeago'
 import './Card.scss';
@@ -17,32 +15,23 @@ const CardItem = ({card, deleteCard, showModal}) => {
             }}>
               {card.title}
             </a>
-            {/*}<Link to={`/cards/${card._id}`}>{card.title}</Link>{*/}
           </div>
           <div className='card-text'>
             <p>{card.description}</p>
           </div>
-{/*
-          <div>
-            <Button
-              text='remove'
-              onClickHandler={() => {
-                deleteCard(card._id)
-              }}
-              className='btn btn-danger btn-xs'
-            />
-            {' '}
-            <Link to={`/cards-edit/${card._id}`}>
-              <Button
-                text='edit'
-                className='btn btn-success btn-xs'
-              />
-            </Link>
-          </div>
-*/}
         </div>
-        <div className='card-footer flex-align-center'>
-          <TimeAgo date={card.createdAt} live={false} />
+        <div className='card-footer'>
+          <div
+            className='card-footer--bin icon-bin'
+            title='Delete'
+            onClick={() => {
+              deleteCard(card._id)
+            }} >
+          </div>
+          <div className='card-footer--date'>
+            <TimeAgo date={card.createdAt} live={false} />
+          </div>
+          <div className='card-footer--right'></div>
         </div>
       </div>
     </div>

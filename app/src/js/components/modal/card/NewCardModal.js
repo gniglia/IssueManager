@@ -4,13 +4,13 @@ import { bindActionCreators } from 'redux';
 import * as cardActions from '../../../actions/cardActions';
 import CardEditForm from '../../card/CardEditForm';
 import './NewCardModal.scss';
+import closePopup from '../../../../assets/images/close-popup.png';
 
 const NewCardModal = ({hideModal, modalProps}) => {
-
   return (
     <div className='modal'>
       <div className='new-card-modal'>
-        <div className='new-card-modal-close' onClick={() => hideModal()}>&times;</div>
+        <img className='new-card-modal-close' onClick={() => hideModal()} src={closePopup} />
         <div className='new-card-modal-container'>
           <header className='new-card-modal-header'>
             Create Card

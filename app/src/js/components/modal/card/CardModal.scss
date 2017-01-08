@@ -1,49 +1,57 @@
 $font-card-title: 'Comfortaa', cursive;
 $font-card-text: 'Pontano Sans', sans-serif;
 
-.modal-close {
-    position: absolute;
-    color: #52565e;
-    font-size: 50px;
-    top: 30px;
-    right: 50px;
-
-    &:hover, &:focus {
-      color: #1a1e1e;
-      cursor: pointer;
-    }
-}
-
-.modal-container {
+.card-modal {
   min-width: 600px;
   width: 60%;
-  height: 75%;
-  margin: 40px auto;
-  border: 1px solid #C8C8C8;
-  border-radius: 3px;
-  overflow-y: auto;
+  height: 100%;
+  margin: 20px auto;
+  padding: 10px;
+  position: relative;
 
   animation-name: zoom;
   animation-duration: 0.4s;
-
-  display: flex;
-  flex-direction: column;
 }
 @keyframes zoom {
     from {transform:scale(0)}
     to {transform:scale(1)}
 }
 
-.modal-header {
+.card-modal-close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 45px;
+  height: 45px;
+  z-index: 30;
+
+  &:hover, &:focus {
+    cursor: pointer;
+  }
+}
+
+.card-modal-container {
+  height: 75%;
+  border: 1px solid #C8C8C8;
+  border-radius: 3px;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.card-modal-header {
+  padding: 15px;
+  border-bottom: 1px solid #C8C8C8;
   height: 100px;
   flex-shrink: 0;
   border-radius: 3px 3px 0 0;
   background-color: #F7F7F7;
 }
 
-.modal-section {
+.card-modal-section {
   flex: 1;
-  padding: 20px 15px;
+  padding: 20px 20px;
   background-color: #FFF;
 }
 

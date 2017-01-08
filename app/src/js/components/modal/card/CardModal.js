@@ -7,44 +7,47 @@ import Avatar from '../../common/avatar/Avatar';
 import EditableField from '../../common/editableField/EditableField';
 import CommentList from '../../comment/CommentList';
 import './CardModal.scss';
+import closePopup from '../../../../assets/images/close-popup.png';
 
 const CardModal = ({hideModal, saving, fetching, updateCardTitle, updateCardDescription, commentActions, modalProps}) => {
   const {card} = modalProps;
 
   return (
     <div className='modal'>
-      <div className='modal-close' onClick={() => hideModal()}>&times;</div>
-      <div className='modal-container'>
-        <header className='modal-header'>
-          <Avatar mode='2' />
-        </header>
-        <section className='modal-section'>
-          <div className='card-modal--title'>
-            <EditableField
-              id={card._id}
-              fieldName='title'
-              fieldType='text'
-              fieldValue={card.title}
-              required={true}
-              onFieldChange={updateCardTitle} />
-          </div>
-          <div className='card-modal--description'>
-            <EditableField
-              id={card._id}
-              fieldName='description'
-              fieldType='area'
-              fieldValue={card.description}
-              onFieldChange={updateCardDescription} />
-          </div>
-          <div>
-            <CommentList
-              card={card}
-              commentActions={commentActions}
-              saving={saving}
-              fetching={fetching}
-            />
-          </div>
-        </section>
+      <div className='card-modal'>
+        <img className='card-modal-close' onClick={() => hideModal()} src={closePopup} />
+        <div className='card-modal-container'>
+          <header className='card-modal-header'>
+            <Avatar mode='2' />
+          </header>
+          <section className='card-modal-section'>
+            <div className='card-modal--title'>
+              <EditableField
+                id={card._id}
+                fieldName='title'
+                fieldType='text'
+                fieldValue={card.title}
+                required={true}
+                onFieldChange={updateCardTitle} />
+            </div>
+            <div className='card-modal--description'>
+              <EditableField
+                id={card._id}
+                fieldName='description'
+                fieldType='area'
+                fieldValue={card.description}
+                onFieldChange={updateCardDescription} />
+            </div>
+            <div>
+              <CommentList
+                card={card}
+                commentActions={commentActions}
+                saving={saving}
+                fetching={fetching}
+              />
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   )

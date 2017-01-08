@@ -11,11 +11,11 @@ const Header = ({updateFilter, showModal}) => {
   return (
     <div className='header-container container-fluid'>
       <header className='header-main row'>
-        <div className='header-main--left flex-align-center'>
+        <div className='header-main--left flex-align-center' title='Add a new card'>
           <a onClick={() => {
             showModal({ modalType: 'MODAL_TYPE_NEW_CARD'})
           }}>
-            <span className='icon-new-card'></span>
+            <span className='icon-new'></span>
           </a>
         </div>
         <div className='header-main--central hidden-xs col-sm-6 col-sm-offset-2 col-md-7 col-md-offset-2'>Inbox</div>

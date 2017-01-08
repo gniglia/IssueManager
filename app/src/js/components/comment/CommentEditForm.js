@@ -45,7 +45,7 @@ class CommentEditForm extends React.Component {
         />
 
         <Button
-          text={saving ? 'Saving...' : 'Save'}
+          text={saving ? 'Saving...' : 'Add'}
           disabled={saving}
           onClickHandler={(e) => {
             e.preventDefault();
