@@ -1,10 +1,11 @@
 import React from 'react';
 import Card from './Card';
+import Spinner from '../common/spinner/Spinner';
 
 const CardList = ({cards, fetching, deleteCard, showModal}) => {
   if (fetching) {
     return (
-      <div>Loading</div>
+      <Spinner />
     );
   }
 

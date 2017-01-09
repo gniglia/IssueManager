@@ -3,6 +3,7 @@ import Button from '../common/Button';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as cardActions from '../../actions/cardActions';
+import Spinner from '../common/spinner/Spinner';
 
 class CardEditForm extends React.Component {
   constructor(props) {
@@ -65,16 +66,15 @@ class CardEditForm extends React.Component {
               e.preventDefault();
               this.saveForm();
             }}
-            className='btn btn-primary btn-sm'
-           />
-           {' '}
-           <Button
-             text='Cancel'
-             onClickHandler={(e) => {
-               e.preventDefault();
-               this.props.hideModal();
-             }}
-             className='btn btn-primary btn-sm' />
+            className='btn btn-primary btn-sm' />
+          {' '}
+          <Button
+            text='Cancel'
+            onClickHandler={(e) => {
+              e.preventDefault();
+              this.props.hideModal();
+            }}
+            className='btn btn-primary btn-sm' />
         </form>
       </div>
     )
