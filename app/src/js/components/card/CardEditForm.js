@@ -44,7 +44,7 @@ class CardEditForm extends React.Component {
             <input
               value={this.state.title}
               onChange={this.handleTitleChange.bind(this)}
-              className='form-control'
+              className='width-100'
               placeholder='Card title'
             />
           </div>

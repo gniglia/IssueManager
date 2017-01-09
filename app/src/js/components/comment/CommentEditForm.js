@@ -39,7 +39,7 @@ class CommentEditForm extends React.Component {
         <textarea
           value={this.state.text}
           onChange={this.handleTextChange.bind(this)}
-          className='form-control comment-form-area'
+          className='comment-form-area'
           rows='3'
           placeholder='Add a comment...'
         />
