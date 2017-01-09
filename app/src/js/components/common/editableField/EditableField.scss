@@ -3,21 +3,23 @@
   border: 1px solid #FFF;
   cursor: text;
   position: relative;
+  transition: border 0.15s ease-in-out 0.02s;
 
   &:hover, &:focus {
     border: 1px solid #C8C8C8;
     border-radius: 3px;
 
     .right-panel {
-      visibility: visible;
+      opacity: 1;
     }
   }
 }
 
 .right-panel {
+  transition: opacity 0.15s ease-in-out 0.02s;
+  opacity: 0;
   font-size: 14px;
   display: inline-block;
-  visibility: hidden;
   cursor: pointer;
   position: absolute;
   right: 0;
@@ -35,11 +37,11 @@
   position: absolute;
   right: 0;
   bottom: -30px;
+  width: 60px;
   height: 30px;
   border: 1px solid #C8C8C8;
   border-radius: 0 0 3px 3px;
-  width: 60px;
-  background-color: #E9E9E9;
+  background-color: #FFF;
   display: flex;
   justify-content: space-around;
   z-index: 5;
@@ -51,14 +53,13 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background-color: #F0F0F0;
-    border: 1px solid #C8C8C8;
+    background-color: #D8D8D8;
     border-radius: 3px;
     margin: 3px 1.5px 3px 3px;
+    color: #424040;
 
     &:hover, &:focus {
-      border: 1px solid #999999;
-      background-color: #E9E9E9;
+      background-color: #BAB8B8;
     }
   }
   .bottom-panel-cancel {
@@ -68,14 +69,13 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background-color: #F0F0F0;
-    border: 1px solid #C8C8C8;
+    background-color: #D8D8D8;
     border-radius: 3px;
     margin: 3px 3px 3px 1.5px;
+    color: #424040;
 
     &:hover, &:focus {
-      border: 1px solid #999999;
-      background-color: #E9E9E9;
+      background-color: #BAB8B8;
     }
   }
 }

@@ -10,6 +10,7 @@ $font-card-text: 'Pontano Sans', sans-serif;
   border-color: #C8C8C8;
   padding: 0;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: box-shadow 0.15s ease-in-out 0.02s;
 
   &:hover {
     box-shadow: 0 0 10px #17A2E7;
@@ -27,9 +28,6 @@ $font-card-text: 'Pontano Sans', sans-serif;
     cursor: pointer;
     text-decoration: none;
     color: #000;
-  }
-  a:active, a:hover {
-    text-decoration: underline;
   }
 }
 

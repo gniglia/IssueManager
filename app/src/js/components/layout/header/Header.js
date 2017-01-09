@@ -28,7 +28,7 @@ const Header = ({updateFilter, showModal}) => {
       <nav className='header-nav'>
         <div className='header-nav--right flex-align-right'>
           <div className='header-nav--search'>
-            <span className="icon-search header-nav--search-ico"></span>
+            <span className="header-nav--search-ico icon-search"></span>
             <SearchBox
               minLength={3}
               inputClassName='header-nav--search-text'

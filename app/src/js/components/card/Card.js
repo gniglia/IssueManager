@@ -14,7 +14,7 @@ const CardItem = ({card, deleteCard, showModal}) => {
               showModal({ modalType: 'MODAL_TYPE_CARD', modalProps: { card }})
             }}>
               {card.title}
-            </a>
+          </a>
           </div>
           <div className='card-text'>
             <p>{card.description}</p>

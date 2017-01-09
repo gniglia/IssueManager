@@ -75,7 +75,7 @@
   height: 26px;
   padding: 0 10px 0 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 
   @media (max-width: 767px) {
@@ -87,6 +87,7 @@
   color: #798998;
   width: 12px;
   height: 12px;
+  margin-right: 10px;
 }
 
 .header-nav--search-text {

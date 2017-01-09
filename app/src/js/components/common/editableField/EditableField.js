@@ -115,6 +115,7 @@ class EditableField extends React.Component {
         return (
           <div className='wrapper'>
             <input
+              type='text'
               className='editable-field-text'
               ref='field'
               value={this.state.fieldValue}

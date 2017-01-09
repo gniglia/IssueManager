@@ -23,7 +23,7 @@ class CardEditForm extends React.Component {
   }
 
   isValidForm() {
-    return this.state.title.length > 0 && this.state.description.length > 0;
+    return this.state.title.length > 0;
   }
 
   saveForm() {
@@ -42,6 +42,7 @@ class CardEditForm extends React.Component {
           <div className='form-group'>
             <label>Title</label>
             <input
+              type='text'
               value={this.state.title}
               onChange={this.handleTitleChange.bind(this)}
               className='width-100'
@@ -53,7 +54,7 @@ class CardEditForm extends React.Component {
             <textarea
               value={this.state.description}
               onChange={this.handleDescriptionChange.bind(this)}
-              className='form-control'
+              className='width-100'
               rows='3'
               placeholder='Card description'
             />

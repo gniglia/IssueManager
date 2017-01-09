@@ -31,11 +31,15 @@ input[type=text], textarea {
   transition: all 0.20s ease-in-out;
   outline: none;
   padding: 1px 5px;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #C8C8C8;
 }
 
 input[type=text]:focus, textarea:focus {
-  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  box-shadow: 0 0 5px rgba(69, 105, 107, .7);
   padding: 1px 5px;
-  border: 1px solid rgba(81, 203, 238, 1);
+  border: 1px solid rgba(69, 105, 107, .7);
+}
+
+.btn.disabled, .btn[disabled] {
+  cursor: default;
 }
