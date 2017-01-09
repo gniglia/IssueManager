@@ -31,7 +31,7 @@ const CardItem = ({card, deleteCard, showModal}) => {
           <div className='card-footer--date'>
             <TimeAgo date={card.createdAt} live={false} />
           </div>
-          <div className='card-footer--right'></div>
+          <div className='card-footer--right icon-bin'></div>
         </div>
       </div>
     </div>

@@ -68,14 +68,29 @@
 }
 
 .header-nav--search {
+  background-color: #FFF;
   border: 1px solid #DADADA;
   border-radius: 3px;
   width: 200px;
   height: 26px;
-  font: 14px 'Trebuchet MS', Helvetica, sans-serif;
   padding: 0 10px 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   @media (max-width: 767px) {
     width: 100%;
   }
+}
+
+.header-nav--search-ico {
+  color: #798998;
+  width: 12px;
+  height: 12px;
+}
+
+.header-nav--search-text {
+  outline: none;
+  border: 0;
+  font: 14px 'Trebuchet MS', Helvetica, sans-serif;
 }
