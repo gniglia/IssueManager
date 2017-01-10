@@ -9,8 +9,8 @@ body {
 }
 
 .no-gutter > [class*='col-'] {
-    padding-right: 0;
-    padding-left: 0;
+  padding-right: 0;
+  padding-left: 0;
 }
 
 .flex-align-center {
@@ -30,14 +30,16 @@ body {
 input[type=text], textarea {
   transition: all 0.20s ease-in-out;
   outline: none;
-  padding: 1px 5px;
+  padding: 2px 5px;
   border: 1px solid #C8C8C8;
+  border-radius: 3px;
 }
 
 input[type=text]:focus, textarea:focus {
   box-shadow: 0 0 5px rgba(69, 105, 107, .7);
-  padding: 1px 5px;
+  padding: 2px 5px;
   border: 1px solid rgba(69, 105, 107, .7);
+  border-radius: 3px;
 }
 
 .btn.disabled, .btn[disabled] {
