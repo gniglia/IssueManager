@@ -33,6 +33,7 @@ $font-card-text: 'Pontano Sans', sans-serif;
 
 .card-text {
   font: 14px $font-card-text;
+  color: #969696;
   height: 150px;
   overflow: hidden;
   position: relative;
@@ -64,7 +65,7 @@ $font-card-text: 'Pontano Sans', sans-serif;
   cursor: pointer;
 
   &:hover, &:focus {
-    color: #65474D;
+    color: #515254;
   }
 }
 

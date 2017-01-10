@@ -35,14 +35,16 @@ class CommentEditForm extends React.Component {
     const {card, saving, createComment} = this.props;
 
     return (
-      <div className='comment-form'>
-        <textarea
-          value={this.state.text}
-          onChange={this.handleTextChange.bind(this)}
-          className='comment-form-area width-100'
-          rows='3'
-          placeholder='Add a comment...'
-        />
+      <div>
+        <div className='form-group'>
+          <textarea
+            value={this.state.text}
+            onChange={this.handleTextChange.bind(this)}
+            className='comment-form-area width-100'
+            rows='3'
+            placeholder='Add a comment...'
+          />
+        </div>
 
         <Button
           text={saving ? 'Saving...' : 'Add'}
@@ -53,7 +55,7 @@ class CommentEditForm extends React.Component {
           }}
           className='btn btn-primary btn-sm'
           disabled={!this.isValidForm()}
-         />
+        />
       </div>
     )
   }

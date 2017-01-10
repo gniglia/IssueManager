@@ -38,45 +38,43 @@ class CardEditForm extends React.Component {
 
     return (
       <div>
-        <form>
-          <div className='form-group'>
-            <label>Title</label>
-            <input
-              type='text'
-              value={this.state.title}
-              onChange={this.handleTitleChange.bind(this)}
-              className='width-100'
-              placeholder='Card title'
-            />
-          </div>
-          <div className='form-group'>
-            <label>Description</label>
-            <textarea
-              value={this.state.description}
-              onChange={this.handleDescriptionChange.bind(this)}
-              className='width-100'
-              rows='3'
-              placeholder='Card description'
-            />
-          </div>
+        <div className='form-group'>
+          <label>Title</label>
+          <input
+            type='text'
+            value={this.state.title}
+            onChange={this.handleTitleChange.bind(this)}
+            className='width-100'
+            placeholder='Card title'
+          />
+        </div>
+        <div className='form-group'>
+          <label>Description</label>
+          <textarea
+            value={this.state.description}
+            onChange={this.handleDescriptionChange.bind(this)}
+            className='width-100'
+            rows='3'
+            placeholder='Card description'
+          />
+        </div>
 
-          <Button
-            text={saving ? 'Saving...' : 'Save'}
-            disabled={saving || !this.isValidForm()}
-            onClickHandler={(e) => {
-              e.preventDefault();
-              this.saveForm();
-            }}
-            className='btn btn-primary btn-sm' />
-          {' '}
-          <Button
-            text='Cancel'
-            onClickHandler={(e) => {
-              e.preventDefault();
-              this.props.hideModal();
-            }}
-            className='btn btn-primary btn-sm' />
-        </form>
+        <Button
+          text={saving ? 'Saving...' : 'Save'}
+          disabled={saving || !this.isValidForm()}
+          onClickHandler={(e) => {
+            e.preventDefault();
+            this.saveForm();
+          }}
+          className='btn btn-primary btn-sm' />
+        {' '}
+        <Button
+          text='Cancel'
+          onClickHandler={(e) => {
+            e.preventDefault();
+            this.props.hideModal();
+          }}
+          className='btn btn-primary btn-sm' />
       </div>
     )
   }
