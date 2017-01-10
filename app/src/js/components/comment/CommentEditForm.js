@@ -48,13 +48,12 @@ class CommentEditForm extends React.Component {
 
         <Button
           text={saving ? 'Saving...' : 'Add'}
-          disabled={saving}
           onClickHandler={(e) => {
             e.preventDefault();
             this.saveForm(card, createComment);
           }}
           className='btn btn-primary btn-sm'
-          disabled={!this.isValidForm()}
+          disabled={saving || !this.isValidForm()}
         />
       </div>
     )
