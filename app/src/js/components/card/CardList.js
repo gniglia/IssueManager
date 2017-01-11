@@ -1,6 +1,8 @@
 import React from 'react';
 import Card from './Card';
 import Spinner from '../common/spinner/Spinner';
+import './CardList.scss';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const CardList = ({cards, fetching, deleteCard, showModal}) => {
   if (fetching) {
@@ -11,7 +13,13 @@ const CardList = ({cards, fetching, deleteCard, showModal}) => {
 
   return (
     <div style={{padding: '0 20px 20px 0', overflow: 'hidden'}}>
-      {getCards(cards, deleteCard, showModal)}
+      <ReactCSSTransitionGroup
+        transitionName='card-list-'
+        transitionAppear={true} transitionAppearTimeout={0}
+        transitionEnterTimeout={0}
+        transitionLeaveTimeout={0}>
+        {getCards(cards, deleteCard, showModal)}
+      </ReactCSSTransitionGroup>
     </div>
   );
 };
