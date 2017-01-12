@@ -13,7 +13,9 @@ const NewCardModal = ({hideModal, modalProps}) => {
         <img className='new-card-modal-close' onClick={() => hideModal()} src={closePopup} />
         <div className='new-card-modal-container'>
           <header className='new-card-modal-header'>
-            Create Card
+            <div className='new-card-modal-header-title'>
+              <h2>Create Card</h2>
+            </div>
           </header>
           <section className='new-card-modal-section'>
             <CardEditForm hideModal={hideModal} />

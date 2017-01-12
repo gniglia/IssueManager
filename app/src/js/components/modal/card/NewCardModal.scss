@@ -27,7 +27,7 @@
 }
 
 .new-card-modal-container {
-  height: 350px;
+  height: 335px;
   border: 1px solid #C8C8C8;
   border-radius: 3px;
   overflow-y: auto;
@@ -38,10 +38,14 @@
 
 .new-card-modal-header {
   border-bottom: 1px solid #C8C8C8;
-  height: 100px;
+  height: 80px;
   flex-shrink: 0;
   border-radius: 3px 3px 0 0;
   background-color: #F7F7F7;
+}
+
+.new-card-modal-header-title{
+  margin: 20px 0 0 20px;
 }
 
 .new-card-modal-section {
