@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '../common/Button';
 import CommentEditForm from '../comment/CommentEditForm';
 import CommentItem from '../comment/CommentItem';
+import './Comment.scss';
 
 const CommentList = ({card, commentActions, saving, fetching}) => {
   if (fetching) {
@@ -30,7 +31,9 @@ const CommentList = ({card, commentActions, saving, fetching}) => {
 export default CommentList;
 
 const ulStyle = {
-  listStyleType: 'none'
+  listStyleType: 'none',
+  padding: 0,
+  margin: 0
 };
 
 const getComments = (card, deleteComment) => {
@@ -38,7 +41,7 @@ const getComments = (card, deleteComment) => {
     return (
       <div>
         <hr />
-        <div>No comments to show</div>
+        <div>No comments yet.</div>
       </div>
     );
   }

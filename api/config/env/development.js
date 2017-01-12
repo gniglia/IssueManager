@@ -1,5 +1,5 @@
 export default {
   env: 'development',
-  db: 'mongodb://localhost:27017/cardmanager',
+  db: 'mongodb://cardmgr:cardmgr@ds161028.mlab.com:61028/cardmanager',
   port: 3500
 };

@@ -1,0 +1,65 @@
+$font-card-title: 'Comfortaa', cursive;
+$font-card-text: 'Pontano Sans', sans-serif;
+
+.card-modal {
+  min-width: 600px;
+  width: 60%;
+  height: 100%;
+  margin: 20px auto;
+  padding: 10px;
+  position: relative;
+
+  animation-name: zoom;
+  animation-duration: 0.4s;
+}
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+.card-modal-close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 45px;
+  height: 45px;
+  z-index: 30;
+
+  &:hover, &:focus {
+    cursor: pointer;
+  }
+}
+
+.card-modal-container {
+  height: 75%;
+  border: 1px solid #C8C8C8;
+  border-radius: 3px;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.card-modal-header {
+  padding: 15px;
+  border-bottom: 1px solid #C8C8C8;
+  height: 80px;
+  flex-shrink: 0;
+  border-radius: 3px 3px 0 0;
+  background-color: #F7F7F7;
+}
+
+.card-modal-section {
+  flex: 1;
+  padding: 20px 20px;
+  background-color: #FFF;
+}
+
+.card-modal--title {
+  font: 22px $font-card-title;
+}
+
+.card-modal--description {
+  font: 14px $font-card-text;
+  padding-top: 25px;
+}

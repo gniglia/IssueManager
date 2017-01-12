@@ -3,8 +3,7 @@ import Button from '../common/Button';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as cardActions from '../../actions/cardActions';
-import GoBackButton from '../common/GoBackButton';
-import { browserHistory } from 'react-router';
+import Spinner from '../common/spinner/Spinner';
 
 class CardEditForm extends React.Component {
   constructor(props) {
@@ -16,29 +15,6 @@ class CardEditForm extends React.Component {
     };
   }
 
-  setCardState(card) {
-    if (card) {
-      this.setState({
-        title: card.title,
-        description: card.description
-      });
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const {card} = nextProps;
-    this.setCardState(card);
-  }
-
-  componentWillMount() {
-    const {card} = this.props;
-    this.setCardState(card);
-  }
-
-  redirect() {
-    browserHistory.push('/cards');
-  }
-
   handleTitleChange(e) {
     this.setState({title: e.target.value});
   }
@@ -47,88 +23,72 @@ class CardEditForm extends React.Component {
   }
 
   isValidForm() {
-    return this.state.title.length > 0 && this.state.description.length > 0;
+    return this.state.title.length > 0;
   }
 
-  saveForm(card, cardActions) {
-    if (!this.isValidForm()) {
-      return;
-    }
-
-    if (card) {
-      cardActions.updateCard({
-        id: card._id,
-        title: this.state.title,
-        description: this.state.description
-      }).then(() => this.redirect());
-    }
-    else {
-      cardActions.createCard({
-        title: this.state.title,
-        description: this.state.description
-      }).then(() => this.redirect());
-    }
+  saveForm() {
+    this.props.createCard({
+      title: this.state.title,
+      description: this.state.description
+    }).then(() => this.props.hideModal());
   }
 
   render () {
-    const {card, saving, cardActions} = this.props;
-    let headerTitle = card ? `Editing '${card.title}'` : 'Adding a new card';
+    const {saving} = this.props;
 
     return (
       <div>
-        <h3>{headerTitle}</h3>
+        <div className='form-group'>
+          <label>Title</label>
+          <input
+            type='text'
+            value={this.state.title}
+            onChange={this.handleTitleChange.bind(this)}
+            className='width-100'
+            placeholder='Card title'
+          />
+        </div>
+        <div className='form-group'>
+          <label>Description</label>
+          <textarea
+            value={this.state.description}
+            onChange={this.handleDescriptionChange.bind(this)}
+            className='width-100'
+            rows='3'
+            placeholder='Card description'
+          />
+        </div>
 
-        <form>
-          <div className='form-group'>
-            <label>Title</label>
-            <input
-              value={this.state.title}
-              onChange={this.handleTitleChange.bind(this)}
-              className='form-control'
-              placeholder='Card title'
-            />
-          </div>
-          <div className='form-group'>
-            <label>Description</label>
-            <textarea
-              value={this.state.description}
-              onChange={this.handleDescriptionChange.bind(this)}
-              className='form-control'
-              rows='3'
-              placeholder='Card description'
-            />
-          </div>
-
-          <Button
-            text={saving ? 'Saving...' : 'Save'}
-            disabled={saving}
-            onClickHandler={(e) => {
-              e.preventDefault();
-              this.saveForm(card, cardActions);
-            }}
-            className='btn btn-primary btn-sm'
-           />
-           {' '}
-           <GoBackButton text='Cancel' className='btn btn-primary btn-sm' />
-        </form>
+        <Button
+          text={saving ? 'Saving...' : 'Save'}
+          disabled={saving || !this.isValidForm()}
+          onClickHandler={(e) => {
+            e.preventDefault();
+            this.saveForm();
+          }}
+          className='btn btn-primary btn-sm' />
+        {' '}
+        <Button
+          text='Cancel'
+          onClickHandler={(e) => {
+            e.preventDefault();
+            this.props.hideModal();
+          }}
+          className='btn btn-primary btn-sm' />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const cardId = ownProps.params.id;
-  const card = cardId && (state.cards.cards ? state.cards.cards.find(card => card._id === cardId) : null);
-
+const mapStateToProps = (state) => {
   return {
-    saving: state.cards.saving,
-    card
+    saving: state.cards.saving
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    cardActions: bindActionCreators(cardActions, dispatch)
+    createCard: bindActionCreators(cardActions.createCard, dispatch)
   };
 };
 

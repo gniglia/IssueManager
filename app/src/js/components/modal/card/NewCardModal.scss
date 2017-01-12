@@ -1,0 +1,55 @@
+.new-card-modal {
+  min-width: 600px;
+  width: 50%;
+  height: 100%;
+  margin: 80px auto;
+  padding: 10px;
+  position: relative;
+
+  animation-name: zoom;
+  animation-duration: 0.4s;
+}
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+.new-card-modal-close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 45px;
+  height: 45px;
+
+  &:hover, &:focus {
+    cursor: pointer;
+  }
+}
+
+.new-card-modal-container {
+  height: 335px;
+  border: 1px solid #C8C8C8;
+  border-radius: 3px;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.new-card-modal-header {
+  border-bottom: 1px solid #C8C8C8;
+  height: 80px;
+  flex-shrink: 0;
+  border-radius: 3px 3px 0 0;
+  background-color: #F7F7F7;
+}
+
+.new-card-modal-header-title{
+  margin: 20px 0 0 20px;
+}
+
+.new-card-modal-section {
+  flex: 1;
+  padding: 20px 20px;
+  background-color: #FFF;
+}

@@ -21,13 +21,15 @@
   width: 65px;
   background-color: #17A2E7;
   font-size: 30px;
+  z-index: 2;
 
-  a, a:active, a:hover, a:visited {
-    text-decoration: none;
+  a, a:visited {
     color: #FFF;
   }
   a:active, a:hover {
-    color: #E0E0E0;
+    text-decoration: none;
+    cursor: pointer;
+    color: #D9DBDA;
   }
 }
 
@@ -66,14 +68,30 @@
 }
 
 .header-nav--search {
+  background-color: #FFF;
   border: 1px solid #DADADA;
   border-radius: 3px;
   width: 200px;
   height: 26px;
-  font: 14px 'Trebuchet MS', Helvetica, sans-serif;
   padding: 0 10px 0 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 
   @media (max-width: 767px) {
     width: 100%;
   }
+}
+
+.header-nav--search-ico {
+  color: #798998;
+  width: 12px;
+  height: 12px;
+  margin-right: 10px;
+}
+
+.header-nav--search-text {
+  outline: none;
+  border: 0;
+  font: 14px 'Trebuchet MS', Helvetica, sans-serif;
 }

@@ -3,7 +3,7 @@ import Card from '../models/card';
 
 
 const list = (req, res) => {
-  Card.findAsync()
+  Card.findAsync({}, null, { sort: { '_id': 1 }})
     .then(cards => res.status(httpStatus.OK).json(cards))
     .catch(err => {
       res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
@@ -73,9 +73,8 @@ const remove = (req, res) => {
 
 const update = (req, res) => {
   const id = req.params.id;
-  const card = new Card(req.body);
 
-  Card.findByIdAndUpdateAsync(id, { $set: { title: card.title, description: card.description }}, { new: true})
+  Card.findByIdAndUpdateAsync(id, { $set: req.body }, { new: true})
     .then(updatedCard => {
       if (!updatedCard) {
         return res.status(httpStatus.NOT_FOUND).json({
@@ -86,7 +85,7 @@ const update = (req, res) => {
     })
     .catch(err => {
       res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
-        message: 'Failed adding an Card'
+        message: err
       });
     });
 };

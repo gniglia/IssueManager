@@ -10,6 +10,7 @@ $font-card-text: 'Pontano Sans', sans-serif;
   border-color: #C8C8C8;
   padding: 0;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: box-shadow 0.15s ease-in-out 0.02s;
 
   &:hover {
     box-shadow: 0 0 10px #17A2E7;
@@ -24,6 +25,7 @@ $font-card-text: 'Pontano Sans', sans-serif;
   font: 22px $font-card-title;
 
   a, a:active, a:hover, a:visited {
+    cursor: pointer;
     text-decoration: none;
     color: #000;
   }
@@ -31,6 +33,7 @@ $font-card-text: 'Pontano Sans', sans-serif;
 
 .card-text {
   font: 14px $font-card-text;
+  color: #969696;
   height: 150px;
   overflow: hidden;
   position: relative;
@@ -51,4 +54,33 @@ $font-card-text: 'Pontano Sans', sans-serif;
   border-radius: 0 0 5px 5px;
   height: 30px;
   color: #AAAFB3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-footer--bin {
+  margin-left: 10px;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover, &:focus {
+    color: #515254;
+  }
+}
+
+.card-footer--date {
+  text-align: center;
+}
+
+.card-footer--right {
+  width: 30px;
+  height: 18px;
+  border-radius: 20%;
+  background-color: #29D75E;
+  margin-right: 10px;
+  color: #FFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

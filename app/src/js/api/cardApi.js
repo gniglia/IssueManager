@@ -23,4 +23,16 @@ const updateCard = (card) => {
   });
 };
 
-export default { loadCards, deleteCard, createCard, updateCard };
+const updateCardTitle = (card) => {
+  return axios.patch(`http://localhost:3500/api/cards/${card.id}`, {
+    title: card.title
+  });
+};
+
+const updateCardDescription = (card) => {
+  return axios.patch(`http://localhost:3500/api/cards/${card.id}`, {
+    description: card.description
+  });
+};
+
+export default { loadCards, deleteCard, createCard, updateCard, updateCardTitle, updateCardDescription };

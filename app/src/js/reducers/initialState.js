@@ -1,4 +1,9 @@
 export default {
   cards: [],
-  filter: ''
+  activeCard: null,
+  filter: '',
+  modal: {
+    modalType: null,
+    modalProps: {}
+  }
 };

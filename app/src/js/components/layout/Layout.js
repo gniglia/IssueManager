@@ -1,12 +1,15 @@
 import React from "react";
 import Header from './header/Header';
+import Modal from '../modal/Modal';
 
-const Layout = (props) => {
+const Layout = ({children}) => {
   return (
     <div>
+      <Modal />
+
       <Header />
       <section className='layout-main-section'>
-        {props.children}
+        {children}
       </section>
     </div>
   );

@@ -1,0 +1,26 @@
+.card-list--enter {
+  opacity: 0.01;
+}
+
+.card-list--enter.card-list--enter-active {
+  opacity: 1;
+  transition: opacity 5s ease-in;
+}
+
+.card-list--leave {
+  opacity: 1;
+}
+
+.card-list--leave.card-list--leave-active {
+  opacity: 0.01;
+  transition: opacity 3s ease-in;
+}
+
+.card-list--appear {
+  opacity: 0.01;
+}
+
+.card-list--appear.card-list--appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in-out;
+}
