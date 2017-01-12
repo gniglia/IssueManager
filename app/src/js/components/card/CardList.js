@@ -4,7 +4,7 @@ import Spinner from '../common/spinner/Spinner';
 import './CardList.scss';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-const CardList = ({cards, fetching, deleteCard, showModal}) => {
+const CardList = ({cards, fetching, deleteCard, showModal, setActiveCard}) => {
   if (fetching) {
     return (
       <Spinner />
@@ -18,7 +18,7 @@ const CardList = ({cards, fetching, deleteCard, showModal}) => {
         transitionAppear={true} transitionAppearTimeout={0}
         transitionEnterTimeout={0}
         transitionLeaveTimeout={0}>
-        {getCards(cards, deleteCard, showModal)}
+        {getCards(cards, deleteCard, showModal, setActiveCard)}
       </ReactCSSTransitionGroup>
     </div>
   );
@@ -26,7 +26,7 @@ const CardList = ({cards, fetching, deleteCard, showModal}) => {
 
 export default CardList;
 
-const getCards = (cards, deleteCard, showModal) => {
+const getCards = (cards, deleteCard, showModal, setActiveCard) => {
   if (cards.length === 0) {
     return (
       <div>No data to show</div>
@@ -43,6 +43,7 @@ const getCards = (cards, deleteCard, showModal) => {
               card={card}
               deleteCard={deleteCard}
               showModal={showModal}
+              setActiveCard={setActiveCard}
             />
           )
       })}

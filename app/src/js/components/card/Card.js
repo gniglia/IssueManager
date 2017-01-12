@@ -3,7 +3,7 @@ import Avatar from '../common/avatar/Avatar';
 import TimeAgo from 'react-timeago'
 import './Card.scss';
 
-const CardItem = ({card, deleteCard, showModal}) => {
+const CardItem = ({card, deleteCard, showModal, setActiveCard}) => {
   return (
     <div key={card._id} className='col-sm-6 col-md-3 card-container'>
       <div className='thumbnail card'>
@@ -11,7 +11,8 @@ const CardItem = ({card, deleteCard, showModal}) => {
           <Avatar mode='2' />
           <div className='card-title'>
             <a onClick={() => {
-              showModal({ modalType: 'MODAL_TYPE_CARD', modalProps: { card }})
+              setActiveCard(card._id);
+              showModal({ modalType: 'MODAL_TYPE_CARD' })
             }}>
               {card.title}
           </a>

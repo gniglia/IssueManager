@@ -31,5 +31,7 @@ export const CREATE_COMMENT_REJECTED = 'CREATE_COMMENT_REJECTED';
 
 export const UPDATE_FILTER = 'UPDATE_FILTER';
 
+export const SET_ACTIVE_CARD = 'SET_ACTIVE_CARD';
+
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const HIDE_MODAL = 'HIDE_MODAL';

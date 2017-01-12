@@ -6,12 +6,11 @@ import * as commentActions from '../../../actions/commentActions';
 import Avatar from '../../common/avatar/Avatar';
 import EditableField from '../../common/editableField/EditableField';
 import CommentList from '../../comment/CommentList';
+import { getActiveCard } from '../../../selectors/activeCardSelector';
 import './CardModal.scss';
 import closePopup from '../../../../assets/images/close-popup.png';
 
-const CardModal = ({hideModal, saving, fetching, updateCardTitle, updateCardDescription, commentActions, modalProps}) => {
-  const {card} = modalProps;
-
+const CardModal = ({card, hideModal, saving, fetching, updateCardTitle, updateCardDescription, commentActions}) => {
   return (
     <div className='modal'>
       <div className='card-modal'>
@@ -55,6 +54,7 @@ const CardModal = ({hideModal, saving, fetching, updateCardTitle, updateCardDesc
 
 const mapStateToProps = (state) => {
   return {
+    card: getActiveCard(state),
     saving: state.cards.saving,
     fetching: state.cards.fetching
   };
