@@ -74,6 +74,13 @@ $font-card-text: 'Pontano Sans', sans-serif;
 }
 
 .card-footer--right {
+  width: 30px;
+  height: 18px;
+  border-radius: 20%;
+  background-color: #29D75E;
   margin-right: 10px;
-  color: #F7F7F7;
+  color: #FFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

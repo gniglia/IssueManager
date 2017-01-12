@@ -3,7 +3,7 @@ import Card from '../models/card';
 
 
 const list = (req, res) => {
-  Card.findAsync()
+  Card.findAsync({}, null, { sort: { '_id': 1 }})
     .then(cards => res.status(httpStatus.OK).json(cards))
     .catch(err => {
       res.status(httpStatus.INTERNAL_SERVER_ERROR).json({

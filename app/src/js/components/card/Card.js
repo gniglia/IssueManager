@@ -32,7 +32,9 @@ const CardItem = ({card, deleteCard, showModal, setActiveCard}) => {
           <div className='card-footer--date'>
             <TimeAgo date={card.createdAt} live={false} />
           </div>
-          <div className='card-footer--right icon-bin'></div>
+          <div className='card-footer--right'>
+            {card.comments.length}
+          </div>
         </div>
       </div>
     </div>
