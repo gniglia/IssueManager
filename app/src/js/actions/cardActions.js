@@ -11,6 +11,11 @@ export const deleteCard = (id) => ({
   payload: cardApi.deleteCard(id)
 });
 
+export const deleteCardSocket = (id) => ({
+  type: types.DELETE_CARD_SOCKET,
+  payload: id
+});
+
 export const createCard = (card) => ({
   type: types.CREATE_CARD,
   payload: cardApi.createCard(card)

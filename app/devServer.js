@@ -33,8 +33,11 @@ io.on('connection', (socket) => {
   console.log('a user connected');
 
   socket.on('newCard', (data) => {
-    //console.log('[NEW CARD] : ' + card);
     socket.broadcast.emit('serverSendNewCard', { card: data.card });
+  });
+
+  socket.on('cardRemoved', (data) => {
+    socket.broadcast.emit('server:cardRemoved', { cardId: data.id });
   });
 
   socket.on('disconnect', () => {

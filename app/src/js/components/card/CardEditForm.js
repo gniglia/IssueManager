@@ -30,7 +30,9 @@ class CardEditForm extends React.Component {
     this.props.createCard({
       title: this.state.title,
       description: this.state.description
-    }).then(() => this.props.hideModal());
+    }).then((savedCard) => {
+      this.props.hideModal();
+    });
   }
 
   render () {

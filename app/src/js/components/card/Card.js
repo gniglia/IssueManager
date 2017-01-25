@@ -3,7 +3,7 @@ import Avatar from '../common/avatar/Avatar';
 import TimeAgo from 'react-timeago'
 import './Card.scss';
 
-const CardItem = ({card, deleteCard, showModal, setActiveCard}) => {
+const CardItem = ({card, deleteCard, showModal, setActiveCard, socket}) => {
   return (
     <div key={card._id} className='col-sm-6 col-md-3 card-container'>
       <div className='thumbnail card'>
@@ -26,7 +26,9 @@ const CardItem = ({card, deleteCard, showModal, setActiveCard}) => {
             className='card-footer--bin icon-bin'
             title='Delete'
             onClick={() => {
-              deleteCard(card._id)
+              deleteCard(card._id).then(deletedCard => {
+                socket.emit('cardRemoved', { id: deletedCard.value.data._id } );
+              })
             }} >
           </div>
           <div className='card-footer--date'>

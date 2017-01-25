@@ -19,6 +19,7 @@ const CardsPage = (props) => {
         fetching={props.fetching}
         cards={props.cards}
         deleteCard={props.cardActions.deleteCard}
+        deleteCardSocket={props.cardActions.deleteCardSocket}
         showModal={props.modalActions.showModal}
         setActiveCard={props.setActiveCard}
       />

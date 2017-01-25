@@ -44,6 +44,16 @@ const cards = (state = initialState.cards, action) => {
     }
 
     /*
+     * Deleting a Card Socket
+     */
+    case types.DELETE_CARD_SOCKET: {
+      return {
+        ...state,
+        cards: state.cards.filter(card => card._id !== action.payload)
+      }
+    }
+
+    /*
      * Creating a Card
      */
     case types.CREATE_CARD_PENDING: {
