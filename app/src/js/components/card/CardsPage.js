@@ -20,6 +20,7 @@ const CardsPage = (props) => {
         cards={props.cards}
         deleteCard={props.cardActions.deleteCard}
         deleteCardSocket={props.cardActions.deleteCardSocket}
+        createCardSocket={props.cardActions.createCardSocket}
         showModal={props.modalActions.showModal}
         setActiveCard={props.setActiveCard}
       />

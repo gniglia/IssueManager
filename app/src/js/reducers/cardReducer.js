@@ -75,6 +75,17 @@ const cards = (state = initialState.cards, action) => {
     }
 
     /*
+     * Creating a Card Socket
+     */
+    case types.CREATE_CARD_SOCKET: {
+      return {
+        ...state,
+        saving: false,
+        cards: [...state.cards, action.payload]
+      }
+    }
+
+    /*
      * Updating a Card
      */
     case types.UPDATE_CARD_PENDING: {

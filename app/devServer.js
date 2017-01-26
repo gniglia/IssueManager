@@ -3,11 +3,11 @@ import express from 'express';
 import config from './config/webpack.dev.config';
 
 import http from 'http';
-import SocketIO from 'socket.io';
+import socket from 'socket.io';
 
 const app = express();
 const server = http.Server(app);
-const io = new SocketIO(server);
+const io = socket(server);
 
 const port = 8080;
 
@@ -32,8 +32,8 @@ app.get('/*', (req, res) => {
 io.on('connection', (socket) => {
   console.log('a user connected');
 
-  socket.on('newCard', (data) => {
-    socket.broadcast.emit('serverSendNewCard', { card: data.card });
+  socket.on('cardAdded', (data) => {
+    socket.broadcast.emit('server:cardAdded', { card: data.card });
   });
 
   socket.on('cardRemoved', (data) => {

@@ -2,6 +2,7 @@ import React from 'react';
 import Avatar from '../common/avatar/Avatar';
 import TimeAgo from 'react-timeago'
 import './Card.scss';
+import { socketConnect } from 'socket.io-react';
 
 const CardItem = ({card, deleteCard, showModal, setActiveCard, socket}) => {
   return (
@@ -43,4 +44,4 @@ const CardItem = ({card, deleteCard, showModal, setActiveCard, socket}) => {
   );
 };
 
-export default CardItem;
+export default socketConnect(CardItem);

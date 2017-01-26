@@ -3,9 +3,7 @@ import Card from './Card';
 import Spinner from '../common/spinner/Spinner';
 import './CardList.scss';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import io from 'socket.io-client';
-
-let socket = io();
+import { socketConnect } from 'socket.io-react';
 
 class CardList extends React.Component {
   constructor(props) {
@@ -13,7 +11,11 @@ class CardList extends React.Component {
   }
 
   componentDidMount() {
-    socket.on('server:cardRemoved', (data) => {
+    this.props.socket.on('server:cardAdded', (data) => {
+      this.props.createCardSocket(data.card);
+    });
+
+    this.props.socket.on('server:cardRemoved', (data) => {
       this.props.deleteCardSocket(data.cardId);
     });
   }
@@ -36,7 +38,6 @@ class CardList extends React.Component {
                 deleteCard={deleteCard}
                 showModal={showModal}
                 setActiveCard={setActiveCard}
-                socket={socket}
               />
             )
         })}
@@ -67,4 +68,4 @@ class CardList extends React.Component {
   }
 }
 
-export default CardList;
+export default socketConnect(CardList);
