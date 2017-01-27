@@ -103,6 +103,24 @@ const cards = (state = initialState.cards, action) => {
     }
 
     /*
+     * Updating a Card Socket
+     */
+    case types.UPDATE_CARD_SOCKET: {
+      const index = state.cards.findIndex(card => card._id === action.payload._id);
+
+      return {
+        ...state,
+        saving: false,
+        savingField: false,
+        cards: [
+          ...state.cards.slice(0, index),
+          action.payload,
+          ...state.cards.slice(index + 1)
+        ]
+      }
+    }
+
+    /*
      * Deleting a Comment
      */
     case types.DELETE_COMMENT_PENDING: {

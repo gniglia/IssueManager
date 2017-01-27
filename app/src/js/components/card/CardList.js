@@ -18,6 +18,10 @@ class CardList extends React.Component {
     this.props.socket.on('server:cardRemoved', (data) => {
       this.props.deleteCardSocket(data.cardId);
     });
+
+    this.props.socket.on('server:cardUpdated', (data) => {
+      this.props.updateCardSocket(data.card);
+    });
   }
 
   getCards(cards, deleteCard, showModal, setActiveCard) {

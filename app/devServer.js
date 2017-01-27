@@ -40,6 +40,10 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('server:cardRemoved', { cardId: data.id });
   });
 
+  socket.on('cardUpdated', (data) => {
+    socket.broadcast.emit('server:cardUpdated', { card: data.card });
+  });
+
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });

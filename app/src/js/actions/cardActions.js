@@ -31,6 +31,11 @@ export const updateCard = (card) => ({
   payload: cardApi.updateCard(card)
 });
 
+export const updateCardSocket = (card) => ({
+  type: types.UPDATE_CARD_SOCKET,
+  payload: card
+});
+
 export const updateCardTitle = (card) => ({
   type: types.UPDATE_CARD,
   payload: cardApi.updateCardTitle(card)

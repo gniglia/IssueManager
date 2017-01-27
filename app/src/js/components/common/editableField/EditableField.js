@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import ReactDOM from "react-dom";
 import classNames from 'classnames';
 import './EditableField.scss';
+import { socketConnect } from 'socket.io-react';
 
 class EditableField extends React.Component {
   constructor(props) {
@@ -45,6 +46,8 @@ class EditableField extends React.Component {
       this.props.onFieldChange({
         id: this.props.id,
         [this.props.fieldName]: this.state.fieldValue
+      }).then(updatedCard => {
+        this.props.socket.emit('cardUpdated', { card: updatedCard.value.data } );
       });
     }
 
@@ -169,4 +172,4 @@ EditableField.defaultProps = {
   required: false
 };
 
-export default EditableField;
+export default socketConnect(EditableField);
