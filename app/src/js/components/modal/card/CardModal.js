@@ -7,55 +7,78 @@ import Avatar from '../../common/avatar/Avatar';
 import EditableField from '../../common/editableField/EditableField';
 import CommentList from '../../comment/CommentList';
 import { getActiveCard } from '../../../selectors/activeCardSelector';
-import './CardModal.scss';
 import closePopup from '../../../../assets/images/close-popup.png';
+import './CardModal.scss';
+import { socketConnect } from 'socket.io-react';
 
-const CardModal = ({card, hideModal, saving, fetching, updateCardTitle, updateCardDescription, commentActions}) => {
-  return (
-    <div className='modal'>
-      <div className='card-modal'>
-        <img className='card-modal-close' onClick={() => hideModal()} src={closePopup} />
-        <div className='card-modal-container'>
-          <header className='card-modal-header'>
-            <Avatar mode='2' />
-          </header>
-          <section className='card-modal-section'>
-            <div className='card-modal--title'>
-              <EditableField
-                id={card._id}
-                fieldName='title'
-                fieldType='text'
-                fieldValue={card.title}
-                required={true}
-                onFieldChange={updateCardTitle} />
-            </div>
-            <div className='card-modal--description'>
-              <EditableField
-                id={card._id}
-                fieldName='description'
-                fieldType='area'
-                fieldValue={card.description}
-                onFieldChange={updateCardDescription} />
-            </div>
-            <div>
-              <CommentList
-                card={card}
-                commentActions={commentActions}
-                saving={saving}
-                fetching={fetching}
-              />
-            </div>
-          </section>
+class CardModal extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // this.state = { deleted: false };
+  }
+
+  // componentDidMount() {
+  //   this.props.socket.on('server:cardRemoved', (data) => {
+  //     this.setCardDeleted();
+  //   });
+  // }
+  //
+  // setCardDeleted() {
+  //   this.setState({ deleted: true });
+  // }
+
+  render() {
+    const {card, hideModal, saving, savingField, fetching, updateCardTitle, updateCardDescription, commentActions} = this.props;
+
+    return (
+      <div className='modal'>
+        <div className='card-modal'>
+          <img className='card-modal-close' onClick={() => hideModal()} src={closePopup} />
+          <div className='card-modal-container'>
+            <header className='card-modal-header'>
+              <Avatar mode='2' />
+            </header>
+            <section className='card-modal-section'>
+              <div className='card-modal--title'>
+                <EditableField
+                  id={card._id}
+                  fieldName='title'
+                  fieldType='text'
+                  fieldValue={card.title}
+                  required={true}
+                  onFieldChange={updateCardTitle} />
+              </div>
+              <div className='card-modal--description'>
+                <EditableField
+                  id={card._id}
+                  fieldName='description'
+                  fieldType='area'
+                  fieldValue={card.description}
+                  onFieldChange={updateCardDescription} />
+              </div>
+              <div>
+                <CommentList
+                  card={card}
+                  commentActions={commentActions}
+                  saving={saving}
+                  savingField={savingField}
+                  fetching={fetching}
+                />
+              </div>
+            </section>
+          </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
   return {
     card: getActiveCard(state),
     saving: state.cards.saving,
+    savingField: state.cards.savingField,
     fetching: state.cards.fetching
   };
 };
@@ -68,4 +91,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardModal);
+export default socketConnect(connect(mapStateToProps, mapDispatchToProps)(CardModal));

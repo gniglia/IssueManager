@@ -89,7 +89,7 @@ const cards = (state = initialState.cards, action) => {
      * Updating a Card
      */
     case types.UPDATE_CARD_PENDING: {
-      return {...state, saving: true}
+      return {...state, savingField: true}
     }
     case types.UPDATE_CARD_FULFILLED: {
       return getStateAfterUpdate(state, action);
@@ -97,7 +97,7 @@ const cards = (state = initialState.cards, action) => {
     case types.UPDATE_CARD_REJECTED: {
       return {
         ...state,
-        saving: false,
+        savingField: false,
         error: action.payload
       }
     }
@@ -146,6 +146,7 @@ const getStateAfterUpdate = (state, action) => {
   return {
     ...state,
     saving: false,
+    savingField: false,
     cards: [
       ...state.cards.slice(0, index),
       action.payload.data,
