@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../common/Button';
+import { socketConnect } from 'socket.io-react';
 
 class CommentEditForm extends React.Component {
   constructor(props) {
@@ -26,8 +27,9 @@ class CommentEditForm extends React.Component {
     createComment({
       cardId: card._id,
       text: this.state.text
-    }).then(() => {
+    }).then((updatedCard) => {
       this.setState({text: ''});
+      this.props.socket.emit('cardUpdated', { card: updatedCard.value.data } );
     });
   }
 
@@ -60,4 +62,4 @@ class CommentEditForm extends React.Component {
   }
 }
 
-export default CommentEditForm;
+export default socketConnect(CommentEditForm);

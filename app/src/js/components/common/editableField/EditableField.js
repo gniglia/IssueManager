@@ -152,6 +152,7 @@ class EditableField extends React.Component {
 
     var labelClasses = classNames({
         'editable-field': true,
+        'format-text': true,
         'text-italic': !this.state.fieldValue
     });
 

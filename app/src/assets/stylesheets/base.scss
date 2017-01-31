@@ -27,6 +27,11 @@ body {
   width: 100%;
 }
 
+.format-text {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 input[type=text], textarea {
   transition: all 0.20s ease-in-out;
   outline: none;

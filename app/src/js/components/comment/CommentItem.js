@@ -1,7 +1,8 @@
 import React from 'react';
 import Button from '../common/Button';
+import { socketConnect } from 'socket.io-react';
 
-const CommentItem = ({card, comment, deleteComment}) => {
+const CommentItem = ({card, comment, deleteComment, socket}) => {
     return (
       <li>
         <hr />
@@ -13,12 +14,15 @@ const CommentItem = ({card, comment, deleteComment}) => {
               className='icon-bin'
               onClick={() => {
                 deleteComment(card._id, comment._id)
+                  .then((updatedCard) => {
+                    socket.emit('cardUpdated', { card: updatedCard.value.data } );
+                  })
               }} />
           </div>
         </h6>
-        <h5><small>{comment.text}</small></h5>
+        <h5 className='format-text'><small>{comment.text}</small></h5>
       </li>
     );
 };
 
-export default CommentItem;
+export default socketConnect(CommentItem);

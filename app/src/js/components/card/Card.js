@@ -18,7 +18,7 @@ const CardItem = ({card, deleteCard, showModal, setActiveCard, socket}) => {
               {card.title}
           </a>
           </div>
-          <div className='card-text'>
+          <div className='card-text format-text'>
             <p>{card.description}</p>
           </div>
         </div>
