@@ -4,7 +4,7 @@ import TimeAgo from 'react-timeago'
 import './Card.scss';
 import { socketConnect } from 'socket.io-react';
 
-const CardItem = ({card, deleteCard, showModal, setActiveCard, socket}) => {
+const CardItem = ({card, archiveCard, showModal, setActiveCard, socket}) => {
   return (
     <div key={card._id} className='col-sm-6 col-md-3 card-container'>
       <div className='thumbnail card'>
@@ -27,8 +27,8 @@ const CardItem = ({card, deleteCard, showModal, setActiveCard, socket}) => {
             className='card-footer--bin icon-bin'
             title='Delete'
             onClick={() => {
-              deleteCard(card._id).then(deletedCard => {
-                socket.emit('cardRemoved', { id: deletedCard.value.data._id } );
+              archiveCard(card._id).then(archivedCard => {
+                socket.emit('cardUpdated', { card: archivedCard.value.data } );
               })
             }} >
           </div>

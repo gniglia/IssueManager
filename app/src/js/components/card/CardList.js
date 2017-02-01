@@ -15,16 +15,12 @@ class CardList extends React.Component {
       this.props.createCardSocket(data.card);
     });
 
-    this.props.socket.on('server:cardRemoved', (data) => {
-      this.props.deleteCardSocket(data.cardId);
-    });
-
     this.props.socket.on('server:cardUpdated', (data) => {
       this.props.updateCardSocket(data.card);
     });
   }
 
-  getCards(cards, deleteCard, showModal, setActiveCard) {
+  getCards(cards, archiveCard, showModal, setActiveCard) {
     if (cards.length === 0) {
       return (
         <div>No data to show</div>
@@ -39,7 +35,7 @@ class CardList extends React.Component {
               <Card
                 key={card._id}
                 card={card}
-                deleteCard={deleteCard}
+                archiveCard={archiveCard}
                 showModal={showModal}
                 setActiveCard={setActiveCard}
               />
@@ -50,7 +46,7 @@ class CardList extends React.Component {
   }
 
   render() {
-    const {cards, fetching, deleteCard, showModal, setActiveCard} = this.props;
+    const {cards, fetching, archiveCard, showModal, setActiveCard} = this.props;
 
     if (fetching) {
       return (
@@ -65,7 +61,7 @@ class CardList extends React.Component {
           transitionAppear={true} transitionAppearTimeout={0}
           transitionEnterTimeout={0}
           transitionLeaveTimeout={0}>
-          {this.getCards(cards, deleteCard, showModal, setActiveCard)}
+          {this.getCards(cards, archiveCard, showModal, setActiveCard)}
         </ReactCSSTransitionGroup>
       </div>
     );

@@ -16,6 +16,11 @@ export const deleteCardSocket = (id) => ({
   payload: id
 });
 
+export const archiveCard = (id) => ({
+  type: types.ARCHIVE_CARD,
+  payload: cardApi.archiveCard(id)
+});
+
 export const createCard = (card) => ({
   type: types.CREATE_CARD,
   payload: cardApi.createCard(card)

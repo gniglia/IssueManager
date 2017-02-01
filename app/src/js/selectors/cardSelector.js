@@ -5,12 +5,15 @@ const getFilter = (state) => state.filter;
 
 export const getFilteredCards = createSelector(
   [ getCards, getFilter ], (cards, filter) => {
+    if (!cards)
+      return null;
+
     if (!filter) {
-      return cards;
+      return cards.filter(card => card.archived === false);
     }
 
     return cards.filter(card => {
-      return card.title.toLowerCase().indexOf(filter.toLowerCase()) >= 0
+      return card.archived === false && card.title.toLowerCase().indexOf(filter.toLowerCase()) >= 0
     });
   }
 );

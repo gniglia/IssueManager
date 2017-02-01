@@ -36,10 +36,6 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('server:cardAdded', { card: data.card });
   });
 
-  socket.on('cardRemoved', (data) => {
-    socket.broadcast.emit('server:cardRemoved', { cardId: data.id });
-  });
-
   socket.on('cardUpdated', (data) => {
     socket.broadcast.emit('server:cardUpdated', { card: data.card });
   });

@@ -43,15 +43,29 @@ const cards = (state = initialState.cards, action) => {
       }
     }
 
-    /*
-     * Deleting a Card Socket
-     */
     case types.DELETE_CARD_SOCKET: {
       return {
         ...state,
         cards: state.cards.filter(card => card._id !== action.payload)
       }
     }
+
+    /*
+     * Archiving a Card
+     */
+     case types.ARCHIVE_CARD_PENDING: {
+       return {...state, saving: true}
+     }
+     case types.ARCHIVE_CARD_FULFILLED: {
+       return getStateAfterUpdate(state, action);
+     }
+     case types.ARCHIVE_CARD_REJECTED: {
+       return {
+         ...state,
+         saving: false,
+         error: action.payload
+       }
+     }
 
     /*
      * Creating a Card
@@ -74,9 +88,6 @@ const cards = (state = initialState.cards, action) => {
       }
     }
 
-    /*
-     * Creating a Card Socket
-     */
     case types.CREATE_CARD_SOCKET: {
       return {
         ...state,
@@ -102,9 +113,6 @@ const cards = (state = initialState.cards, action) => {
       }
     }
 
-    /*
-     * Updating a Card Socket
-     */
     case types.UPDATE_CARD_SOCKET: {
       const index = state.cards.findIndex(card => card._id === action.payload._id);
 

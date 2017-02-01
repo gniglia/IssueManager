@@ -8,8 +8,8 @@ import EditableField from '../../common/editableField/EditableField';
 import CommentList from '../../comment/CommentList';
 import { getActiveCard } from '../../../selectors/activeCardSelector';
 import closePopup from '../../../../assets/images/close-popup.png';
-import './CardModal.scss';
 import { socketConnect } from 'socket.io-react';
+import './CardModal.scss';
 
 class CardModal extends React.Component {
   constructor(props) {
@@ -23,13 +23,33 @@ class CardModal extends React.Component {
   //     this.setCardDeleted();
   //   });
   // }
-  //
+
   // setCardDeleted() {
   //   this.setState({ deleted: true });
   // }
 
   render() {
     const {card, hideModal, saving, savingField, fetching, updateCardTitle, updateCardDescription, commentActions} = this.props;
+
+    if (card.archived) {
+      return (
+        <div className='modal'>
+          <div className='card-modal'>
+            <img className='card-modal-close' onClick={() => hideModal()} src={closePopup} />
+            <div className='card-modal-container'>
+              <header className='card-modal-header'>
+                <Avatar mode='2' />
+              </header>
+              <section className='card-modal-section'>
+                <div>
+                  This Card has been Archived.
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      )
+    }
 
     return (
       <div className='modal'>
