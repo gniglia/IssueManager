@@ -3,50 +3,69 @@ import Card from './Card';
 import Spinner from '../common/spinner/Spinner';
 import './CardList.scss';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { socketConnect } from 'socket.io-react';
 
-const CardList = ({cards, fetching, deleteCard, showModal, setActiveCard}) => {
-  if (fetching) {
+class CardList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.socket.on('server:cardAdded', (data) => {
+      this.props.createCardSocket(data.card);
+    });
+
+    this.props.socket.on('server:cardUpdated', (data) => {
+      this.props.updateCardSocket(data.card);
+    });
+  }
+
+  getCards(cards, archiveCard, showModal, setActiveCard) {
+    if (cards.length === 0) {
+      return (
+        <div>No data to show</div>
+      );
+    }
+
     return (
-      <Spinner />
+      <div className="row-fluid">
+        {
+          cards.map(card => {
+            return (
+              <Card
+                key={card._id}
+                card={card}
+                archiveCard={archiveCard}
+                showModal={showModal}
+                setActiveCard={setActiveCard}
+              />
+            )
+        })}
+      </div>
     );
   }
 
-  return (
-    <div style={{padding: '0 20px 20px 0', overflow: 'hidden'}}>
-      <ReactCSSTransitionGroup
-        transitionName='card-list-'
-        transitionAppear={true} transitionAppearTimeout={0}
-        transitionEnterTimeout={0}
-        transitionLeaveTimeout={0}>
-        {getCards(cards, deleteCard, showModal, setActiveCard)}
-      </ReactCSSTransitionGroup>
-    </div>
-  );
-};
+  render() {
+    const {cards, fetching, archiveCard, showModal, setActiveCard} = this.props;
 
-export default CardList;
+    if (fetching) {
+      return (
+        <Spinner />
+      );
+    }
 
-const getCards = (cards, deleteCard, showModal, setActiveCard) => {
-  if (cards.length === 0) {
     return (
-      <div>No data to show</div>
+      <div style={{padding: '0 20px 20px 0', overflow: 'hidden'}}>
+        <ReactCSSTransitionGroup
+          transitionName='card-list-'
+          transitionAppear={true} transitionAppearTimeout={0}
+          transitionEnterTimeout={0}
+          transitionLeaveTimeout={0}>
+          {this.getCards(cards, archiveCard, showModal, setActiveCard)}
+        </ReactCSSTransitionGroup>
+      </div>
     );
   }
+}
 
-  return (
-    <div className="row-fluid">
-      {
-        cards.map(card => {
-          return (
-            <Card
-              key={card._id}
-              card={card}
-              deleteCard={deleteCard}
-              showModal={showModal}
-              setActiveCard={setActiveCard}
-            />
-          )
-      })}
-    </div>
-  );
-};
+export default socketConnect(CardList);

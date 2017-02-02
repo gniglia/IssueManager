@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as cardActions from '../../actions/cardActions';
 import Spinner from '../common/spinner/Spinner';
+import { socketConnect } from 'socket.io-react';
 
 class CardEditForm extends React.Component {
   constructor(props) {
@@ -30,7 +31,10 @@ class CardEditForm extends React.Component {
     this.props.createCard({
       title: this.state.title,
       description: this.state.description
-    }).then(() => this.props.hideModal());
+    }).then((savedCard) => {
+      this.props.socket.emit('cardAdded', { card: savedCard.value.data } );
+      this.props.hideModal();
+    });
   }
 
   render () {
@@ -92,4 +96,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardEditForm);
+export default socketConnect(connect(mapStateToProps, mapDispatchToProps)(CardEditForm));

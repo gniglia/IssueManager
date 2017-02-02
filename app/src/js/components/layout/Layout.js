@@ -13,6 +13,6 @@ const Layout = ({children}) => {
       </section>
     </div>
   );
-};
+}
 
 export default Layout;

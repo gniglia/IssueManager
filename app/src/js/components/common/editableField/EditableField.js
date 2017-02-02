@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import ReactDOM from "react-dom";
 import classNames from 'classnames';
 import './EditableField.scss';
+import { socketConnect } from 'socket.io-react';
 
 class EditableField extends React.Component {
   constructor(props) {
@@ -45,6 +46,8 @@ class EditableField extends React.Component {
       this.props.onFieldChange({
         id: this.props.id,
         [this.props.fieldName]: this.state.fieldValue
+      }).then(updatedCard => {
+        this.props.socket.emit('cardUpdated', { card: updatedCard.value.data } );
       });
     }
 
@@ -64,12 +67,6 @@ class EditableField extends React.Component {
 
   getDefaultValue() {
     return this.state.fieldValue || `Click to add ${this.props.fieldName}...`;
-  }
-
-  componentWillMount() {
-    if (!this.props.fieldValue) {
-      this.setState({fieldValue: ''});
-    }
   }
 
   setFocus() {
@@ -102,6 +99,21 @@ class EditableField extends React.Component {
     this.setState({
       fieldValue: this.state.fieldOriginalValue,
       editable: false
+    });
+  }
+
+  componentWillMount() {
+    if (!this.props.fieldValue) {
+      this.setState({fieldValue: ''});
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.editable) return;
+
+    this.setState({
+      fieldOriginalValue: nextProps.fieldValue,
+      fieldValue: nextProps.fieldValue,
     });
   }
 
@@ -149,6 +161,7 @@ class EditableField extends React.Component {
 
     var labelClasses = classNames({
         'editable-field': true,
+        'format-text': true,
         'text-italic': !this.state.fieldValue
     });
 
@@ -169,4 +182,4 @@ EditableField.defaultProps = {
   required: false
 };
 
-export default EditableField;
+export default socketConnect(EditableField);

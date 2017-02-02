@@ -8,8 +8,9 @@ Promise.promisifyAll(mongoose);
 
 
 mongoose.connect(config.default.db);
-mongoose.connection.on('error', () => {
-  throw new Error(`unable to connect to database: ${config.default.db}`);
+mongoose.connection.on('error', (err) => {
+  //throw new Error(`unable to connect to database: ${config.default.db}`);
+  console.log(`unable to connect to database: ${err}`);
 });
 
 

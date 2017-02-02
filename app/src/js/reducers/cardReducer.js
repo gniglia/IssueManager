@@ -43,6 +43,30 @@ const cards = (state = initialState.cards, action) => {
       }
     }
 
+    case types.DELETE_CARD_SOCKET: {
+      return {
+        ...state,
+        cards: state.cards.filter(card => card._id !== action.payload)
+      }
+    }
+
+    /*
+     * Archiving a Card
+     */
+     case types.ARCHIVE_CARD_PENDING: {
+       return {...state, saving: true}
+     }
+     case types.ARCHIVE_CARD_FULFILLED: {
+       return getStateAfterUpdate(state, action);
+     }
+     case types.ARCHIVE_CARD_REJECTED: {
+       return {
+         ...state,
+         saving: false,
+         error: action.payload
+       }
+     }
+
     /*
      * Creating a Card
      */
@@ -64,11 +88,19 @@ const cards = (state = initialState.cards, action) => {
       }
     }
 
+    case types.CREATE_CARD_SOCKET: {
+      return {
+        ...state,
+        saving: false,
+        cards: [...state.cards, action.payload]
+      }
+    }
+
     /*
      * Updating a Card
      */
     case types.UPDATE_CARD_PENDING: {
-      return {...state, saving: true}
+      return {...state, savingField: true}
     }
     case types.UPDATE_CARD_FULFILLED: {
       return getStateAfterUpdate(state, action);
@@ -76,8 +108,23 @@ const cards = (state = initialState.cards, action) => {
     case types.UPDATE_CARD_REJECTED: {
       return {
         ...state,
-        saving: false,
+        savingField: false,
         error: action.payload
+      }
+    }
+
+    case types.UPDATE_CARD_SOCKET: {
+      const index = state.cards.findIndex(card => card._id === action.payload._id);
+
+      return {
+        ...state,
+        saving: false,
+        savingField: false,
+        cards: [
+          ...state.cards.slice(0, index),
+          action.payload,
+          ...state.cards.slice(index + 1)
+        ]
       }
     }
 
@@ -125,6 +172,7 @@ const getStateAfterUpdate = (state, action) => {
   return {
     ...state,
     saving: false,
+    savingField: false,
     cards: [
       ...state.cards.slice(0, index),
       action.payload.data,

@@ -9,8 +9,11 @@ import { createStore, applyMiddleware, compose } from "redux";
 import immutableState from 'redux-immutable-state-invariant';
 import routes from './routes';
 import reducers from "./reducers";
-import Layout from "./components/layout/Layout";
 import '../assets/stylesheets/all.scss';
+
+import { SocketProvider } from 'socket.io-react';
+import io from 'socket.io-client';
+import Layout from './components/layout/Layout';
 
 const middleware = applyMiddleware(immutableState(), promise(), thunk, logger());
 
@@ -24,10 +27,14 @@ const store = createStore(reducers, enhancers);
 import * as cardActions from './actions/cardActions';
 store.dispatch(cardActions.loadCards());
 
+const socket = io();
+
 const app = document.getElementById('app');
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory} routes={routes} />
+    <SocketProvider socket={socket}>
+      <Router history={browserHistory} routes={routes} />
+    </SocketProvider>
   </Provider>, app
 );

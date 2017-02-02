@@ -8,6 +8,12 @@ const deleteCard = (id) => {
   return axios.delete(`http://localhost:3500/api/cards/${id}`);
 };
 
+const archiveCard = (id) => {
+  return axios.patch(`http://localhost:3500/api/cards/${id}`, {
+    archived: true
+  });
+};
+
 const createCard = (card) => {
   return axios.post('http://localhost:3500/api/cards/', {
     title: card.title,
@@ -35,4 +41,4 @@ const updateCardDescription = (card) => {
   });
 };
 
-export default { loadCards, deleteCard, createCard, updateCard, updateCardTitle, updateCardDescription };
+export default { loadCards, deleteCard, archiveCard, createCard, updateCard, updateCardTitle, updateCardDescription };

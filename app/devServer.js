@@ -1,8 +1,14 @@
 import path from 'path';
 import express from 'express';
-import config from './config/webpack.dev.config'
+import config from './config/webpack.dev.config';
 
-const app = new express();
+import http from 'http';
+import socket from 'socket.io';
+
+const app = express();
+const server = http.Server(app);
+const io = socket(server);
+
 const port = 8080;
 
 import webpack from 'webpack'
@@ -23,7 +29,23 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'src', 'index.html'));
 });
 
-app.listen(port, error => {
+io.on('connection', (socket) => {
+  console.log('a user connected');
+
+  socket.on('cardAdded', (data) => {
+    socket.broadcast.emit('server:cardAdded', { card: data.card });
+  });
+
+  socket.on('cardUpdated', (data) => {
+    socket.broadcast.emit('server:cardUpdated', { card: data.card });
+  });
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
+
+server.listen(port, error => {
   if (error) {
     console.error(error);
   } else {

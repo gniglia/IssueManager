@@ -11,14 +11,34 @@ export const deleteCard = (id) => ({
   payload: cardApi.deleteCard(id)
 });
 
+export const deleteCardSocket = (id) => ({
+  type: types.DELETE_CARD_SOCKET,
+  payload: id
+});
+
+export const archiveCard = (id) => ({
+  type: types.ARCHIVE_CARD,
+  payload: cardApi.archiveCard(id)
+});
+
 export const createCard = (card) => ({
   type: types.CREATE_CARD,
   payload: cardApi.createCard(card)
 });
 
+export const createCardSocket = (card) => ({
+  type: types.CREATE_CARD_SOCKET,
+  payload: card
+});
+
 export const updateCard = (card) => ({
   type: types.UPDATE_CARD,
   payload: cardApi.updateCard(card)
+});
+
+export const updateCardSocket = (card) => ({
+  type: types.UPDATE_CARD_SOCKET,
+  payload: card
 });
 
 export const updateCardTitle = (card) => ({

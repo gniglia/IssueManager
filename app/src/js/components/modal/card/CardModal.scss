@@ -63,3 +63,15 @@
   font: 14px $font-card-text;
   padding-top: 25px;
 }
+
+.card-modal--description-label {
+  padding: 5px 5px;
+  margin-right: 25px;
+}
+
+.card-modal-archived {
+  background-color: #F7F7F7;
+  color: #EA4335;
+  padding: 15px;
+  font-size: 16px;
+}
