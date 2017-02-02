@@ -8,25 +8,18 @@ const CommentList = ({card, commentActions, saving, fetching}) => {
   if (fetching) {
     return (
       <div>Loading</div>
-    );
+    )
   }
 
   return (
     <div>
       <ul style={ulStyle}>
-        {getComments(card, commentActions.deleteComment)}
-        <li>
-          <hr />
-          <CommentEditForm
-            card={card}
-            saving={saving}
-            createComment={commentActions.createComment}
-          />
-        </li>
+        { getComments(card, commentActions.deleteComment) }
+        { getCommentForm(card, saving, commentActions.createComment) }
       </ul>
     </div>
-  );
-};
+  )
+}
 
 export default CommentList;
 
@@ -34,7 +27,7 @@ const ulStyle = {
   listStyleType: 'none',
   padding: 0,
   margin: 0
-};
+}
 
 const getComments = (card, deleteComment) => {
   if (card.comments.length === 0) {
@@ -43,7 +36,7 @@ const getComments = (card, deleteComment) => {
         <hr />
         <div>No comments yet.</div>
       </div>
-    );
+    )
   }
 
   return (
@@ -57,5 +50,20 @@ const getComments = (card, deleteComment) => {
         />
       )
     })
-  );
-};
+  )
+}
+
+const getCommentForm = (card, saving, createComment) => {
+  if (card.archived) return;
+
+  return (
+    <li>
+      <hr />
+      <CommentEditForm
+        card={card}
+        saving={saving}
+        createComment={createComment}
+      />
+    </li>
+  )
+}

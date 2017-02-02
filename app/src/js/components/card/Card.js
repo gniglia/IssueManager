@@ -25,7 +25,7 @@ const CardItem = ({card, archiveCard, showModal, setActiveCard, socket}) => {
         <div className='card-footer'>
           <div
             className='card-footer--bin icon-bin'
-            title='Delete'
+            title='Archive'
             onClick={() => {
               archiveCard(card._id).then(archivedCard => {
                 socket.emit('cardUpdated', { card: archivedCard.value.data } );

@@ -10,14 +10,8 @@ const CommentItem = ({card, comment, deleteComment, socket}) => {
           <div
             title='Delete'
             className='comment-bin'>
-            <span
-              className='icon-bin'
-              onClick={() => {
-                deleteComment(card._id, comment._id)
-                  .then((updatedCard) => {
-                    socket.emit('cardUpdated', { card: updatedCard.value.data } );
-                  })
-              }} />
+
+            { getBinIcon(card, comment, deleteComment, socket) }
           </div>
         </h6>
         <h5 className='format-text'><small>{comment.text}</small></h5>
@@ -26,3 +20,18 @@ const CommentItem = ({card, comment, deleteComment, socket}) => {
 };
 
 export default socketConnect(CommentItem);
+
+const getBinIcon = (card, comment, deleteComment, socket) => {
+  if (card.archived) return;
+
+  return (
+    <span
+      className='icon-bin'
+      onClick={() => {
+        deleteComment(card._id, comment._id)
+          .then((updatedCard) => {
+            socket.emit('cardUpdated', { card: updatedCard.value.data } );
+          })
+      }} />
+  )
+}

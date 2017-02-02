@@ -69,12 +69,6 @@ class EditableField extends React.Component {
     return this.state.fieldValue || `Click to add ${this.props.fieldName}...`;
   }
 
-  componentWillMount() {
-    if (!this.props.fieldValue) {
-      this.setState({fieldValue: ''});
-    }
-  }
-
   setFocus() {
     if (this.state.editable) {
       ReactDOM.findDOMNode(this.refs.field).focus();
@@ -105,6 +99,21 @@ class EditableField extends React.Component {
     this.setState({
       fieldValue: this.state.fieldOriginalValue,
       editable: false
+    });
+  }
+
+  componentWillMount() {
+    if (!this.props.fieldValue) {
+      this.setState({fieldValue: ''});
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.editable) return;
+
+    this.setState({
+      fieldOriginalValue: nextProps.fieldValue,
+      fieldValue: nextProps.fieldValue,
     });
   }
 
