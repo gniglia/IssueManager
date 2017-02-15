@@ -2,16 +2,17 @@ const path = require('path')
 const webpack = require('webpack')
 const basePath = path.join(__dirname, '..');
 
+const env = process.env.NODE_ENV;
+
 const options = {
-	devtool: 'inline-source-map',
+  devtool: 'source-map',
 	entry: [
-		'webpack-hot-middleware/client?reload=true',
 		path.join(basePath, 'src', 'js', 'index.js')
 	],
 	output: {
 		path: path.join(basePath, 'public'),
-		filename: 'bundle.js',
-		publicPath: '/public/'
+    filename: 'bundle.js',
+    publicPath: '/public/'
 	},
 	cssLoaders: [
 		'style-loader',
@@ -19,7 +20,17 @@ const options = {
 		'sass-loader'
 	],
 	plugins: [
-		new webpack.HotModuleReplacementPlugin()
+    // Merge all duplicate modules
+		new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+			mangle: {},
+			sourceMap: false,
+			compress: {
+				warnings: false,
+				screw_ie8: true
+			},
+			exclude: ''
+		})
   ],
 	resolve: {
     modulesDirectories: ['src', 'node_modules']

@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "dev": "babel-node devServer.js",
+    "dev": "babel-node server.js",
     "start": "npm test & npm run dev",
+    "dist": "cross-env NODE_ENV=production webpack --config config/webpack.prod.config.js --progress --colors",
+    "build": "cross-env NODE_ENV=development webpack --config config/webpack.dev.config.js --progress --colors",
     "test": "mocha --reporter progress config/test.js \"src/**/*.test.js\"",
     "test:watch": "npm run test -- --watch"
   },
@@ -39,6 +41,7 @@
     "babel-preset-stage-2": "^6.17.0",
     "babel-register": "^6.16.3",
     "chai": "^3.5.0",
+    "cross-env": "^3.1.4",
     "css-loader": "^0.25.0",
     "enzyme": "^2.4.1",
     "eslint": "^3.7.1",

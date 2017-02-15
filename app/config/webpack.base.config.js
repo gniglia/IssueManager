@@ -1,6 +1,6 @@
-var path = require('path')
-var webpack = require('webpack')
-var basePath = path.join(__dirname, '..');
+const path = require('path')
+const webpack = require('webpack')
+const basePath = path.join(__dirname, '..');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = (options) => ({
